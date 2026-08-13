@@ -1,6 +1,6 @@
 # API Acre
 
-API Acre is a live catalog of 56 focused, pay-per-call APIs for web research,
+API Acre is a live catalog of 58 focused, pay-per-call APIs for web research,
 documents, structured data, developer workflows, public-company research, and
 Base network evidence. Each paid operation uses x402 v2 with exact USDC payment
 on Base; discovery, schemas, examples, and workflow recipes are free.
@@ -21,6 +21,20 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
 - [Buyer guide](https://apiacre.com/buyers)
+- [Agent integration guide](https://apiacre.com/integrations) — portable skill,
+  plugin package, and connection instructions
+
+## Install the Agent Skill
+
+The repository contains an instruction-only Agent Skill at
+[`skills/api-acre/SKILL.md`](skills/api-acre/SKILL.md). Review it before
+installing, then copy the complete `skills/api-acre` directory into your
+agent host's skill directory. The same version is published with a checksum at
+[`https://apiacre.com/integrations.json`](https://apiacre.com/integrations.json).
+
+For Codex-compatible hosts, this repository also includes a plugin manifest and
+remote MCP configuration. No wallet or API credential is bundled. Installing the
+skill permits free discovery and quote checks; it does not authorize payment.
 
 ## Read a Quote Without Paying
 

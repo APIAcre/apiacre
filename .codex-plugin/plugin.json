@@ -1,0 +1,29 @@
+{
+  "name": "api-acre",
+  "version": "1.0.0",
+  "description": "Discover and use API Acre's x402-paid JSON APIs with explicit per-call spending approval.",
+  "author": {
+    "name": "API Acre",
+    "email": "hello@apiacre.com",
+    "url": "https://apiacre.com"
+  },
+  "homepage": "https://apiacre.com/integrations",
+  "repository": "https://github.com/APIAcre/apiacre",
+  "keywords": ["x402", "base", "usdc", "api", "mcp", "agents"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "API Acre",
+    "shortDescription": "Pay-per-call research and developer APIs on Base.",
+    "longDescription": "Find focused API Acre tools by intent, inspect free samples and exact x402 quotes, and execute only after a fresh per-call spending approval.",
+    "developerName": "API Acre",
+    "category": "Productivity",
+    "capabilities": ["MCP", "x402", "Structured data"],
+    "websiteURL": "https://apiacre.com",
+    "defaultPrompt": [
+      "Find the lowest-cost API Acre tool for this task.",
+      "Show me a free sample before I approve a paid call.",
+      "Use API Acre for fresh structured evidence."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
