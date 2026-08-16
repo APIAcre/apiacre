@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.apiacre/api-acre",
   "title": "API Acre",
-  "description": "61 x402-paid web, document, research, developer, data, and EVM tools on Base, plus free workflows.",
-  "version": "0.1.24",
+  "description": "63 x402-paid web, document, research, developer, data, and EVM tools on Base, plus free workflow, recommendation, handoff, and sample resources.",
+  "version": "0.1.27",
   "websiteUrl": "https://apiacre.com",
   "remotes": [
     {
@@ -20,8 +20,13 @@
       },
       "tools": "https://apiacre.com/mcp/tools",
       "serverCard": "https://apiacre.com/.well-known/mcp/server-card.json",
-      "toolCount": 61,
-      "resources": ["https://apiacre.com/workflows.json"]
+      "toolCount": 63,
+      "resources": ["https://apiacre.com/workflows.json"],
+      "resourceTemplates": [
+        "https://apiacre.com/recommend?task={task}",
+        "https://apiacre.com/catalog/{service}",
+        "https://apiacre.com/samples/{service}?format=json"
+      ]
     }
   }
 }
