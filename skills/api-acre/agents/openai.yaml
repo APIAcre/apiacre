@@ -1,0 +1,13 @@
+interface:
+  display_name: "API Acre"
+  short_description: "Discover and buy API Acre x402 tools"
+  default_prompt: "Use $api-acre to find the safest API Acre service for this task and show me the exact price before any payment."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "apiacre"
+      description: "API Acre's remote pay-per-call tool catalog"
+      transport: "streamable_http"
+      url: "https://apiacre.com/mcp"
+policy:
+  allow_implicit_invocation: true

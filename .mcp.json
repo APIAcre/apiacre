@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "apiacre": {
+      "type": "http",
+      "url": "https://apiacre.com/mcp"
+    }
+  }
+}
