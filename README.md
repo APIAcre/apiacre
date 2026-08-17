@@ -1,6 +1,6 @@
 # API Acre
 
-API Acre is a live catalog of 63 focused, pay-per-call APIs for web research,
+API Acre is a live catalog of 65 focused, pay-per-call APIs for web research,
 documents, structured data, developer workflows, public-company research, and
 Base network evidence. Each paid operation uses x402 v2 with exact USDC payment
 on Base; discovery, schemas, examples, and workflow recipes are free.
