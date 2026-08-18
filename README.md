@@ -63,7 +63,7 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is version `1.2.0`. It can use Coinbase Agentic
+The current public package is version `1.3.0`. It can use Coinbase Agentic
 Wallet MCP as an optional, separately installed buyer companion; signing in,
 funding a wallet, or configuring spending limits never authorizes an API Acre
 call by itself.
