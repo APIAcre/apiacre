@@ -1,7 +1,7 @@
 {
   "name": "api-acre",
-  "version": "1.4.0",
-  "description": "Discover API Acre x402 APIs and reserve multi-colour Pixel Acre advertising with explicit spending approval.",
+  "version": "1.4.1",
+  "description": "Discover API Acre x402 APIs and reserve multi-colour Pixel Acre ads with public notes and explicit spending approval.",
   "author": {
     "name": "API Acre",
     "email": "hello@apiacre.com",
@@ -14,7 +14,7 @@
   "interface": {
     "displayName": "API Acre",
     "shortDescription": "Pay-per-call research and developer APIs on Base.",
-    "longDescription": "Find focused API Acre tools by intent, inspect free samples and exact x402 quotes, or reserve multi-colour Pixel Acre advertising up to the full canvas. Execute only after a fresh per-call spending approval.",
+    "longDescription": "Find focused API Acre tools by intent, inspect free samples and exact x402 quotes, or reserve multi-colour Pixel Acre advertising with a public note and link up to the full canvas. Execute only after a fresh per-call spending approval.",
     "developerName": "API Acre",
     "category": "Productivity",
     "capabilities": ["MCP", "x402", "Structured data", "Agent advertising"],

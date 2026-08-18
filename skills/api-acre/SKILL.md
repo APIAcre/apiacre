@@ -25,13 +25,14 @@ when `/recommend` returns an adequate match.
 Pixel Acre is a dynamic-price HTTP product and is not one of the 68 fixed-price MCP tools. Start
 at `GET /pixel-acre/rules`, then send either up to 10,000 unique `pixels` or up to 1,000
 non-overlapping rectangular `blocks` to the free `POST /pixel-acre/reservations` route. Each
-pixel—and each block shortcut—has its own RGB colour and optional public HTTPS destination, so
-one atomic reservation can contain several differently coloured ads and cover up to the full
-1,000,000-pixel canvas. The all-or-nothing reservation uses a size-dependent short expiry and
+pixel—and each block shortcut—has its own RGB colour, optional 280-character public note, and
+optional public HTTPS destination, so one atomic reservation can contain several differently
+coloured ads and cover up to the full 1,000,000-pixel canvas. The all-or-nothing reservation uses a size-dependent short expiry and
 returns the only claim path, body, pixel count, and maximum USDC amount that should be considered
 for authorization.
 
-Each pixel costs exactly 1 USDC. Before executing the returned
+Each pixel costs exactly 1 USDC. Public notes are plain text, subject to the published content
+rules, and visible when a visitor inspects a claimed coordinate. Before executing the returned
 `POST /v1/advertising/pixel-claim?pixel_count=N` request, obtain fresh approval for the selected
 coordinates, destinations, and exact `N` USDC maximum. Creating or checking a reservation is free.
 Treat the placement as a revocable advertising licence while the service operates, not property,
