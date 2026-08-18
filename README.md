@@ -22,6 +22,9 @@ API Acre's hosted service implementation or any wallet credentials.
 - [A2A agent card](https://apiacre.com/.well-known/agent-card.json)
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
+- [Live Pixel Acre inventory](https://apiacre.com/pixel-acre/state) — claimed,
+  reserved, checkout, and currently available pixels; reading it cannot reserve
+  inventory or make a payment
 - Free MCP resource templates let connected agents select a service, read its
   complete contract, and inspect its static result envelope before deciding
   whether to authorize a paid call
@@ -101,8 +104,9 @@ and requires separate authorization; API Acre does not silently chain spending.
 
 Use `https://apiacre.com/mcp` as a Streamable HTTP MCP server. Tool discovery,
 workflow recipes, task-to-service recommendations, complete single-service
-contracts, and static result samples are free. Individual tool execution
-advertises its own x402 requirement at call time.
+contracts, static result samples, and live Pixel Acre inventory are free.
+Individual tool execution advertises its own x402 requirement at call time;
+reading the advertising inventory neither reserves pixels nor authorizes a claim.
 
 ```json
 {
