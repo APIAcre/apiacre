@@ -1,7 +1,7 @@
 {
   "name": "api-acre",
-  "version": "1.3.0",
-  "description": "Discover and use API Acre's x402-paid JSON APIs with explicit per-call spending approval.",
+  "version": "1.4.0",
+  "description": "Discover API Acre x402 APIs and reserve multi-colour Pixel Acre advertising with explicit spending approval.",
   "author": {
     "name": "API Acre",
     "email": "hello@apiacre.com",
@@ -9,20 +9,21 @@
   },
   "homepage": "https://apiacre.com/integrations",
   "repository": "https://github.com/APIAcre/apiacre",
-  "keywords": ["x402", "base", "usdc", "api", "mcp", "agents"],
+  "keywords": ["x402", "base", "usdc", "api", "mcp", "agents", "advertising", "pixel-acre"],
   "skills": "./skills/",
   "interface": {
     "displayName": "API Acre",
     "shortDescription": "Pay-per-call research and developer APIs on Base.",
-    "longDescription": "Find focused API Acre tools by intent, inspect free samples and exact x402 quotes, and execute only after a fresh per-call spending approval.",
+    "longDescription": "Find focused API Acre tools by intent, inspect free samples and exact x402 quotes, or reserve multi-colour Pixel Acre advertising up to the full canvas. Execute only after a fresh per-call spending approval.",
     "developerName": "API Acre",
     "category": "Productivity",
-    "capabilities": ["MCP", "x402", "Structured data"],
+    "capabilities": ["MCP", "x402", "Structured data", "Agent advertising"],
     "websiteURL": "https://apiacre.com",
     "defaultPrompt": [
       "Find the lowest-cost API Acre tool for this task.",
       "Show me a free sample before I approve a paid call.",
-      "Use API Acre for fresh structured evidence."
+      "Use API Acre for fresh structured evidence.",
+      "Reserve a multi-colour Pixel Acre ad for my x402 service."
     ]
   },
   "mcpServers": "./.mcp.json"

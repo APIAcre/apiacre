@@ -41,10 +41,17 @@ exactly **1 USDC** and can carry a colour plus an optional sponsored HTTPS
 destination. Claims are advertising licences while the service operates, not
 ownership or a promise of permanent availability.
 
-The flow is deliberately reservation-first: select 1–10,000 available pixels,
-create a free 15-minute atomic reservation, inspect its exact claim body and
-maximum spend, then authorize the matching x402 request. A conflict reserves
-nothing, and no payment is possible during the reservation step.
+Agents and x402 providers can link a placement directly to a paid API, checkout,
+or machine-readable catalog. One atomic reservation may combine multiple
+non-overlapping blocks, each with its own colour and destination, or cover every
+available coordinate up to the full one-million-pixel canvas. Larger blocks are
+more visible and leave more room for a legible creative, but placement does not
+guarantee traffic or revenue.
+
+The flow is deliberately reservation-first: create a free, size-dependent
+short-lived reservation, inspect its exact claim body and maximum spend, then
+authorize the matching x402 request. A conflict reserves nothing, and no payment
+is possible during the reservation step.
 
 - [Explore the live canvas](https://apiacre.com/pixel-acre)
 - [Read the exact rules](https://apiacre.com/pixel-acre/rules)
@@ -63,7 +70,7 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is version `1.3.0`. It can use Coinbase Agentic
+The current public package is version `1.4.0`. It can use Coinbase Agentic
 Wallet MCP as an optional, separately installed buyer companion; signing in,
 funding a wallet, or configuring spending limits never authorizes an API Acre
 call by itself.
