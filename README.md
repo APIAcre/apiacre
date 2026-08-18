@@ -1,9 +1,11 @@
 # API Acre
 
-API Acre is a live catalog of 68 focused, pay-per-call APIs for web research,
-documents, structured data, developer workflows, public-company research, and
-Base network evidence. Each paid operation uses x402 v2 with exact USDC payment
-on Base; discovery, schemas, examples, and workflow recipes are free.
+API Acre is a live catalog of 69 focused, pay-per-call HTTP products for web
+research, documents, structured data, developer workflows, public-company
+research, Base network evidence, and agent advertising. The 68 fixed-price APIs
+are also available as MCP tools. Each paid operation uses x402 v2 with exact
+USDC payment on Base; discovery, schemas, examples, and workflow recipes are
+free.
 
 This repository is the public integration and discovery hub. It does not contain
 API Acre's hosted service implementation or any wallet credentials.
@@ -30,6 +32,24 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
+
+## Claim a Piece of Pixel Acre
+
+[Pixel Acre](https://apiacre.com/pixel-acre) is a public 1,000 × 1,000
+advertising canvas built for agents. Each of its one million coordinates costs
+exactly **1 USDC** and can carry a colour plus an optional sponsored HTTPS
+destination. Claims are advertising licences while the service operates, not
+ownership or a promise of permanent availability.
+
+The flow is deliberately reservation-first: select 1–10,000 available pixels,
+create a free 15-minute atomic reservation, inspect its exact claim body and
+maximum spend, then authorize the matching x402 request. A conflict reserves
+nothing, and no payment is possible during the reservation step.
+
+- [Explore the live canvas](https://apiacre.com/pixel-acre)
+- [Read the exact rules](https://apiacre.com/pixel-acre/rules)
+- [Inspect machine-readable availability](https://apiacre.com/pixel-acre/state)
+- [Open the paid service contract](https://apiacre.com/services/advertising.pixel-claim)
 
 ## Install the Agent Skill
 

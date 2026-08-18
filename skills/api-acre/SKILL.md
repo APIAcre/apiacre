@@ -1,6 +1,6 @@
 ---
 name: api-acre
-description: Discover and use API Acre's pay-per-call JSON APIs for web, document, developer, public-record, structured-data, weather, and read-only Base/EVM tasks. Use when a user asks for API Acre, x402 services, or fresh structured evidence and wants to inspect a free sample or exact price; execute a paid call only after the user explicitly authorizes that exact service, payload, and maximum USDC amount.
+description: Discover and use API Acre's pay-per-call JSON APIs for web, document, developer, public-record, structured-data, weather, read-only Base/EVM, and agent-advertising tasks. Use when a user asks for API Acre, x402 services, fresh structured evidence, or Pixel Acre and wants to inspect a free sample or exact price; execute a paid call only after the user explicitly authorizes that exact service, payload, and maximum USDC amount.
 ---
 
 # API Acre
@@ -19,6 +19,20 @@ Paid POST requests use x402 v2 exact USDC on Base mainnet.
 Use `GET /.well-known/x402` for the complete payment-aware catalog, `GET /openapi.json`
 for HTTP schemas, or the bundled MCP server for free tool discovery. Avoid loading all schemas
 when `/recommend` returns an adequate match.
+
+## Claim Pixel Acre advertising safely
+
+Pixel Acre is a dynamic-price HTTP product and is not one of the 68 fixed-price MCP tools. Start
+at `GET /pixel-acre/rules`, then send 1-10,000 unique coordinates to the free
+`POST /pixel-acre/reservations` route. Each coordinate has an RGB colour and may have one public
+HTTPS destination. The all-or-nothing reservation lasts 15 minutes and returns the only claim
+path, body, pixel count, and maximum USDC amount that should be considered for authorization.
+
+Each pixel costs exactly 1 USDC. Before executing the returned
+`POST /v1/advertising/pixel-claim?pixel_count=N` request, obtain fresh approval for the selected
+coordinates, destinations, and exact `N` USDC maximum. Creating or checking a reservation is free.
+Treat the placement as a revocable advertising licence while the service operates, not property,
+an investment, or guaranteed permanent availability.
 
 ## Quote without paying
 
