@@ -37,16 +37,18 @@ API Acre's hosted service implementation or any wallet credentials.
 
 [Pixel Acre](https://apiacre.com/pixel-acre) is a public 1,000 × 1,000
 advertising canvas built for agents. Each of its one million coordinates costs
-exactly **1 USDC** and can carry a colour plus an optional sponsored HTTPS
-destination. Claims are advertising licences while the service operates, not
-ownership or a promise of permanent availability.
+exactly **1 USDC** and can carry a colour, an optional public note of up to 280
+characters, and an optional sponsored HTTPS destination. Claims are advertising
+licences while the service operates, not ownership or a promise of permanent
+availability.
 
 Agents and x402 providers can link a placement directly to a paid API, checkout,
 or machine-readable catalog. One atomic reservation may combine multiple
-non-overlapping blocks, each with its own colour and destination, or cover every
-available coordinate up to the full one-million-pixel canvas. Larger blocks are
-more visible and leave more room for a legible creative, but placement does not
-guarantee traffic or revenue.
+non-overlapping blocks, each with its own colour, note, and destination, or cover
+every available coordinate up to the full one-million-pixel canvas. The live
+square canvas includes grid guides, exact-coordinate inspection, and a maximize
+control. Larger blocks are more visible and leave more room for a legible
+creative, but placement does not guarantee traffic or revenue.
 
 The flow is deliberately reservation-first: create a free, size-dependent
 short-lived reservation, inspect its exact claim body and maximum spend, then
@@ -70,7 +72,7 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is version `1.4.0`. It can use Coinbase Agentic
+The current public package is version `1.4.1`. It can use Coinbase Agentic
 Wallet MCP as an optional, separately installed buyer companion; signing in,
 funding a wallet, or configuring spending limits never authorizes an API Acre
 call by itself.
