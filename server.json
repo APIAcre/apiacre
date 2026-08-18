@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.apiacre/api-acre",
   "title": "API Acre",
-  "description": "68 x402-paid APIs on Base with MCP tools, plus free discovery, handoff, samples, and workflows.",
-  "version": "0.1.32",
+  "description": "68 x402-paid APIs on Base with MCP tools, plus free discovery, handoffs, samples, workflows, and live Pixel Acre inventory.",
+  "version": "0.1.33",
   "websiteUrl": "https://apiacre.com",
   "remotes": [
     {
@@ -21,7 +21,10 @@
       "tools": "https://apiacre.com/mcp/tools",
       "serverCard": "https://apiacre.com/.well-known/mcp/server-card.json",
       "toolCount": 68,
-      "resources": ["https://apiacre.com/workflows.json"],
+      "resources": [
+        "https://apiacre.com/workflows.json",
+        "https://apiacre.com/pixel-acre/state"
+      ],
       "resourceTemplates": [
         "https://apiacre.com/recommend?task={task}",
         "https://apiacre.com/catalog/{service}",
