@@ -1,6 +1,6 @@
 ---
 name: api-acre
-description: Discover and use API Acre's pay-per-call JSON APIs for web, document, developer, public-record, structured-data, weather, read-only Base/EVM, and agent-advertising tasks. Use when a user asks for API Acre, x402 services, fresh structured evidence, or Pixel Acre and wants to inspect a free sample or exact price; execute a paid call only after the user explicitly authorizes that exact service, payload, and maximum USDC amount.
+description: Discover and use API Acre's pay-per-call JSON APIs for web, document, developer, public-record, structured-data, weather, reference FX, read-only Base/EVM, and agent-advertising tasks. Use when a user asks for API Acre, x402 services, fresh structured evidence, or Pixel Acre and wants to inspect a free sample or exact price; execute a paid call only after the user explicitly authorizes that exact service, payload, and maximum USDC amount.
 ---
 
 # API Acre
@@ -22,7 +22,7 @@ when `/recommend` returns an adequate match.
 
 ## Claim Pixel Acre advertising safely
 
-Pixel Acre is a dynamic-price HTTP product and is not one of the 68 fixed-price MCP tools. Start
+Pixel Acre is a dynamic-price HTTP product and is not one of the 69 fixed-price MCP tools. Start
 at `GET /pixel-acre/rules`, then send either up to 10,000 unique `pixels` or up to 1,000
 non-overlapping rectangular `blocks` to the free `POST /pixel-acre/reservations` route. Each
 pixel—and each block shortcut—has its own RGB colour, optional 280-character public note, and
