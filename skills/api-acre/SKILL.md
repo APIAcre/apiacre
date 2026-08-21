@@ -22,7 +22,7 @@ when `/recommend` returns an adequate match.
 
 ## Claim Pixel Acre advertising safely
 
-Pixel Acre is a dynamic-price HTTP product and is not one of the 69 fixed-price MCP tools. Start
+Pixel Acre is a dynamic-price HTTP product and is not one of the 70 fixed-price MCP tools. Start
 at `GET /pixel-acre/rules`, then send either up to 10,000 unique `pixels` or up to 1,000
 non-overlapping rectangular `blocks` to the free `POST /pixel-acre/reservations` route. Each
 pixel—and each block shortcut—has its own RGB colour, optional 280-character public note, and
