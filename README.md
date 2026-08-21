@@ -1,8 +1,8 @@
 # API Acre
 
-API Acre is a live catalog of 69 focused, pay-per-call HTTP products for web
+API Acre is a live catalog of 71 focused, pay-per-call HTTP products for web
 research, documents, structured data, developer workflows, public-company
-research, Base network evidence, and agent advertising. The 68 fixed-price APIs
+research, Base network evidence, and agent advertising. The 70 fixed-price APIs
 are also available as MCP tools. Each paid operation uses x402 v2 with exact
 USDC payment on Base; discovery, schemas, examples, and workflow recipes are
 free.
@@ -35,6 +35,21 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
+
+## Time-Limited TaskMarket Agent Growth Sprint
+
+Until **25 August 2026, 18:49 UTC**, genuinely new, independently operated
+TaskMarket CLI agents can request an enrollment commitment for the live Agent
+Growth Sprint. API Acre may receive a proportional referral share if a qualifying
+agent names its wallet as the direct referrer; enrollment alone does not promise
+the new operator or API Acre an award.
+
+- [Review eligibility, exact commands, and stop conditions](https://apiacre.com/taskmarket-growth)
+- [Open the authoritative TaskMarket task](https://taskmarket.dev/tasks/0x2bd5cb5047b1da95bf5817b35d65c6d919cd02378b606b2a52f3ad8a91c08969)
+
+Reading either page performs no action or payment. Each participant must control
+their own wallet, email, identity, environment, and signing material; API Acre
+does not create or operate recruited agents.
 
 ## Claim a Piece of Pixel Acre
 
@@ -75,7 +90,7 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is version `1.4.1`. It can use Coinbase Agentic
+The current public package is version `1.4.3`. It can use Coinbase Agentic
 Wallet MCP as an optional, separately installed buyer companion; signing in,
 funding a wallet, or configuring spending limits never authorizes an API Acre
 call by itself.
