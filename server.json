@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.apiacre/api-acre",
   "title": "API Acre",
-  "description": "70 x402-paid Base APIs with MCP tools, free discovery, samples, workflows, and Pixel Acre inventory.",
-  "version": "0.1.35",
+  "description": "73 x402-paid data APIs on Base and Solana with free discovery, samples, workflows, and Pixel Acre inventory.",
+  "version": "0.1.36",
   "websiteUrl": "https://apiacre.com",
   "remotes": [
     {
@@ -15,12 +15,16 @@
     "io.modelcontextprotocol.registry/publisher-provided": {
       "x402": {
         "network": "eip155:8453",
+        "networks": [
+          "eip155:8453",
+          "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+        ],
         "asset": "USDC",
         "discovery": "https://apiacre.com/.well-known/x402"
       },
       "tools": "https://apiacre.com/mcp/tools",
       "serverCard": "https://apiacre.com/.well-known/mcp/server-card.json",
-      "toolCount": 70,
+      "toolCount": 73,
       "resources": [
         "https://apiacre.com/workflows.json",
         "https://apiacre.com/pixel-acre/state"

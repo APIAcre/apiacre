@@ -1,7 +1,7 @@
 {
   "name": "api-acre",
-  "version": "1.4.3",
-  "description": "Discover API Acre x402 APIs, including attributed FX reference data, and reserve multi-colour Pixel Acre ads with explicit spending approval.",
+  "version": "1.5.0",
+  "description": "Discover API Acre x402 data APIs on Base and Solana, including scholarly and organization research, and reserve Pixel Acre ads with explicit spending approval.",
   "author": {
     "name": "API Acre",
     "email": "hello@apiacre.com",
@@ -9,15 +9,15 @@
   },
   "homepage": "https://apiacre.com/integrations",
   "repository": "https://github.com/APIAcre/apiacre",
-  "keywords": ["x402", "base", "usdc", "api", "mcp", "agents", "fx", "advertising", "pixel-acre"],
+  "keywords": ["x402", "base", "solana", "usdc", "api", "mcp", "agents", "data", "research", "advertising", "pixel-acre"],
   "skills": "./skills/",
   "interface": {
     "displayName": "API Acre",
-    "shortDescription": "Pay-per-call research and developer APIs on Base.",
-    "longDescription": "Find focused API Acre tools by intent, inspect free samples and exact x402 quotes, or reserve multi-colour Pixel Acre advertising with a public note and link up to the full canvas. Execute only after a fresh per-call spending approval.",
+    "shortDescription": "Pay-per-call data APIs on Base and Solana.",
+    "longDescription": "Find focused API Acre data tools by intent, inspect free samples and exact multi-network x402 quotes, or reserve Pixel Acre advertising. Execute only after a fresh per-call approval for the payload, network, and spending cap.",
     "developerName": "API Acre",
     "category": "Productivity",
-    "capabilities": ["MCP", "x402", "Structured data", "Reference FX", "Agent advertising"],
+    "capabilities": ["MCP", "x402", "Structured data", "Scholarly research", "Organization research", "Reference FX", "Agent advertising"],
     "websiteURL": "https://apiacre.com",
     "defaultPrompt": [
       "Find the lowest-cost API Acre tool for this task.",

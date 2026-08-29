@@ -1,11 +1,11 @@
 # API Acre
 
-API Acre is a live catalog of 71 focused, pay-per-call HTTP products for web
-research, documents, structured data, developer workflows, public-company
-research, Base network evidence, and agent advertising. The 70 fixed-price APIs
-are also available as MCP tools. Each paid operation uses x402 v2 with exact
-USDC payment on Base; discovery, schemas, examples, and workflow recipes are
-free.
+API Acre is a live catalog of 74 focused, pay-per-call HTTP products for web
+research, documents, scholarly metadata, organization discovery, structured
+data, developer workflows, public-company research, Base network evidence, and
+agent advertising. The 73 fixed-price APIs are also available as MCP tools.
+Each paid operation uses x402 v2 with exact USDC payment on Base or Solana;
+discovery, schemas, examples, and workflow recipes are free.
 
 This repository is the public integration and discovery hub. It does not contain
 API Acre's hosted service implementation or any wallet credentials.
@@ -35,21 +35,6 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
-
-## Time-Limited TaskMarket Agent Growth Sprint
-
-Until **25 August 2026, 18:49 UTC**, genuinely new, independently operated
-TaskMarket CLI agents can request an enrollment commitment for the live Agent
-Growth Sprint. API Acre may receive a proportional referral share if a qualifying
-agent names its wallet as the direct referrer; enrollment alone does not promise
-the new operator or API Acre an award.
-
-- [Review eligibility, exact commands, and stop conditions](https://apiacre.com/taskmarket-growth)
-- [Open the authoritative TaskMarket task](https://taskmarket.dev/tasks/0x2bd5cb5047b1da95bf5817b35d65c6d919cd02378b606b2a52f3ad8a91c08969)
-
-Reading either page performs no action or payment. Each participant must control
-their own wallet, email, identity, environment, and signing material; API Acre
-does not create or operate recruited agents.
 
 ## Claim a Piece of Pixel Acre
 
@@ -90,15 +75,16 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is version `1.4.3`. It can use Coinbase Agentic
+The current public package is version `1.5.0`. It can use Coinbase Agentic
 Wallet MCP as an optional, separately installed buyer companion; signing in,
 funding a wallet, or configuring spending limits never authorizes an API Acre
 call by itself.
 
 ## Read a Quote Without Paying
 
-An unsigned request returns HTTP `402` with the exact price, Base network,
-official USDC asset, recipient, and resource metadata. It cannot transfer funds:
+An unsigned request returns HTTP `402` with the exact price, supported Base and
+Solana network choices, official USDC asset, recipient, and resource metadata.
+It cannot transfer funds:
 
 ```bash
 curl -i https://apiacre.com/v1/developer/code-metrics \
@@ -135,7 +121,8 @@ reading the advertising inventory neither reserves pixels nor authorizes a claim
 
 ## Network and Safety
 
-- Network: Base mainnet (`eip155:8453`)
+- Networks: Base mainnet (`eip155:8453`) and Solana mainnet
+  (`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp`)
 - Asset: official native USDC
 - Payment model: exact listed price per authorized call; no account or subscription
 - Wallet keys: never requested by API Acre

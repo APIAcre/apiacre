@@ -1,12 +1,12 @@
 ---
 name: api-acre
-description: Discover and use API Acre's pay-per-call JSON APIs for web, document, developer, public-record, structured-data, weather, reference FX, read-only Base/EVM, and agent-advertising tasks. Use when a user asks for API Acre, x402 services, fresh structured evidence, or Pixel Acre and wants to inspect a free sample or exact price; execute a paid call only after the user explicitly authorizes that exact service, payload, and maximum USDC amount.
+description: Discover and use API Acre's pay-per-call JSON APIs for web, document, developer, public-record, scholarly, organization, structured-data, weather, reference FX, read-only Base/EVM, and agent-advertising tasks. Use when a user asks for API Acre, x402 services, fresh structured evidence, or Pixel Acre and wants to inspect a free sample or exact price; execute a paid call only after the user explicitly authorizes that exact service, payload, network, and maximum USDC amount.
 ---
 
 # API Acre
 
 Use API Acre at `https://apiacre.com`. Discovery, schemas, samples, and quotes are free.
-Paid POST requests use x402 v2 exact USDC on Base mainnet.
+Paid POST requests use x402 v2 exact USDC on Base or Solana mainnet.
 
 ## Find the smallest suitable service
 
@@ -22,7 +22,7 @@ when `/recommend` returns an adequate match.
 
 ## Claim Pixel Acre advertising safely
 
-Pixel Acre is a dynamic-price HTTP product and is not one of the 70 fixed-price MCP tools. Start
+Pixel Acre is a dynamic-price HTTP product and is not one of the 73 fixed-price MCP tools. Start
 at `GET /pixel-acre/rules`, then send either up to 10,000 unique `pixels` or up to 1,000
 non-overlapping rectangular `blocks` to the free `POST /pixel-acre/reservations` route. Each
 pixel—and each block shortcut—has its own RGB colour, optional 280-character public note, and
@@ -44,7 +44,8 @@ Send the documented JSON body to the selected POST route without a payment signa
 expected HTTP 402 response as a quote. It cannot transfer funds. Check that the challenge:
 
 - names the same HTTPS resource and POST method;
-- uses the `exact` scheme on Base mainnet (`eip155:8453`);
+- uses the `exact` scheme on an advertised supported network: Base mainnet
+  (`eip155:8453`) or Solana mainnet (`solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp`);
 - requests official USDC; and
 - does not exceed both the catalog price and the user's current maximum.
 
@@ -58,7 +59,7 @@ not execute, sign, or pay. Recreate material input only for a separately approve
 ## Require exact payment approval
 
 Before sending `PAYMENT-SIGNATURE` or invoking a client that may pay, obtain fresh user approval
-for the exact service, material payload, and maximum USDC amount. Do not reuse approval from an
+for the exact service, material payload, selected network, and maximum USDC amount. Do not reuse approval from an
 earlier call, test, batch, wallet funding, or similar service. Do not approve on the user's behalf.
 
 Treat every `next_action` as optional and separately paid. Ask again before each one. When approval
