@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.apiacre/api-acre",
   "title": "API Acre",
-  "description": "73 x402-paid data APIs on Base and Solana with free discovery, samples, workflows, and Pixel Acre inventory.",
+  "description": "73 x402-paid Base and Solana APIs with free discovery, samples, workflows, and Pixel Acre.",
   "version": "0.1.36",
   "websiteUrl": "https://apiacre.com",
   "remotes": [
