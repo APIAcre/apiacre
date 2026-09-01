@@ -36,6 +36,19 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
 
+## Verified Production Use
+
+Through 1 September 2026 at 11:24 UTC, API Acre recorded at least **34
+independently attributed settled production calls from 17 payers, totaling
+0.331 USDC on Base**. Operator validation is excluded. Fifteen services had at
+least one independently attributed settlement.
+
+These are privacy-bounded historical minimums, not buyer endorsements, evidence
+of per-service unique payers, a repeat-demand claim, a forecast, or a guarantee.
+No payer records or settlement identifiers are published. Inspect the current
+[machine-readable aggregate](https://apiacre.com/catalog) or the
+[customer-evidenced service collection](https://apiacre.com/use-cases#customer-evidenced).
+
 ## Claim a Piece of Pixel Acre
 
 [Pixel Acre](https://apiacre.com/pixel-acre) is a public 1,250 × 800
