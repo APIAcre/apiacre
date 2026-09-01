@@ -27,7 +27,7 @@ at `GET /pixel-acre/rules`, then send either up to 10,000 unique `pixels` or up 
 non-overlapping rectangular `blocks` to the free `POST /pixel-acre/reservations` route. Each
 pixel—and each block shortcut—has its own RGB colour, optional 280-character public note, and
 optional public HTTPS destination, so one atomic reservation can contain several differently
-coloured ads and cover up to the full 1,000,000-pixel canvas. The all-or-nothing reservation uses a size-dependent short expiry and
+coloured ads and cover up to the full 1,000,000-pixel, 1,250 x 800 near-60:40 canvas. The all-or-nothing reservation uses a size-dependent short expiry and
 returns the only claim path, body, pixel count, and maximum USDC amount that should be considered
 for authorization.
 
