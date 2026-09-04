@@ -17,8 +17,9 @@ API Acre's hosted service implementation or any wallet credentials.
 - [OpenAPI document](https://apiacre.com/openapi.json) — all HTTP operations
 - [x402 discovery](https://apiacre.com/.well-known/x402) — machine-readable
   payment resources
-- [MCP discovery](https://apiacre.com/.well-known/mcp.json) and
-  [remote MCP endpoint](https://apiacre.com/mcp)
+- [MCP discovery](https://apiacre.com/.well-known/mcp.json),
+  [browse MCP tools](https://apiacre.com/mcp/tools), and
+  [remote MCP connection guide](#connect-over-mcp)
 - [A2A agent card](https://apiacre.com/.well-known/agent-card.json)
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
@@ -122,6 +123,14 @@ contracts, static result samples, and live Pixel Acre inventory are free.
 Individual tool execution advertises its own x402 requirement at call time;
 reading the advertising inventory neither reserves pixels nor authorizes a claim.
 
+Copy the server URL into your MCP client's connection settings. It is a protocol
+endpoint, not a webpage: MCP clients send JSON-RPC `POST` requests. Opening
+`https://apiacre.com/mcp` directly in a browser sends `GET` and returns
+**405 Method Not Allowed** (`Allow: POST`), because this server does not offer a
+standalone SSE stream. That response is expected; it does not mean the MCP server
+is missing. For browser-readable JSON, use [MCP discovery](https://apiacre.com/.well-known/mcp.json)
+or [the tool catalog](https://apiacre.com/mcp/tools).
+
 ```json
 {
   "mcpServers": {
@@ -131,6 +140,23 @@ reading the advertising inventory neither reserves pixels nor authorizes a claim
   }
 }
 ```
+
+To check the connection without a wallet or payment, send an initialization
+request using the supported `2025-06-18` protocol:
+
+```bash
+curl -i https://apiacre.com/mcp \
+  -X POST \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"connection-check","version":"1.0"}}}'
+```
+
+A working connection returns HTTP `200` with `result.serverInfo` and the
+negotiated protocol version. This request only reads server capabilities; it
+does not execute a paid tool. Use an MCP client for subsequent tool discovery
+and calls. Current protocol support is also published in the
+[discovery document](https://apiacre.com/.well-known/mcp.json).
 
 ## Network and Safety
 
