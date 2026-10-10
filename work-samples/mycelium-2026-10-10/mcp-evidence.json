@@ -1,0 +1,73 @@
+{
+  "origin": "https://www.myceliumfinance.com/api/mcp",
+  "scope": "Three free read-only MCP tools; no credentials, payment headers, paid tool or wallet transactions. Raw response strings preserve the original response bodies.",
+  "calls": [
+    {
+      "tool": "get_mycelium_allocation",
+      "url": "https://www.myceliumfinance.com/api/mcp",
+      "startedAt": "2026-10-10T20:45:26.262535+00:00",
+      "finishedAt": "2026-10-10T20:45:26.619505+00:00",
+      "status": 200,
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "tools/call",
+        "params": {
+          "name": "get_mycelium_allocation",
+          "arguments": {}
+        }
+      },
+      "rawResponseFile": "get_mycelium_allocation.json",
+      "rawSha256": "238154a108620a2cedf7604ffcb238e4cc1d9cf062d6cddb7aed1d682b4dedf0",
+      "authorizationOrPaymentHeadersSent": false,
+      "rawResponse": "{\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"updatedAt\\\":\\\"2026-10-10T20:45:26.501Z\\\",\\\"totalUsd\\\":35337.81,\\\"allocations\\\":[{\\\"id\\\":\\\"knots\\\",\\\"name\\\":\\\"Knots\\\",\\\"symbol\\\":\\\"KNOTS\\\",\\\"color\\\":\\\"#6E7F4A\\\",\\\"usd\\\":7419.78,\\\"percentage\\\":20.996717114048664,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/KNOTS \u2014 Raydium\\\",\\\"usd\\\":3914.06,\\\"resolved\\\":true},{\\\"label\\\":\\\"MYC/KNOTS \u2014 Raydium\\\",\\\"usd\\\":3505.72,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"parcl\\\",\\\"name\\\":\\\"Parcl\\\",\\\"symbol\\\":\\\"PRCL\\\",\\\"color\\\":\\\"#a9805a\\\",\\\"usd\\\":5159.15,\\\"percentage\\\":14.599518193119495,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/PRCL \u2014 Raydium\\\",\\\"usd\\\":5159.15,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"gable\\\",\\\"name\\\":\\\"Gable\\\",\\\"symbol\\\":\\\"GABLE\\\",\\\"color\\\":\\\"#855439\\\",\\\"usd\\\":3666.1,\\\"percentage\\\":10.374440294970176,\\\"pools\\\":[{\\\"label\\\":\\\"GABLE/ESF \u2014 Raydium\\\",\\\"usd\\\":3666.1,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"solana\\\",\\\"name\\\":\\\"Solana\\\",\\\"symbol\\\":\\\"SOL\\\",\\\"color\\\":\\\"#6B4A2F\\\",\\\"usd\\\":3596.35,\\\"percentage\\\":10.177059642349088,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/SOL \u2014 Raydium\\\",\\\"usd\\\":2166.43,\\\"resolved\\\":true},{\\\"label\\\":\\\"MYC/SOL \u2014 Raydium\\\",\\\"usd\\\":1429.92,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"kins\\\",\\\"name\\\":\\\"Kintara\\\",\\\"symbol\\\":\\\"KINS\\\",\\\"color\\\":\\\"#3F6B2A\\\",\\\"usd\\\":3574.57,\\\"percentage\\\":10.115425941788697,\\\"pools\\\":[{\\\"label\\\":\\\"MYC/KINS \u2014 Raydium\\\",\\\"usd\\\":3574.57,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"streamflow\\\",\\\"name\\\":\\\"Streamflow\\\",\\\"symbol\\\":\\\"STREAM\\\",\\\"color\\\":\\\"#B08C77\\\",\\\"usd\\\":3187.25,\\\"percentage\\\":9.01937612998655,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/STREAM \u2014 Raydium\\\",\\\"usd\\\":3187.25,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"guac\\\",\\\"name\\\":\\\"Guacamole\\\",\\\"symbol\\\":\\\"GUAC\\\",\\\"color\\\":\\\"#7A8E3A\\\",\\\"usd\\\":2902.2,\\\"percentage\\\":8.212733047124313,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/GUAC \u2014 Raydium\\\",\\\"usd\\\":2902.2,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"jubjub\\\",\\\"name\\\":\\\"JubJub\\\",\\\"symbol\\\":\\\"JUBJUB\\\",\\\"color\\\":\\\"#7D6B3A\\\",\\\"usd\\\":2860.92,\\\"percentage\\\":8.09591765873437,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/JUBJUB \u2014 Raydium\\\",\\\"usd\\\":2860.92,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"daydreams\\\",\\\"name\\\":\\\"Daydreams\\\",\\\"symbol\\\":\\\"DREAMS\\\",\\\"color\\\":\\\"#5C6E2B\\\",\\\"usd\\\":2852.3,\\\"percentage\\\":8.071524522883564,\\\"pools\\\":[{\\\"label\\\":\\\"MYC/dreams \u2014 Raydium\\\",\\\"usd\\\":2852.3,\\\"resolved\\\":true}]},{\\\"id\\\":\\\"usdc\\\",\\\"name\\\":\\\"USD Coin\\\",\\\"symbol\\\":\\\"USDC\\\",\\\"color\\\":\\\"#8F7A63\\\",\\\"usd\\\":119.19,\\\"percentage\\\":0.33728745499508883,\\\"pools\\\":[{\\\"label\\\":\\\"ESF/USDC \u2014 Raydium\\\",\\\"usd\\\":119.19,\\\"resolved\\\":true}]}],\\\"partial\\\":true}\"}]},\"jsonrpc\":\"2.0\",\"id\":10}"
+    },
+    {
+      "tool": "get_mycelium_distribution",
+      "url": "https://www.myceliumfinance.com/api/mcp",
+      "startedAt": "2026-10-10T20:45:26.263586+00:00",
+      "finishedAt": "2026-10-10T20:45:26.467767+00:00",
+      "status": 200,
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "tools/call",
+        "params": {
+          "name": "get_mycelium_distribution",
+          "arguments": {}
+        }
+      },
+      "rawResponseFile": "get_mycelium_distribution.json",
+      "rawSha256": "5644794f33a17d334374370399db80ec0636d82c9c380ad8c4525fe6e5c6ad8c",
+      "authorizationOrPaymentHeadersSent": false,
+      "rawResponse": "{\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"updatedAt\\\":\\\"2026-10-10T20:45:26.383Z\\\",\\\"mintedSupply\\\":1000000000,\\\"currentSupply\\\":998605282.03617,\\\"slices\\\":[{\\\"id\\\":\\\"trading\\\",\\\"name\\\":\\\"Trading liquidity\\\",\\\"description\\\":\\\"Every other $MYC \u2014 in holder wallets and other pools\\\",\\\"color\\\":\\\"#a9805a\\\",\\\"amount\\\":66710452.606826544,\\\"percentage\\\":6.671045260682654,\\\"accounts\\\":[]},{\\\"id\\\":\\\"lockedLp\\\",\\\"name\\\":\\\"Locked LP liquidity\\\",\\\"description\\\":\\\"$MYC in pools whose liquidity position is locked\\\",\\\"color\\\":\\\"#3F6B2A\\\",\\\"amount\\\":144655555.60588995,\\\"percentage\\\":14.465555560588994,\\\"accounts\\\":[{\\\"address\\\":\\\"5f7sK4BvxubTXPNsRFzyRsi8GBm5SJ47N9tGNzePrQi3\\\",\\\"label\\\":\\\"MYC/ESF \u2014 Raydium\\\",\\\"amount\\\":114509413.7876945},{\\\"address\\\":\\\"4CMxwoVtcdFyoN5YC8hMdYDN5xNMnSSzeF4B5yuHJ6EV\\\",\\\"label\\\":\\\"MYC/SOL \u2014 Raydium\\\",\\\"amount\\\":30146141.818195447}]},{\\\"id\\\":\\\"unlockedLp\\\",\\\"name\\\":\\\"Unlocked LP liquidity\\\",\\\"description\\\":\\\"$MYC in Mycelium pools that can be rebalanced into new connections\\\",\\\"color\\\":\\\"#A9C65C\\\",\\\"amount\\\":236194273.82345358,\\\"percentage\\\":23.619427382345357,\\\"accounts\\\":[{\\\"address\\\":\\\"5hHE84CgKY7DVxwvgqgGeFvGmEjH4VjTPSxucRagJb9n\\\",\\\"label\\\":\\\"MYC/KINS \u2014 Raydium\\\",\\\"amount\\\":75576133.29824819},{\\\"address\\\":\\\"3Ng8PZ2MhBfbvNQWQa9fzXx4NBbtqnutkpD4aZFNtDCu\\\",\\\"label\\\":\\\"MYC/KNOTS \u2014 Raydium\\\",\\\"amount\\\":76284866.8282203},{\\\"address\\\":\\\"FYuADqYuSCTMvWHxNYQsK6ZJRpBVj4KKq9Z5T5uX7187\\\",\\\"label\\\":\\\"MYC/DREAMS \u2014 Raydium\\\",\\\"amount\\\":59548487.968396},{\\\"address\\\":\\\"CG1jpkuqVAf3dJeggNy6cpRWEJxgajKGvXHUxtEaDtTg\\\",\\\"label\\\":\\\"MYC/ESF \u2014 Orca\\\",\\\"amount\\\":24784785.728589077}]},{\\\"id\\\":\\\"lockedSupply\\\",\\\"name\\\":\\\"Locked token supply\\\",\\\"description\\\":\\\"$MYC held in a time lock, outside circulation\\\",\\\"color\\\":\\\"#855439\\\",\\\"amount\\\":551045000,\\\"percentage\\\":55.1045,\\\"accounts\\\":[{\\\"address\\\":\\\"A6J3zFUzCBs3wrN5vJUZkKevMGu3pNRqJRMQwdBAJYGG\\\",\\\"label\\\":\\\"Token lock\\\",\\\"amount\\\":551045000}]},{\\\"id\\\":\\\"burned\\\",\\\"name\\\":\\\"Burned\\\",\\\"description\\\":\\\"Permanently removed from the supply\\\",\\\"color\\\":\\\"#B08C77\\\",\\\"amount\\\":1394717.9638299942,\\\"percentage\\\":0.13947179638299942,\\\"accounts\\\":[]}]}\"}]},\"jsonrpc\":\"2.0\",\"id\":11}"
+    },
+    {
+      "tool": "get_solana_top_performers",
+      "url": "https://www.myceliumfinance.com/api/mcp",
+      "startedAt": "2026-10-10T20:45:26.266664+00:00",
+      "finishedAt": "2026-10-10T20:45:26.662156+00:00",
+      "status": 200,
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "tools/call",
+        "params": {
+          "name": "get_solana_top_performers",
+          "arguments": {}
+        }
+      },
+      "rawResponseFile": "get_solana_top_performers.json",
+      "rawSha256": "babc9e6982a09a359c0002c77c07195079287aeb03d623cab694d103cb499df6",
+      "authorizationOrPaymentHeadersSent": false,
+      "rawResponse": "{\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"updatedAt\\\":\\\"2026-10-10T20:45:26.613Z\\\",\\\"list\\\":[{\\\"id\\\":\\\"starknet\\\",\\\"symbol\\\":\\\"STRK\\\",\\\"name\\\":\\\"Starknet\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/26433/large/starknet.png?1696525507\\\",\\\"category\\\":\\\"Infra\\\",\\\"marketCap\\\":754955898,\\\"changePercent7d\\\":93.1748},{\\\"id\\\":\\\"paradex\\\",\\\"symbol\\\":\\\"DIME\\\",\\\"name\\\":\\\"Paradex\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102172211/large/DIME.png?1772209186\\\",\\\"category\\\":\\\"DEX\\\",\\\"marketCap\\\":45213398,\\\"changePercent7d\\\":76.1969},{\\\"id\\\":\\\"chip-2\\\",\\\"symbol\\\":\\\"CHIP\\\",\\\"name\\\":\\\"USD.AI\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102171777/large/CHIP_Token_Logo_Large.png?1776777444\\\",\\\"category\\\":\\\"DeFi\\\",\\\"marketCap\\\":131895907,\\\"changePercent7d\\\":52.128},{\\\"id\\\":\\\"meteora\\\",\\\"symbol\\\":\\\"MET\\\",\\\"name\\\":\\\"Meteora\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/69110/large/meteora.png?1757517561\\\",\\\"category\\\":\\\"DEX\\\",\\\"marketCap\\\":236356069,\\\"changePercent7d\\\":41.5616},{\\\"id\\\":\\\"anonymous-cat\\\",\\\"symbol\\\":\\\"ZCAT\\\",\\\"name\\\":\\\"Anonymous Cat\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102176753/large/zcat.webp?1788637007\\\",\\\"category\\\":\\\"Meme\\\",\\\"marketCap\\\":44123309,\\\"changePercent7d\\\":38.9465},{\\\"id\\\":\\\"basic-attention-token\\\",\\\"symbol\\\":\\\"BAT\\\",\\\"name\\\":\\\"Basic Attention\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/677/large/basic-attention-token.png?1696501867\\\",\\\"category\\\":\\\"Infra\\\",\\\"marketCap\\\":199365569,\\\"changePercent7d\\\":38.2088},{\\\"id\\\":\\\"orca\\\",\\\"symbol\\\":\\\"ORCA\\\",\\\"name\\\":\\\"Orca\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/17547/large/Orca_Logo.png?1696517083\\\",\\\"category\\\":\\\"DEX\\\",\\\"marketCap\\\":147066942,\\\"changePercent7d\\\":34.4954}],\\\"pinned\\\":[{\\\"token\\\":{\\\"id\\\":\\\"knots\\\",\\\"symbol\\\":\\\"KNOTS\\\",\\\"name\\\":\\\"KNOTS\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102176833/large/Untitled_Artwork_213.PNG?1788862086\\\",\\\"category\\\":\\\"Meme\\\",\\\"marketCap\\\":3060726,\\\"changePercent7d\\\":32.6421},\\\"rank\\\":8},{\\\"token\\\":{\\\"id\\\":\\\"streamflow\\\",\\\"symbol\\\":\\\"STREAM\\\",\\\"name\\\":\\\"Streamflow\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/51424/large/05sf-logo-200x200.png?1731185130\\\",\\\"category\\\":\\\"DeFi\\\",\\\"marketCap\\\":1430012,\\\"changePercent7d\\\":-0.2897},\\\"rank\\\":101},{\\\"token\\\":{\\\"id\\\":\\\"parcl\\\",\\\"symbol\\\":\\\"PRCL\\\",\\\"name\\\":\\\"Parcl\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/37078/large/ParclToken.png?1737478326\\\",\\\"category\\\":\\\"RWA\\\",\\\"marketCap\\\":5594006,\\\"changePercent7d\\\":-1.2782},\\\"rank\\\":109},{\\\"token\\\":{\\\"id\\\":\\\"eternal-stake-finance\\\",\\\"symbol\\\":\\\"ESF\\\",\\\"name\\\":\\\"Eternal Stake Finance\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102172985/large/esf_logo_%282%29.png?1776958060\\\",\\\"category\\\":\\\"DeFi\\\",\\\"marketCap\\\":147620,\\\"changePercent7d\\\":-5.7975},\\\"rank\\\":155},{\\\"token\\\":{\\\"id\\\":\\\"guacamole\\\",\\\"symbol\\\":\\\"GUAC\\\",\\\"name\\\":\\\"Guacamole\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/30119/large/Guacamole_Twitter_Icon.png?1715041813\\\",\\\"category\\\":\\\"DeFi\\\",\\\"marketCap\\\":457756,\\\"changePercent7d\\\":-6.4827},\\\"rank\\\":165},{\\\"token\\\":{\\\"id\\\":\\\"gable\\\",\\\"symbol\\\":\\\"GABLE\\\",\\\"name\\\":\\\"GABLE\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102172135/large/logo_gg.png?1771771297\\\",\\\"category\\\":\\\"GameFi\\\",\\\"marketCap\\\":25702,\\\"changePercent7d\\\":-10.4146},\\\"rank\\\":207},{\\\"token\\\":{\\\"id\\\":\\\"daydreams\\\",\\\"symbol\\\":\\\"DREAMS\\\",\\\"name\\\":\\\"Daydreams\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/53838/large/ddpfp.png?1758168085\\\",\\\"category\\\":\\\"AI\\\",\\\"marketCap\\\":3351797,\\\"changePercent7d\\\":-10.9663},\\\"rank\\\":211},{\\\"token\\\":{\\\"id\\\":\\\"kintara\\\",\\\"symbol\\\":\\\"KINS\\\",\\\"name\\\":\\\"Kintara\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102173474/large/fqh1kyqexcnpjt8420afe6bjhb00.?1779705768\\\",\\\"category\\\":\\\"GameFi\\\",\\\"marketCap\\\":605205,\\\"changePercent7d\\\":-23.7429},\\\"rank\\\":238},{\\\"token\\\":{\\\"id\\\":\\\"stonk-3\\\",\\\"symbol\\\":\\\"STONK\\\",\\\"name\\\":\\\"STONK\\\",\\\"image\\\":\\\"https://coin-images.coingecko.com/coins/images/102175239/large/tscmgapqpfx5j4hu8gbs3aj85s7a.?1785895603\\\",\\\"category\\\":\\\"DeFi\\\",\\\"marketCap\\\":109607570,\\\"changePercent7d\\\":-38.7615},\\\"rank\\\":240}]}\"}]},\"jsonrpc\":\"2.0\",\"id\":12}"
+    }
+  ],
+  "derivedMetrics": {
+    "allocationShare": "project usd / returned totalUsd * 100",
+    "topThreeShare": "sum of KNOTS, PRCL, GABLE usd / returned totalUsd * 100",
+    "esfPairShare": "sum full usd of returned pool labels containing ESF / returned totalUsd * 100",
+    "supplyShare": "slice amount / mintedSupply * 100"
+  },
+  "coverageWarning": "get_mycelium_allocation returned partial: true; concentration applies only to returned pools."
+}
