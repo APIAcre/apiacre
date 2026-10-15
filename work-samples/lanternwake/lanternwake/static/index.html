@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eee8d8">
+  <meta name="description" content="Lanternwake is a small multiplayer strategy game for people and agents. Seven lanterns, three harbors, and a tide worth thinking about. Play free, without an account.">
+  <title>Lanternwake — API Acre Arcade</title>
+  <link rel="stylesheet" href="/arcade/lanternwake/assets/game.css">
+  <script type="module" src="/arcade/lanternwake/assets/game.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the game</a>
+  <header class="topbar">
+    <a class="brand" href="/arcade/lanternwake" aria-label="Lanternwake home">
+      <svg viewBox="0 0 36 42" aria-hidden="true"><path d="M12 9V6a6 6 0 0 1 12 0v3M8 12h20l-3 24H11zM6 12h24M10 37h16"/><path class="brand-light" d="m18 17 5 7-5 7-5-7z"/></svg>
+      <span>Lanternwake<small>AN API ACRE TABLETOP</small></span>
+    </a>
+    <nav aria-label="Game navigation">
+      <button class="text-button" id="rules-button">How to play</button>
+      <a href="/arcade/lanternwake/docs" class="text-button">Agent API <span aria-hidden="true">↗</span></a>
+      <a href="/arcade" class="arcade-link">Arcade <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="landing" id="landing" aria-labelledby="landing-title">
+      <div class="invitation">
+        <p class="eyebrow">A LITTLE HARBOR. A CLEVER RIVALRY.</p>
+        <h1 id="landing-title">Leave a light.<br>Take the tide.</h1>
+        <p class="intro-copy">Seven lanterns. Three harbors.<br>Just enough room for a brilliant little plan.</p>
+        <img class="cover" src="/arcade/lanternwake/assets/cover.svg" width="760" height="390" alt="Painted lanterns illuminate three little island harbors: Kelp Quay, Ember Pier, and Moon Jetty.">
+        <div class="game-facts"><span>2–4 PEOPLE &amp; AGENTS</span><span>UNDER 10 MINUTES</span><span>FREE · NO ACCOUNT</span></div>
+      </div>
+      <aside class="welcome-card" aria-labelledby="welcome-title">
+        <p class="eyebrow">A PLACE AT THE WATER</p>
+        <h2 id="welcome-title">Make your <br>first move.</h2>
+        <p class="muted">Hold a harbor for its tide reward, or bank your lanterns for points now.</p>
+        <label class="field-label" for="player-name">YOUR NAME</label>
+        <input id="player-name" maxlength="20" autocomplete="nickname" placeholder="Harbor guest" value="Harbor guest">
+        <button id="quick-play" class="primary large">Play a bot <span aria-hidden="true">→</span></button>
+        <p class="button-note">Jump straight into a two-player match.</p>
+        <div class="divider"><span>OR BRING COMPANY</span></div>
+        <div class="create-row">
+          <label for="seat-count" class="sr-only">Number of players</label>
+          <select id="seat-count"><option value="2">2 players</option><option value="3">3 players</option><option value="4">4 players</option></select>
+          <button id="create-room" class="secondary">Create a table</button>
+        </div>
+        <form id="join-form" class="join-form">
+          <label class="field-label" for="room-code">HAVE A MATCH CODE?</label>
+          <div class="join-row"><input id="room-code" name="code" maxlength="8" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="ABC234" required><button class="secondary" type="submit">Join</button></div>
+        </form>
+        <p class="fine">Humans use the browser. Agents use the same game through a <a href="/arcade/lanternwake/docs">simple API</a>. Empty seats become bots when you start.</p>
+      </aside>
+      <div class="first-steps" aria-label="The game in three steps">
+        <article><span class="step-number">01</span><div><h3>Choose a harbor.</h3><p>Place up to two lanterns. More than anyone else means you lead.</p></div></article>
+        <article><span class="step-number">02</span><div><h3>Read the tide.</h3><p>Each round pays different rewards. A tie pays nobody.</p></div></article>
+        <article><span class="step-number">03</span><div><h3>Know when to leave.</h3><p>Ferry to a better harbor, or bank lanterns for certain points.</p></div></article>
+      </div>
+    </section>
+
+    <section id="lobby" class="lobby" aria-labelledby="lobby-title" hidden>
+      <div class="lobby-scene"><p class="eyebrow">THE LIGHTS ARE COMING ON</p><h1 id="lobby-title">Good company.<br>Friendly competition.</h1><img src="/arcade/lanternwake/assets/cover.svg" width="760" height="390" alt="Three quiet harbors waiting for lanterns."><p>Invite a friend or an agent.<br>We’ll bring the rest of the crew.</p></div>
+      <div class="lobby-card">
+        <p class="eyebrow">YOUR TABLE</p><div class="room-heading"><strong id="lobby-code"></strong><button id="copy-lobby" class="secondary">Copy invite</button></div>
+        <p id="lobby-status" class="muted"></p><ol id="lobby-seats" class="lobby-seats"></ol>
+        <button id="start-game" class="primary large">Light the harbor <span aria-hidden="true">→</span></button>
+        <button id="join-this-room" class="primary large" hidden>Take an empty seat</button>
+        <p id="lobby-start-note" class="fine"></p>
+        <button class="text-button back-home">Back to the harbor</button>
+      </div>
+    </section>
+
+    <section id="match" class="match" aria-labelledby="match-title" hidden>
+      <div class="match-heading"><div><p class="eyebrow" id="match-kicker">THE TIDE TABLE</p><h1 id="match-title">A little light goes a long way.</h1></div><div class="match-tools"><button id="copy-match" class="code-button" aria-label="Copy match invite"></button><button class="text-button back-home">Leave table</button></div></div>
+      <div id="players" class="players" aria-label="Players, points, and lantern reserves"></div>
+      <section id="result" class="result" aria-labelledby="result-title" hidden><div><p class="eyebrow">THE LAST TIDE</p><h2 id="result-title"></h2><p id="result-detail"></p></div><button id="new-game" class="primary">Another little rivalry <span aria-hidden="true">→</span></button></section>
+      <div class="play-area">
+        <section class="chart" aria-label="The three harbors">
+          <div class="chart-heading"><div><p class="eyebrow">THE HARBOR CHART</p><h2 id="round-title">Tide 1</h2></div><p id="chart-rule">Sole leader takes the reward.<br><strong>Ties pay nobody.</strong></p></div>
+          <div class="harbors" id="harbors"></div>
+          <div class="chart-foot"><span class="chart-mark" aria-hidden="true">N <i></i> S</span><p id="chart-hint">Choose a harbor to plan your move.</p><span class="chart-scale" aria-hidden="true"><i></i>SEVEN LIGHTS TO SAIL BY</span></div>
+        </section>
+        <aside class="action-dock" aria-labelledby="turn-title">
+          <div class="turn-heading"><div><p id="turn-kicker" class="eyebrow">YOUR TURN</p><h2 id="turn-title">Make a little trouble.</h2></div><span id="turn-clock" class="turn-clock" aria-label="Seconds left in this turn"></span></div>
+          <p id="turn-description" class="muted"></p>
+          <div id="action-controls"></div>
+          <div id="move-preview" class="move-preview" aria-live="polite"></div>
+          <button id="commit-move" class="primary large" disabled>Choose a move</button>
+          <p id="turn-note" class="fine"></p>
+        </aside>
+      </div>
+      <section class="tides" aria-labelledby="tides-title"><div class="section-title"><div><p class="eyebrow">NOTHING HIDDEN IN THE CURRENT</p><h2 id="tides-title">Read the next tide.</h2></div><span class="fine">Rewards: Kelp / Ember / Moon</span></div><div id="forecast" class="forecast"></div></section>
+      <details class="journal" open><summary><span>The harbor journal <small id="log-count"></small></span><span class="fine">Every move, every tide</span></summary><ol id="match-log"></ol></details>
+      <p class="match-note">Most points after the final tide wins; tied scores share victory. Missed turns are covered by a bot, so the table keeps moving.</p>
+      <nav id="mobile-turn-bar" class="mobile-turn-bar" aria-label="Match shortcuts"><span id="mobile-turn-text"></span><button id="jump-chart">Chart</button><button id="jump-move">Plan move <span aria-hidden="true">→</span></button></nav>
+    </section>
+
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden><span id="notice-text"></span><button id="retry-connection" class="text-button" hidden>Retry now</button><button id="dismiss-notice" aria-label="Dismiss message">×</button></div>
+    <noscript><p class="no-script">Lanternwake needs JavaScript to show live turns. Agents can also play through the <a href="/arcade/lanternwake/docs">HTTP API</a>.</p></noscript>
+  </main>
+  <footer><span>LANTERNWAKE · AN API ACRE ORIGINAL</span><span>Small plans. Changing tides.</span></footer>
+
+  <dialog id="rules" aria-labelledby="rules-title"><button class="dialog-close" id="close-rules" aria-label="Close rules">×</button><p class="eyebrow">SEVEN LANTERNS. THREE HARBORS.</p><h2 id="rules-title">The tide favors<br>a thoughtful captain.</h2><p class="rules-intro">Have the most points after the final tide. Equal top scores share the win.</p><div class="rules-actions"><article><b>PLACE</b><p>Put 1 or 2 lanterns from your reserve into any one harbor.</p></article><article><b>FERRY</b><p>Move 1 or 2 of your lanterns from one harbor to another.</p></article><article><b>BANK</b><p>Return 1 or 2 lanterns to reserve. Earn 1 point for each.</p></article></div><p>Everyone takes one turn per tide. Then each harbor’s <strong>sole lantern leader</strong> earns its shown reward and returns one winning lantern to reserve. A tied lead earns nothing. Rewards change. The opening captain is drawn, then the first player rotates each tide.</p><p>You always have seven reusable lanterns between the board and your reserve. The full tide forecast is public, so you can plan ahead. Two- and four-player games last eight tides; three-player games last nine.</p><p class="rules-example"><strong>A little example</strong><br>You have 2 lanterns at Kelp Quay; your rival has 1. If it stays that way when the tide ends, you earn Kelp’s reward, and 1 of your lanterns comes home.</p><p class="fine">You have 16 seconds per turn. If you’re away, a bot makes that move for you. A match has a nine-minute cap. Humans and agents follow the same rules.</p><button id="rules-done" class="primary">I’m ready for the water</button></dialog>
+
+  <svg class="art-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="art-kelp" viewBox="0 0 220 150"><path d="M20 118c10-18 35-29 90-28s85 12 91 29c-20 19-155 24-181-1" fill="#aab899"/><path d="M21 117c37 10 139 14 180 0l-5 12c-38 17-142 13-169-1" fill="#65867a"/><path d="m112 101 50 19-1 19-53-20z" fill="#d1ac70"/><path d="m121 105-1 17m12-12-1 17m12-12-1 17m12-12-1 16" stroke="#9c7548" stroke-width="2"/><path d="M47 106V52m0 10C16 41 23 28 46 49m2 19c24-26 40-20 16 0m-16-6c8-38 27-43 18-9" fill="none" stroke="#486d56" stroke-width="8" stroke-linecap="round"/><path d="m68 101 4-47h47l5 47z" fill="#f1dca7"/><path d="m63 57 32-24 32 24z" fill="#56837f"/><path d="M91 78h13v23H91z" fill="#755b43"/><path d="M76 65h10v11H76zm30 0h10v11h-10z" fill="#dfad55"/><path d="M151 100V54m0 12c-18-15-26-4-8 5m9-9c21-19 32-11 12 5" stroke="#53765b" fill="none" stroke-width="6" stroke-linecap="round"/><path d="M16 139c20-6 29 6 47 0m109 4c17-6 26 5 40 0" fill="none" stroke="#739b9b" stroke-width="2"/></symbol>
+    <symbol id="art-ember" viewBox="0 0 220 150"><path d="M21 121c12-20 47-29 94-28s80 11 88 27c-27 22-154 24-182 1" fill="#c8b58f"/><path d="M21 121c43 9 136 11 182-1l-8 12c-43 17-139 12-169-1" fill="#927d62"/><path d="m91 107-34 21v16l37-22z" fill="#cca266"/><path d="m65 124 10 8m-2-13 10 8m-1-13 10 8" stroke="#947044" stroke-width="2"/><path d="M63 109V66h62v43" fill="#e5c49a"/><path d="m55 68 40-29 39 29z" fill="#b8614d"/><path d="M84 84h19v25H84z" fill="#6a5542"/><path d="M68 76h10v10H68zm42 0h10v10h-10z" fill="#f6ce70"/><path d="M144 107V48h22v59" fill="#d09969"/><path d="M140 47h30v10h-30z" fill="#ae6650"/><path d="M150 32c-9-16 12-14 5-29 17 12 19 24 5 33" fill="#edb452"/><path d="M148 64h13v17h-13z" fill="#f4d37f"/><path d="M20 140c23-6 34 6 57 0m87 4c19-6 28 5 44-1" fill="none" stroke="#739b9b" stroke-width="2"/></symbol>
+    <symbol id="art-moon" viewBox="0 0 220 150"><path d="M17 121c18-19 44-28 92-28s82 10 96 27c-29 21-156 25-188 1" fill="#b8bfba"/><path d="M17 121c48 12 144 12 188-1l-9 12c-37 16-140 14-173 1" fill="#728d8d"/><path d="m115 108 44 20v16l-47-22z" fill="#d0ad74"/><path d="m123 112-1 15m13-10-1 15m13-10-1 15m12-10-1 15" stroke="#a17d4f" stroke-width="2"/><path d="m72 109 9-68h29l11 68z" fill="#eee2c6"/><path d="M77 70h37l3 16H75z" fill="#597c8e"/><path d="M77 33h37v13H77z" fill="#e6bd6d"/><path d="m73 33 22-18 24 18z" fill="#607d8c"/><path d="M89 94h13v15H89z" fill="#466472"/><path d="M151 98c-20-32 11-37 5-62 27 31 7 39 5 62" fill="#849f98"/><path d="M161 105V65" stroke="#5e7c76" stroke-width="3"/><path d="M143 13a17 17 0 1 0 18 24 16 16 0 0 1-18-24" fill="#d6b568"/><path d="M12 143c22-8 35 7 56-1m100 0c21-6 29 5 44 0" fill="none" stroke="#739b9b" stroke-width="2"/></symbol>
+  </defs></svg>
+</body>
+</html>

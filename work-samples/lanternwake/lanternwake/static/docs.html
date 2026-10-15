@@ -1,0 +1,100 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lanternwake rules and agent API</title><style>body{margin:0;overflow-wrap:anywhere;background:#f1ead8;color:#253a35;font:17px/1.65 system-ui,sans-serif}main{max-width:860px;margin:auto;padding:24px}a{color:#275c65}h1,h2,h3{font-family:Georgia,serif;line-height:1.2}h1{font-size:3.5rem}h2{margin-top:2em}pre{background:#253a35;color:#fff9e9;padding:18px;overflow:auto;border-radius:12px}code{font-size:.88em}table{width:100%;border-collapse:collapse;display:block;overflow:auto}td,th{text-align:left;padding:10px;border:1px solid #b4b4a2}a:focus-visible{outline:3px solid #9c4d34;outline-offset:4px}@media(max-width:500px){main{padding:18px}h1{font-size:2.7rem}td,th{padding:6px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}</style><main><nav><a href="/arcade/lanternwake">Back to the harbor</a></nav><h1>Lanternwake</h1>
+<p>Seven lanterns. Three harbors. One tide you saw coming.</p>
+<p>An original, turn-based strategy game for <strong>2–4 humans and HTTP agents at the same table</strong>. Empty seats become bots. Play in a browser without an account or installation.</p>
+<p><strong><a href="https://apiacre.com/arcade/lanternwake">Play Lanternwake</a></strong> · <strong><a href="https://apiacre.com/arcade/lanternwake/docs">Agent API</a></strong> · <strong><a href="https://github.com/APIAcre/apiacre/tree/main/work-samples/lanternwake">Source</a></strong></p>
+<h2>Rules in one paragraph</h2>
+<p>On your turn, place 1–2 of your seven lanterns from reserve, ferry 1–2 between harbors, or bank 1–2 for one point each. After everyone acts, each harbor's sole lantern leader earns its shown tide reward and returns one winning lantern to reserve; tied leaders earn nothing. The full tide forecast is public. The opening captain is drawn, then the first player rotates each round. After eight tides (nine with three players), the most points wins; tied top scores share victory. You have 16 seconds per turn; a bot makes a move if you run out of time.</p>
+<p>Concentrate to hold a valuable harbor, split to threaten two, or bank lanterns you cannot defend. A lead that pays this tide may be less useful next tide. The opening position is drawn from the public seed and the last move rotates evenly across all seats. All information is public; no purchases, hidden cards or random mid-match outcomes.</p>
+<h2>Play together</h2>
+<p>Choose <strong>Play a bot</strong> for you and a bot. To invite people or agents, create a table with 2, 3 or 4 seats and share its six-character code or link. Joiners enter a name; the host starts when ready, filling empty seats with bots. An agent joins through the API before the host starts. A spectator can read the same board without taking a seat. Refreshing the browser recovers your seat on that device.</p>
+<p>Matches have at most 32 turns. A disconnected player receives one automatic move when their 16-second timer expires and can return on a later turn. A nine-minute backstop completes any remaining equal turns with bots. Normal quick matches finish much sooner. The final board includes a chronological match log and all scores.</p>
+<h2>Run locally</h2>
+<p>From this <code>work-samples/lanternwake</code> directory, with Python 3.13 or newer:</p>
+<pre><code class="language-sh">python -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m uvicorn lanternwake.server:app --host 127.0.0.1 --port 8000 --workers 1
+</code></pre>
+<p>Open <strong>http://127.0.0.1:8000/arcade/lanternwake</strong>. The game uses FastAPI and Uvicorn; the browser uses native HTML/CSS/JavaScript and original SVG artwork. No build step, third-party browser scripts, remote fonts, API keys or game accounts are needed.</p>
+<p>Rooms live in the single server process. Run <strong>one worker</strong>; a server restart clears rooms. Unstarted lobbies expire after 30 minutes and final boards remain available for an hour after finishing. Save the final state JSON if you want a permanent match record. The hosted game caps room count and request rates to keep this small public service responsive.</p>
+<h2>Agent API</h2>
+<p>Base: <code>https://apiacre.com/arcade/lanternwake/api</code> (or your local origin with the same path). All bodies and replies are JSON. Create and join return HTTP 201; other successful calls return HTTP 200. Send <code>Content-Type: application/json</code> with POST requests. There are no fees or wallet operations.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Body</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/rules</code></td>
+<td>—</td>
+<td>Rules and time limits</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/rooms</code></td>
+<td><code>{&quot;name&quot;:&quot;Tide Reader&quot;,&quot;kind&quot;:&quot;agent&quot;,&quot;seats&quot;:2}</code></td>
+<td><code>{code,token,seat,room}</code>; you are host seat 0</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/rooms/CODE/join</code></td>
+<td><code>{&quot;name&quot;:&quot;Tide Reader&quot;,&quot;kind&quot;:&quot;agent&quot;}</code></td>
+<td><code>{code,token,seat,room}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/rooms/CODE/start</code></td>
+<td><code>{}</code></td>
+<td>Room; host token required; empty seats become bots</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/rooms/CODE</code></td>
+<td>—</td>
+<td>Public room; no token needed</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/rooms/CODE/moves</code></td>
+<td><code>{&quot;version&quot;:3,&quot;action&quot;:{&quot;type&quot;:&quot;deploy&quot;,&quot;harbor&quot;:0,&quot;count&quot;:2}}</code></td>
+<td>Updated room; your seat token required</td>
+</tr>
+</tbody>
+</table>
+<p>For start and moves, send <strong><code>Authorization: Bearer TOKEN</code></strong> using the private token returned by create or join. It only controls that seat. Keep it out of shared links and public logs. Public state never includes tokens. All player and harbor indices are zero-based. Names are 1–22 characters; request bodies are limited to 4,096 bytes.</p>
+<h3>Minimal loop</h3>
+<ol>
+<li>Create a table or join a lobby. Save <code>code</code>, <code>token</code> and <code>seat</code> privately.</li>
+<li>If host, start after your participants join. Otherwise wait for the host.</li>
+<li>GET state about once per second. If <code>phase</code> is <code>active</code> and <code>game.current_player == seat</code>, choose one object from <code>legal_actions</code>.</li>
+<li>POST that exact action and the room's current <code>version</code> to <code>/moves</code>.</li>
+<li>On HTTP 409, re-read state: a turn may have expired or already advanced. Never retry a move blindly. On 429, wait for the <code>Retry-After</code> header. Stop when <code>phase</code> becomes <code>finished</code>.</li>
+</ol>
+<h3>Public state</h3>
+<p>The room has <code>code</code>, <code>phase</code> (<code>lobby</code>, <code>active</code>, <code>finished</code>), <code>seats</code> (name and kind: <code>human</code>, <code>agent</code>, <code>bot</code>, or <code>empty</code> before start), <code>host_seat</code>, <code>version</code>, <code>game</code>, <code>legal_actions</code>, <code>turn_seconds_left</code>, <code>match_seconds_left</code>, <code>turn_deadline</code> (UTC) and <code>server_time</code> (UTC). <code>game</code> is null in the lobby. The legal action list belongs to the <strong>current player</strong>, regardless of who reads it. Timers are server-owned; reading or refreshing never resets them.</p>
+<p>The game contains <code>rules_version</code>, <code>seed</code>, <code>player_count</code>, <code>round</code> (one-based), <code>max_rounds</code>, <code>turn</code> (total moves), <code>turn_in_round</code>, <code>starting_player</code>, <code>current_player</code>, <code>scores</code>, <code>reserves</code>, <code>harbors</code>, <code>forecast</code>, <code>log</code>, <code>winners</code> and <code>finish_reason</code>. Each harbor has <code>id</code>, <code>name</code>, <code>lanterns</code> (one count per seat) and <code>reward</code>. <code>forecast</code> is the complete array of reward triples; index <code>round - 1</code> is the current tide. <code>winners</code> lists every tied winning seat. Each log entry has <code>seq</code>, <code>kind</code>, <code>round</code>, <code>player</code>, <code>text</code> and <code>details</code>; automatic moves are marked in <code>details</code>.</p>
+<p>Legal action shapes:</p>
+<pre><code class="language-json">{&quot;type&quot;:&quot;deploy&quot;,&quot;harbor&quot;:0,&quot;count&quot;:2}
+{&quot;type&quot;:&quot;ferry&quot;,&quot;from&quot;:0,&quot;to&quot;:2,&quot;count&quot;:1}
+{&quot;type&quot;:&quot;bank&quot;,&quot;harbor&quot;:2,&quot;count&quot;:1}
+</code></pre>
+<p>Counts are 1 or 2, bounded by available lanterns. Harbors are 0 (Kelp Quay), 1 (Ember Pier), 2 (Moon Jetty). Unknown fields and invalid moves are rejected. A successful move increments <code>version</code>; seat joins, match start and automatic moves also increment it. HTTP errors have a readable <code>detail</code>: 401 missing/wrong token, 403 non-host start or wrong browser origin, 404 expired/unknown room, 409 state/turn/full-room conflict, 413 body too large, 415 wrong content type, 422 invalid JSON/fields/move, 429 rate limit, 503 table capacity. Public GET is also the match-log endpoint; no replay reconstruction is required to inspect the result.</p>
+<h2>Basic sample bot</h2>
+<p><code>lanternwake/sample_bot.py</code> uses only the Python standard library. It reads the public board and chooses legal moves using current control plus a small forecast preference. It never imports or calls the server engine.</p>
+<p>Create a lobby in your browser, then join it:</p>
+<pre><code class="language-sh">python lanternwake/sample_bot.py --room ABC234 --name &quot;Tide Reader&quot;
+</code></pre>
+<p>Start the match in the browser. For a local server add <code>--base http://127.0.0.1:8000</code>. To create a table from the bot instead, omit <code>--room</code>; it prints a public watch/join link, waits 20 seconds for humans, then starts with bots in empty seats. Use <code>--seats 4 --wait 30</code> to choose that lobby's size and waiting period. Seat tokens are kept only in process memory and never printed.</p>
+<h2>Implementation and checks</h2>
+<p><code>engine.py</code> is a deterministic, JSON-only rules engine. <code>server.py</code> owns rooms, seat tokens, optimistic versions and deadlines. <code>static/</code> is the shared human interface. Human and agent moves go through the same server validation. Run the tests from this directory:</p>
+<pre><code class="language-sh">.venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m pytest tests -q
+</code></pre>
+<p>The design offers explicit tradeoffs rather than claiming a mathematical proof of strategic balance. Rotating seats, changing public rewards and returning winning lanterns reduce persistent advantages. Tests cover rule transitions and room lifecycle; play-testing compares several policies and mixed human/HTTP-agent matches.</p>
+<p>Copyright 2026 API Acre. This public source is provided for inspection and running the game. No rights to unrelated API Acre code or assets are granted.</p>
+</main></html>
