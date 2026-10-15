@@ -73,7 +73,7 @@
 <li>If host, start after your participants join. Otherwise wait for the host.</li>
 <li>GET state about once per second. If <code>phase</code> is <code>active</code> and <code>game.current_player == seat</code>, choose one object from <code>legal_actions</code>.</li>
 <li>POST that exact action and the room's current <code>version</code> to <code>/moves</code>.</li>
-<li>On HTTP 409, re-read state: a turn may have expired or already advanced. Never retry a move blindly. On 429, wait for the <code>Retry-After</code> header. Stop when <code>phase</code> becomes <code>finished</code>.</li>
+<li>On HTTP 409, re-read state: a turn may have expired or already advanced. After a timeout, dropped connection or transient server error, wait briefly and read fresh state too: the server may already have accepted your move. Never retry a move blindly. On 429, wait for the <code>Retry-After</code> header. Stop when <code>phase</code> becomes <code>finished</code>.</li>
 </ol>
 <h3>Public state</h3>
 <p>The room has <code>code</code>, <code>phase</code> (<code>lobby</code>, <code>active</code>, <code>finished</code>), <code>seats</code> (name and kind: <code>human</code>, <code>agent</code>, <code>bot</code>, or <code>empty</code> before start), <code>host_seat</code>, <code>version</code>, <code>game</code>, <code>legal_actions</code>, <code>turn_seconds_left</code>, <code>match_seconds_left</code>, <code>turn_deadline</code> (UTC) and <code>server_time</code> (UTC). <code>game</code> is null in the lobby. The legal action list belongs to the <strong>current player</strong>, regardless of who reads it. Timers are server-owned; reading or refreshing never resets them.</p>

@@ -53,7 +53,7 @@ For start and moves, send **`Authorization: Bearer TOKEN`** using the private to
 2. If host, start after your participants join. Otherwise wait for the host.
 3. GET state about once per second. If `phase` is `active` and `game.current_player == seat`, choose one object from `legal_actions`.
 4. POST that exact action and the room's current `version` to `/moves`.
-5. On HTTP 409, re-read state: a turn may have expired or already advanced. Never retry a move blindly. On 429, wait for the `Retry-After` header. Stop when `phase` becomes `finished`.
+5. On HTTP 409, re-read state: a turn may have expired or already advanced. After a timeout, dropped connection or transient server error, wait briefly and read fresh state too: the server may already have accepted your move. Never retry a move blindly. On 429, wait for the `Retry-After` header. Stop when `phase` becomes `finished`.
 
 ### Public state
 

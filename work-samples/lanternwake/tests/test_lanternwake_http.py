@@ -1,12 +1,18 @@
 from __future__ import annotations
 
 import json
+import sys
+import time
+from email.message import Message
+from http.client import IncompleteRead
 from typing import Any
+from urllib.error import HTTPError, URLError
 
 import pytest
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
+from lanternwake import sample_bot
 from lanternwake.sample_bot import choose
 from lanternwake.server import MATCH_SECONDS, PREFIX, RoomManager, create_app
 
@@ -215,3 +221,85 @@ def test_json_size_origin_and_rate_errors_recover() -> None:
         assert limited.status_code == 429 and int(limited.headers["retry-after"]) == 60
         clock.now += 61
         assert client.get(read).status_code == 200
+
+
+@pytest.mark.parametrize("failure_at", ["read", "move"])
+@pytest.mark.parametrize(
+    "failure", [408, 500, 502, 503, 504, "connection", "timeout", "socket", "incomplete"]
+)
+def test_sample_bot_recovers_by_reading_current_state(
+    monkeypatch: pytest.MonkeyPatch, failure_at: str, failure: int | str
+) -> None:
+    def active(version: int, player: int) -> dict[str, Any]:
+        return {
+            "phase": "active",
+            "version": version,
+            "game": {"current_player": player, "turn": version, "scores": [0, 0]},
+            "legal_actions": [{"type": "deploy", "harbor": version % 3, "count": 1}],
+        }
+
+    finished = {
+        "phase": "finished",
+        "game": {"scores": [2, 1], "winners": [0]},
+        "seats": [{"name": "Bot"}, {"name": "Other"}],
+    }
+    states = iter(
+        [active(1, 0), active(2, 1), active(3, 0), finished]
+        if failure_at == "move"
+        else [active(3, 0), finished]
+    )
+    moves: list[dict[str, Any]] = []
+    delays: list[float] = []
+    failed = False
+
+    def call(
+        base: str, path: str, payload: dict[str, Any] | None = None, token: str | None = None
+    ) -> dict[str, Any]:
+        nonlocal failed
+        if path.endswith("/join"):
+            return {"code": "ABC234", "token": "test-seat", "seat": 0}
+        if payload is not None:
+            moves.append(payload)
+        if not failed and ((payload is None) == (failure_at == "read")):
+            failed = True
+            if isinstance(failure, int):
+                raise HTTPError(base + path, failure, "Transient failure", Message(), None)
+            if failure == "connection":
+                raise URLError("Lost reply")
+            if failure == "timeout":
+                raise TimeoutError("Lost reply")
+            if failure == "incomplete":
+                raise IncompleteRead(b'{"phase":', 10)
+            raise OSError("Lost reply")
+        if payload is None:
+            return next(states)
+        return active(4, 1)
+
+    monkeypatch.setattr(sys, "argv", ["sample_bot.py", "--room", "ABC234"])
+    monkeypatch.setattr(sample_bot, "call", call)
+    monkeypatch.setattr(sample_bot, "choose", lambda room, seat: room["legal_actions"][0])
+    monkeypatch.setattr(time, "sleep", delays.append)
+    assert sample_bot.main() == 0
+    assert failed and delays and all(0 < delay <= 60 for delay in delays)
+    # An uncertain POST may already have committed. The opponent's turn is skipped,
+    # then the next POST uses the newly read version and newly legal action.
+    assert [move["version"] for move in moves] == ([1, 3] if failure_at == "move" else [3])
+    assert moves[-1]["action"] == {"type": "deploy", "harbor": 0, "count": 1}
+
+
+@pytest.mark.parametrize("status", [401, 403, 422])
+def test_sample_bot_does_not_retry_permanent_errors(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str], status: int
+) -> None:
+    calls = []
+
+    def call(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        calls.append(args)
+        if len(calls) == 1:
+            return {"code": "ABC234", "token": "test-seat", "seat": 0}
+        raise HTTPError("https://example.test", status, "Permanent error", Message(), None)
+
+    monkeypatch.setattr(sys, "argv", ["sample_bot.py", "--room", "ABC234"])
+    monkeypatch.setattr(sample_bot, "call", call)
+    assert sample_bot.main() == 1
+    assert len(calls) == 2 and f"HTTP {status}" in capsys.readouterr().out

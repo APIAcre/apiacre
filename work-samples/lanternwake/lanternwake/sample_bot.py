@@ -6,6 +6,7 @@ import argparse
 import copy
 import json
 import time
+from http.client import IncompleteRead
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
@@ -146,7 +147,15 @@ def main() -> int:
                 if exc.code == 429:
                     time.sleep(min(60, max(1, int(exc.headers.get("Retry-After", "5")))))
                     continue
+                if exc.code in {408, 500, 502, 503, 504}:
+                    # The move may have reached the server. Read fresh state next;
+                    # never replay an uncertain move with its old version.
+                    time.sleep(1)
+                    continue
                 raise
+            except (URLError, TimeoutError, OSError, IncompleteRead):
+                # Refresh state after a dropped connection, including a lost reply.
+                time.sleep(1)
         print("The lobby wait expired. Join a new table and ask its host to start.")
         return 1
     except HTTPError as exc:
