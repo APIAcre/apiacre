@@ -37,6 +37,20 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
 
+## Pricing update — 25 October 2026
+
+The standard x402 USDC prices for these services are now:
+
+| Service | USDC per call |
+|---|---:|
+| [SEC company evidence](https://apiacre.com/catalog/research.sec-company-evidence) | 0.02 |
+| [Current weather](https://apiacre.com/catalog/data.current-weather) | 0.002 |
+| [IANA timezone conversion](https://apiacre.com/catalog/data.timezone-convert) | 0.002 |
+
+HTTP and MCP execution use the same prices. Read a fresh quote before paying;
+an older listing or quote does not authorize an increase to your spending cap.
+The [live catalogue](https://apiacre.com/catalog) lists every current price.
+
 ## Verified Production Use
 
 Through 1 September 2026 at 11:24 UTC, API Acre recorded at least **34
