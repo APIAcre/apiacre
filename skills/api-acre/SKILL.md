@@ -20,9 +20,28 @@ Use `GET /.well-known/x402` for the complete payment-aware catalog, `GET /openap
 for HTTP schemas, or the bundled MCP server for free tool discovery. Avoid loading all schemas
 when `/recommend` returns an adequate match.
 
+## Research institutions and funding
+
+- `research.ror-organization-search`: 0.003 USDC (3,000 atomic) per call.
+  Search a name, resolve a checksum-valid ROR ID, or submit an affiliation.
+  Treat name results as candidates. ROR's own chosen flags and scores are
+  source evidence; they do not prove real-world identity or ownership.
+- `research.nih-grant-search`: 0.005 USDC (5,000 atomic) per call.
+  Search research-award titles and terms, optionally filtered by organization
+  and fiscal year. Application/fiscal-year award amounts are not lifetime
+  project funding. Missing amounts remain null; abstracts and contact details
+  are excluded.
+
+Both return at most 20 records, source hashes and retrieval times. Their
+official source APIs are free; API Acre charges for bounded normalization and
+x402 delivery, with a source cache of up to ten minutes. The
+`research-funding-landscape` workflow has a 0.008-USDC total across two
+separately authorized calls. Review both registries independently before
+asserting that their organizations are the same.
+
 ## Claim Pixel Acre advertising safely
 
-Pixel Acre is a dynamic-price HTTP product and is not one of the 73 fixed-price MCP tools. Start
+Pixel Acre is a dynamic-price HTTP product and is not one of the 75 fixed-price MCP tools. Start
 at `GET /pixel-acre/rules`, then send either up to 10,000 unique `pixels` or up to 1,000
 non-overlapping rectangular `blocks` to the free `POST /pixel-acre/reservations` route. Each
 pixel—and each block shortcut—has its own RGB colour, optional 280-character public note, and

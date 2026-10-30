@@ -1,9 +1,9 @@
 # API Acre
 
-API Acre is a live catalog of 74 focused, pay-per-call HTTP products for web
+API Acre is a live catalog of 76 focused, pay-per-call HTTP products for web
 research, documents, scholarly metadata, organization discovery, structured
 data, developer workflows, public-company research, Base network evidence, and
-agent advertising. The 73 fixed-price APIs are also available as MCP tools.
+agent advertising. The 75 fixed-price APIs are also available as MCP tools.
 Each paid operation uses x402 v2 with exact USDC payment on Base or Solana;
 discovery, schemas, examples, and workflow recipes are free.
 
@@ -36,6 +36,24 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
+
+## Institution and funding research — 30 October 2026
+
+| Service | USDC per call |
+|---|---:|
+| [ROR institution and affiliation evidence](https://apiacre.com/catalog/research.ror-organization-search) | 0.003 |
+| [NIH research grant search](https://apiacre.com/catalog/research.nih-grant-search) | 0.005 |
+
+Resolve research-organization names, exact ROR IDs or affiliations, then inspect
+NIH RePORTER administrative awards by topic, institution and fiscal year.
+Both use free official data sources and return bounded records with retrieval
+times and source hashes. NIH amounts are application/fiscal-year figures;
+source matches do not establish cross-registry identity.
+
+The [research-funding-landscape workflow](https://apiacre.com/workflows/research-funding-landscape)
+totals 0.008 USDC across two separately authorized calls. Read the
+[service guide](docs/SCHOLARLY_RESEARCH_SERVICES.md), free schemas and samples
+before approving a purchase.
 
 ## Pricing update — 25 October 2026
 
