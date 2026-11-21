@@ -190,6 +190,19 @@ does not execute a paid tool. Use an MCP client for subsequent tool discovery
 and calls. Current protocol support is also published in the
 [discovery document](https://apiacre.com/.well-known/mcp.json).
 
+## Rookfall: Lastlight Bastion
+
+[Play Lastlight Bastion](https://apiacre.com/arcade/rookfall?mode=defense),
+a free cooperative tower defense mode for one to four players. Defend two relay
+towers through eight waves on a dedicated coastal fortress map, ending with a
+siege engine.
+
+Build autocannons, chain lightning pylons, mortars and cryo projectors, plus walls
+and support relays. Upgrade and repair defenses using shared scrap. Quick Play
+joins a public squad; private room codes let friends play together.
+
+Play in a browser without a wallet or payment. [Browse the arcade](https://apiacre.com/arcade).
+
 ## Network and Safety
 
 - Networks: Base mainnet (`eip155:8453`) and Solana mainnet
