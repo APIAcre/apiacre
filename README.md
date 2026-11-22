@@ -22,7 +22,8 @@ API Acre's hosted service implementation or any wallet credentials.
 - [MCP discovery](https://apiacre.com/.well-known/mcp.json),
   [browse MCP tools](https://apiacre.com/mcp/tools), and
   [remote MCP connection guide](#connect-over-mcp)
-- [A2A agent card](https://apiacre.com/.well-known/agent-card.json)
+- [A2A agent card](https://apiacre.com/.well-known/agent-card.json) and
+  [free A2A discovery example](#discover-over-a2a)
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
 - [Request custom work](https://apiacre.com/request-api) for a custom API,
@@ -40,6 +41,32 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
+
+## Discover over A2A
+
+Ask the discovery agent to recommend an API. Its response includes the
+input schema, sample link, and purchase instructions. Any paid call
+requires separate authorization.
+
+```bash
+curl --fail-with-body --silent --show-error https://apiacre.com/a2a \
+  --header 'Content-Type: application/json' \
+  --header 'A2A-Version: 1.0' \
+  --data '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "SendMessage",
+    "params": {"message": {
+      "messageId": "grant-search-example",
+      "role": "ROLE_USER",
+      "parts": [{"text": "Find an API to search NIH grant records"}]
+    }}
+  }'
+```
+
+Read `result.message.parts[1].data.recommendations` for the matching APIs.
+The agent card advertises A2A 1.0 HTTP+JSON and JSON-RPC, plus JSON-RPC 0.3
+for clients that use `message/send`.
 
 ## Institution and funding research — 30 October 2026
 
