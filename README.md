@@ -15,6 +15,8 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Service catalog](https://apiacre.com/catalog) — prices, schemas, examples,
   checkout links, and exact-cap agent commands
 - [OpenAPI document](https://apiacre.com/openapi.json) — all HTTP operations
+- [RFC 9727 API catalog](https://apiacre.com/.well-known/api-catalog) lists paid
+  endpoints with a free contract and documentation for each.
 - [x402 discovery](https://apiacre.com/.well-known/x402) — machine-readable
   payment resources
 - [MCP discovery](https://apiacre.com/.well-known/mcp.json),
@@ -23,6 +25,8 @@ API Acre's hosted service implementation or any wallet credentials.
 - [A2A agent card](https://apiacre.com/.well-known/agent-card.json)
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
+- [Request custom work](https://apiacre.com/request-api) for a custom API,
+  evidence audit, or volume integration.
 - [Live Pixel Acre inventory](https://apiacre.com/pixel-acre/state) — claimed,
   reserved, checkout, and currently available pixels; reading it cannot reserve
   inventory or make a payment
