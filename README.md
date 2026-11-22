@@ -75,10 +75,10 @@ The [live catalogue](https://apiacre.com/catalog) lists every current price.
 
 ## Verified Production Use
 
-Through 1 September 2026 at 11:24 UTC, API Acre recorded at least **34
-independently attributed settled production calls from 17 payers, totaling
-0.331 USDC on Base**. Operator validation is excluded. Fifteen services had at
-least one independently attributed settlement.
+Through 22 November 2026 at 21:00 UTC, API Acre's production ledger recorded
+at least **383 independently attributed settled calls from 63 payers**,
+totaling **1.747 USDC on Base** across 47 services. These totals exclude
+operator validation.
 
 These are privacy-bounded historical minimums, not buyer endorsements, evidence
 of per-service unique payers, a repeat-demand claim, a forecast, or a guarantee.
