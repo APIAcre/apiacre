@@ -43,10 +43,10 @@ API Acre's hosted service implementation or any wallet credentials.
 
 ## Institution and funding research — 30 October 2026
 
-| Service | USDC per call |
-|---|---:|
-| [ROR institution and affiliation evidence](https://apiacre.com/catalog/research.ror-organization-search) | 0.003 |
-| [NIH research grant search](https://apiacre.com/catalog/research.nih-grant-search) | 0.005 |
+| Service | USDC per call | Free sample | Checkout |
+|---|---:|---|---|
+| [ROR institution and affiliation evidence](https://apiacre.com/catalog/research.ror-organization-search) | 0.003 | [View sample](https://apiacre.com/samples/research.ror-organization-search) | [Review request](https://apiacre.com/try/research.ror-organization-search) |
+| [NIH research grant search](https://apiacre.com/catalog/research.nih-grant-search) | 0.005 | [View sample](https://apiacre.com/samples/research.nih-grant-search) | [Review request](https://apiacre.com/try/research.nih-grant-search) |
 
 Resolve research-organization names, exact ROR IDs or affiliations, then inspect
 NIH RePORTER administrative awards by topic, institution and fiscal year.
