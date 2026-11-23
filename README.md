@@ -42,6 +42,7 @@ API Acre's hosted service implementation or any wallet credentials.
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
 - [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
+- [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
@@ -123,6 +124,23 @@ The [research-funding-landscape workflow](https://apiacre.com/workflows/research
 totals 0.008 USDC across two separately authorized calls. Read the
 [service guide](docs/SCHOLARLY_RESEARCH_SERVICES.md), free schemas and samples
 before approving a purchase.
+
+## Preview geocoding
+
+Choose the API based on the input you have. Each paid endpoint accepts `POST` and
+quotes the same USDC price on Base and Solana. The sample links show a free JSON
+response, and the checkout links let you edit the input before authorizing a call.
+
+| Input you have | Result | USDC per call | Free sample | Checkout |
+| --- | --- | ---: | --- | --- |
+| Place name such as `London, GB` | Ranked cities or localities with coordinates | 0.002 | [Place sample](https://apiacre.com/samples/data.place-geocode) | [Place geocoding](https://apiacre.com/try/data.place-geocode) |
+| Latitude `51.5074` and longitude `-0.1278` | Populated places ranked by distance from the point | 0.002 | [Reverse sample](https://apiacre.com/samples/data.reverse-geocode) | [Reverse geocoding](https://apiacre.com/try/data.reverse-geocode) |
+| U.S. street address such as `4600 Silver Hill Rd, Washington, DC 20233` | Census coordinates with optional geography and source details | 0.005 | [Address sample](https://apiacre.com/samples/data.us-address-geocode) | [Street-address geocoding](https://apiacre.com/try/data.us-address-geocode) |
+
+The [free street-address recommendation](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.005&limit=1)
+returns the address service and its checkout link at a **0.005 USDC** cap. A
+[0.003 USDC cap](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.003&limit=1)
+returns an empty list for the same request.
 
 ## Preview Base stock evidence
 
