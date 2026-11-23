@@ -42,6 +42,7 @@ API Acre's hosted service implementation or any wallet credentials.
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
 - [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
+- [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
@@ -124,6 +125,20 @@ The [research-funding-landscape workflow](https://apiacre.com/workflows/research
 totals 0.008 USDC across two separately authorized calls. Read the
 [service guide](docs/SCHOLARLY_RESEARCH_SERVICES.md), free schemas and samples
 before approving a purchase.
+
+## Preview Crossref publication metadata
+
+Search Crossref by title, author, citation, or DOI fragment. Once you have a
+specific DOI, retrieve its publication record and any correction or retraction
+links reported by Crossref. Both endpoints return bibliographic metadata.
+
+| Task | USDC per call | Free sample | Checkout |
+| --- | ---: | --- | --- |
+| Find candidate publications and their DOIs | 0.008 | [Search sample](https://apiacre.com/samples/research.crossref-work-search) | [Work Search](https://apiacre.com/try/research.crossref-work-search) |
+| Look up one known DOI | 0.003 | [DOI sample](https://apiacre.com/samples/research.crossref-doi-metadata) | [DOI Metadata](https://apiacre.com/try/research.crossref-doi-metadata) |
+
+The two calls have a combined price of **0.011 USDC** on Base or Solana. Review
+the search results and select a DOI before authorizing the second call.
 
 ## Preview geocoding
 
