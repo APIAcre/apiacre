@@ -142,8 +142,10 @@ links reported by Crossref. Both endpoints return bibliographic metadata.
 | Find candidate publications and their DOIs | 0.008 | [Search sample](https://apiacre.com/samples/research.crossref-work-search) | [Work Search](https://apiacre.com/try/research.crossref-work-search) |
 | Look up one known DOI | 0.003 | [DOI sample](https://apiacre.com/samples/research.crossref-doi-metadata) | [DOI Metadata](https://apiacre.com/try/research.crossref-doi-metadata) |
 
-The two calls have a combined price of **0.011 USDC** on Base or Solana. Review
-the search results and select a DOI before authorizing the second call.
+The [Crossref publication workflow](https://apiacre.com/workflows/crossref-publication-record)
+opens each checkout with a real example and links to the underlying Crossref
+records. The two calls total **0.011 USDC** on Base or Solana. Review the search
+results and select your DOI before authorizing the second call.
 
 ## Preview geocoding
 
