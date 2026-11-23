@@ -418,7 +418,10 @@ same links under `purchase.solanaPythonExampleUrl`.
 | Code Metrics | 0.025 USDC | [Open example](https://apiacre.com/examples/python-solana-buyer.py?service=developer.code-metrics) |
 | U.S. Address Geocode | 0.005 USDC | [Open example](https://apiacre.com/examples/python-solana-buyer.py?service=data.us-address-geocode) |
 
-Each example checks the live Solana quote for that API by default.
+Each example checks the live Solana quote with its bundled request by default.
+To quote your own request, save its JSON to `request.json` and run the downloaded
+script with `--input request.json`. Pass `--input -` to read a JSON object
+from standard input.
 The [buyer guide](https://apiacre.com/buyers) explains how to authorize one paid
 call after checking the quote.
 
