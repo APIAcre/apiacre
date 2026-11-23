@@ -43,7 +43,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Free code-metrics trial](https://apiacre.com/free-trial/developer.code-metrics)
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
-- [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
+- [Solana Python quickstart](#get-a-solana-quote) for unpaid quotes on 75 fixed-price APIs
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
@@ -408,6 +408,16 @@ python3 -m pip install "x402[httpx,svm]>=2.29,<2.30"
 python3 python-solana-buyer.py
 ```
 
+For any fixed-price API, open its checkout from the [service catalog](https://apiacre.com/catalog)
+and choose **Use Python on Solana**. The full [x402 discovery document](https://apiacre.com/.well-known/x402)
+lists the same links under `purchase.solanaPythonExampleUrl`.
+
+| API | Exact price per call | Python example |
+| --- | ---: | --- |
+| Code Metrics | 0.025 USDC | [Open example](https://apiacre.com/examples/python-solana-buyer.py?service=developer.code-metrics) |
+| U.S. Address Geocode | 0.005 USDC | [Open example](https://apiacre.com/examples/python-solana-buyer.py?service=data.us-address-geocode) |
+
+Each example checks the live Solana quote for that API by default.
 The [buyer guide](https://apiacre.com/buyers) explains how to authorize one paid
 call after checking the quote.
 
