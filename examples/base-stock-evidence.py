@@ -1,8 +1,10 @@
 """Preview API Acre Base quotes for the TSLAc reference and TSLA issuer example."""
 
+import argparse
 import base64
 import json
 import re
+import shlex
 from datetime import UTC, datetime
 from decimal import Decimal
 from urllib.error import HTTPError
@@ -15,6 +17,7 @@ BASE = "eip155:8453"
 BASE_USDC = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
 ADDRESS = re.compile(r"0x[0-9a-fA-F]{40}")
 MAX_JSON_BYTES = 1_048_576
+AGENTCASH_PACKAGE = "agentcash@0.17.1"
 
 
 class NoRedirects(HTTPRedirectHandler):
@@ -47,16 +50,48 @@ def get_json(url):
     return json.loads(data)
 
 
+def agentcash_commands(endpoint, body_json, amount_usdc):
+    prefix = ["npx", "--yes", AGENTCASH_PACKAGE]
+    request_args = [
+        endpoint,
+        "--method",
+        "POST",
+        "--header",
+        "content-type: application/json",
+        "--body",
+        body_json,
+    ]
+    return {
+        "checkCommand": shlex.join([*prefix, "check", *request_args]),
+        "paidCommand": shlex.join(
+            [
+                *prefix,
+                "fetch",
+                *request_args,
+                "--payment-protocol",
+                "x402",
+                "--payment-network",
+                "base",
+                "--max-amount",
+                amount_usdc,
+            ]
+        ),
+    }
+
+
 def preview(slug, path, body, maximum_usdc):
     contract_url = f"{ORIGIN}/catalog/{slug}"
     purchase = get_json(contract_url)["purchase"]
     endpoint = f"{ORIGIN}{path}"
+    checkout_url = f"{ORIGIN}/try/{slug}"
     price = purchase["exactAmount"]
     if not isinstance(price, str) or not re.fullmatch(r"[0-9]+(?:\.[0-9]{1,6})?", price):
         raise RuntimeError(f"The advertised price has invalid USDC precision for {slug}")
     amount = Decimal(price)
     if purchase["endpoint"] != endpoint or not 0 < amount <= Decimal(maximum_usdc):
         raise RuntimeError(f"The endpoint or advertised price changed for {slug}")
+    if purchase["browserCheckoutUrl"] != checkout_url:
+        raise RuntimeError(f"The browser checkout URL changed for {slug}")
     atomic_amount = int(amount * 1_000_000)
 
     with request(endpoint, body) as response:
@@ -82,6 +117,10 @@ def preview(slug, path, body, maximum_usdc):
         "contractUrl": contract_url,
         "sampleUrl": purchase["sampleUrl"],
         "request": {"method": "POST", "url": endpoint, "body": body},
+        "browserCheckout": {
+            "url": checkout_url,
+            "bodyJson": json.dumps(body, separators=(",", ":")),
+        },
         "quote": {
             "network": BASE,
             "asset": BASE_USDC,
@@ -92,7 +131,12 @@ def preview(slug, path, body, maximum_usdc):
     }
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--agentcash", action="store_true", help="include optional AgentCash commands"
+    )
+    options = parser.parse_args(argv)
     reference = get_json(TOKEN_METADATA)
     token_contract = reference["contract_address"]
     if reference["symbol"] != "TSLAc" or not ADDRESS.fullmatch(token_contract):
@@ -117,6 +161,13 @@ def main():
             "0.02",
         ),
     ]
+    if options.agentcash:
+        for item in quotes:
+            item["agentCash"] = agentcash_commands(
+                item["request"]["url"],
+                item["browserCheckout"]["bodyJson"],
+                item["quote"]["amountUsdc"],
+            )
     total = sum(Decimal(item["quote"]["amountUsdc"]) for item in quotes)
     packet = {
         "checkedAt": datetime.now(UTC).isoformat(),

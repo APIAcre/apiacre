@@ -93,7 +93,7 @@ before approving a purchase.
 Run the [Python 3.11+ example](examples/base-stock-evidence.py) to retrieve the
 TSLAc contract address and preview two optional API Acre calls on Base. The
 example needs only the Python standard library. It sends unsigned requests and
-prints each request body, live quote, and free sample link.
+prints each request body, live quote, free sample link, and checkout link.
 
 ```bash
 python3 examples/base-stock-evidence.py
@@ -103,6 +103,17 @@ python3 examples/base-stock-evidence.py
   reads the token's `decimals()` value. The example caps its quote at 0.005 USDC.
 - [SEC company evidence](https://apiacre.com/catalog/research.sec-company-evidence)
   looks up TSLA issuer disclosures and financial evidence. Its quote cap is 0.02 USDC.
+
+To review the exact request in a browser, open `browserCheckout.url` for either
+service. Paste `browserCheckout.bodyJson` into **Change the request** and select
+**Verify changed input** to get a fresh quote for that request.
+
+Run `python3 examples/base-stock-evidence.py --agentcash` to print AgentCash
+commands for a POSIX shell. `checkCommand` retrieves an unpaid quote for the
+same request. AgentCash may initialize a local wallet on first use. Review the
+quote before using `paidCommand`, which can spend USDC on Base up to the printed
+quote amount. See the
+[AgentCash CLI guide](https://github.com/Merit-Systems/agentcash-skills/tree/master/skills/agentcash).
 
 The preview is free. Each optional paid call requires separate authorization,
 with a combined cap of 0.025 USDC if you choose both. The source links identify
