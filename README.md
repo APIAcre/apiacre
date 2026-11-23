@@ -43,6 +43,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Free code-metrics trial](https://apiacre.com/free-trial/developer.code-metrics)
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
+- [Base Python quickstart](#get-a-base-quote) for unpaid quotes on 75 fixed-price APIs
 - [Solana Python quickstart](#get-a-solana-quote) for unpaid quotes on 75 fixed-price APIs
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
@@ -396,6 +397,26 @@ negotiated protocol version. This request only reads server capabilities; it
 does not execute a paid tool. Use an MCP client for subsequent tool discovery
 and calls. Current protocol support is also published in the
 [discovery document](https://apiacre.com/.well-known/mcp.json).
+
+## Get a Base quote
+
+Save the [SEC Filing Signals example](https://apiacre.com/examples/python-buyer.py)
+as `python-buyer.py`. Its default run shows the live recipient and the 0.05 USDC
+quote on Base mainnet.
+
+```sh
+python3 -m pip install "x402[httpx,evm]>=2.29,<2.30"
+python3 python-buyer.py
+```
+
+Choose **Use Python on Base** on any fixed-price service page or checkout. For
+example, the [Code Metrics script](https://apiacre.com/examples/python-buyer.py?service=developer.code-metrics)
+quotes 0.025 USDC per call. Agents can find each download under
+`purchase.basePythonExampleUrl` in the [x402 discovery document](https://apiacre.com/.well-known/x402).
+
+Pass `--input request.json` to quote your own JSON, or use `--input -` to read
+a JSON object from standard input. Quoting requires no wallet. See the
+[buyer guide](https://apiacre.com/buyers) to authorize a paid call separately.
 
 ## Get a Solana quote
 
