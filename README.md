@@ -36,6 +36,8 @@ API Acre's hosted service implementation or any wallet credentials.
   whether to authorize a paid call
 - [Free intent selector](https://apiacre.com/recommend?task=inspect%20an%20EVM%20address&max_price=0.002&limit=3)
   — compact, ranked choices without executing or paying for a service
+- [Python standard-library example](#discover-from-python) for recommendations
+  and live checkout links
 - [Free code-metrics trial](https://apiacre.com/free-trial/developer.code-metrics)
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
@@ -44,6 +46,38 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
+
+## Discover from Python
+
+Send a task and a USDC price cap to the free selector. The response includes a
+checkout link for each recommendation. Discovery requires no wallet or payment.
+
+```python
+import json
+from urllib.request import Request, urlopen
+
+query = {"task": "read eth_getBlockByNumber on Base", "max_price": "0.001", "limit": 1}
+request = Request(
+    "https://apiacre.com/recommend",
+    data=json.dumps(query).encode(),
+    headers={
+        "Content-Type": "application/json",
+        "User-Agent": "APIAcre-python-discovery-example/1.0",
+    },
+)
+with urlopen(request, timeout=10) as response:
+    recommendations = json.load(response)["recommendations"]
+
+for recommendation in recommendations:
+    service = recommendation["service"]
+    purchase = service["purchase"]
+    print(f'{service["slug"]} ({purchase["exactAmount"]} USDC)')
+    print(purchase["browserCheckoutUrl"])
+```
+
+Set a descriptive `User-Agent` for your application. Cloudflare can return
+HTTP 403 with error 1010 for the default `urllib` header.
+[Cloudflare error 1010](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1010/)
 
 ## Discover over A2A
 
