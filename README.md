@@ -39,6 +39,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Free code-metrics trial](https://apiacre.com/free-trial/developer.code-metrics)
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
+- [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
 
@@ -220,6 +221,20 @@ negotiated protocol version. This request only reads server capabilities; it
 does not execute a paid tool. Use an MCP client for subsequent tool discovery
 and calls. Current protocol support is also published in the
 [discovery document](https://apiacre.com/.well-known/mcp.json).
+
+## Get a Solana quote
+
+[Download the Python example](https://apiacre.com/examples/python-solana-buyer.py)
+to check the live quote for timezone conversion on Solana mainnet. The default
+run displays the recipient and the 0.002 USDC price.
+
+```sh
+python3 -m pip install "x402[httpx,svm]>=2.29,<2.30"
+python3 python-solana-buyer.py
+```
+
+The [buyer guide](https://apiacre.com/buyers) explains how to authorize one paid
+call after checking the quote.
 
 ## Rookfall: Lastlight Bastion
 
