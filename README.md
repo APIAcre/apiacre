@@ -44,6 +44,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
+- [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
@@ -156,6 +157,20 @@ The [free street-address recommendation](https://apiacre.com/recommend?task=look
 returns the address service and its checkout link at a **0.005 USDC** cap. A
 [0.003 USDC cap](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.003&limit=1)
 returns an empty list for the same request.
+
+## Preview a technical SEO audit
+
+The technical SEO audit takes one public URL and returns a score and prioritized
+issue codes for metadata, canonical and robots signals, headings, image alt text,
+and structured data. The metadata endpoint returns page fields and source evidence
+for integrations that need the underlying values.
+
+| Task | USDC per call | Free sample | Checkout |
+| --- | ---: | --- | --- |
+| Get a technical SEO score and issues for one URL | 0.01 | [SEO audit sample](https://apiacre.com/samples/web.seo-audit) | [Technical SEO audit](https://apiacre.com/try/web.seo-audit) |
+| Extract a page's title, canonical URL, and social tags | 0.002 | [Metadata sample](https://apiacre.com/samples/web.metadata) | [Webpage metadata](https://apiacre.com/try/web.metadata) |
+
+Both endpoints accept `POST` and quote the listed price on Base and Solana.
 
 ## Preview Base stock evidence
 
