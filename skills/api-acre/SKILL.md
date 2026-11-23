@@ -75,6 +75,18 @@ contract, `preview` for the static example, and `payment` for the no-custody che
 following these links carries neither the quoted request payload nor a payment signature and does
 not execute, sign, or pay. Recreate material input only for a separately approved paid retry.
 
+### Quote with Python
+
+For a fixed-price service, read the full contract at `service.purchase.fullHandoffUrl`.
+From its `purchase` object, use `basePythonExampleUrl` or `solanaPythonExampleUrl` for
+the buyer's chosen network. Download and review the script from `https://apiacre.com`.
+After installing the SDK dependency listed in the script, run it with no arguments
+for the published example or pass `--input request.json` to quote the intended JSON.
+Both commands print the network, USDC amount, and recipient without loading a wallet.
+Save `--pay-to` for an explicitly approved purchase.
+
+See the [buyer guide](https://apiacre.com/buyers) for the dependency and terminal steps.
+
 ## Require exact payment approval
 
 Before sending `PAYMENT-SIGNATURE` or invoking a client that may pay, obtain fresh user approval
