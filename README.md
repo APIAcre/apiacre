@@ -177,6 +177,9 @@ Both endpoints accept `POST` and quote the listed price on Base and Solana.
 
 ## Preview Base stock evidence
 
+[Open the Base stock evidence workflow](https://apiacre.com/workflows/base-stock-evidence)
+for two prefilled quotes and the original token metadata and SEC filing.
+
 Run the [Python 3.11+ example](examples/base-stock-evidence.py) to retrieve the
 TSLAc contract address and preview two optional API Acre calls on Base. The
 example needs only the Python standard library. It sends unsigned requests and
