@@ -45,6 +45,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Base Python quickstart](#get-a-base-quote) for unpaid quotes on 75 fixed-price APIs
 - [Solana Python quickstart](#get-a-solana-quote) for unpaid quotes on 75 fixed-price APIs
+- [Use reviewed checkout JSON in Python](#use-reviewed-checkout-json-in-python) to quote the same request from your terminal
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
@@ -312,11 +313,14 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is version `1.5.2`. Its skill includes a wallet-free
-Python quote path for fixed-price APIs on Base and Solana. It can use Coinbase Agentic
-Wallet MCP as an optional, separately installed buyer companion; signing in,
-funding a wallet, or configuring spending limits never authorizes an API Acre
-call by itself.
+The current public package is [v1.5.2 on GitHub](https://github.com/APIAcre/apiacre/releases/tag/v1.5.2).
+Save [api-acre.zip](https://github.com/APIAcre/apiacre/releases/download/v1.5.2/api-acre.zip)
+and [SHA256SUMS](https://github.com/APIAcre/apiacre/releases/download/v1.5.2/SHA256SUMS)
+to the same directory. Run `sha256sum -c SHA256SUMS` before unpacking the ZIP.
+
+The skill includes a wallet-free Python quote path for fixed-price APIs on Base
+and Solana. Coinbase Agentic Wallet MCP is an optional, separately installed
+buyer companion. Each paid call requires its own approval.
 
 ## Read a Quote Without Paying
 
@@ -449,6 +453,29 @@ script with `--input request.json`. Pass `--input -` to read a JSON object
 from standard input.
 The [buyer guide](https://apiacre.com/buyers) explains how to authorize one paid
 call after checking the quote.
+
+## Use reviewed checkout JSON in Python
+
+1. Open [Code Metrics checkout](https://apiacre.com/try/developer.code-metrics).
+   The default request gets an unsigned quote automatically. If you edit the
+   JSON, select **Verify changed input**.
+2. Select **Download reviewed request JSON** once the quote is shown. The file
+   contains the exact JSON from the quote request.
+3. Select **Use Python on Base** or **Use Python on Solana** and save the script
+   beside the JSON file. With the matching dependency installed from the
+   quickstart above, run the command for your network.
+
+```sh
+# Base
+python3 apiacre-developer.code-metrics-base.py --input apiacre-developer.code-metrics-request.json
+
+# Solana
+python3 apiacre-developer.code-metrics-solana.py --input apiacre-developer.code-metrics-request.json
+```
+
+Each command checks the current price and recipient for the exported request
+without signing in to a wallet or paying. The same handoff works on the other
+fixed-price checkouts with their own scripts and filenames.
 
 ## Rookfall: Lastlight Bastion
 
