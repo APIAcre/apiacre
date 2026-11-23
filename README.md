@@ -43,6 +43,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
+- [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
@@ -155,6 +156,22 @@ with a combined cap of 0.025 USDC if you choose both. The source links identify
 the [Base token metadata](https://docs.base.org/sdks/tokenized-stocks/api-reference/get-token-metadata)
 and the [issuer's SEC filing](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm).
 
+## Preview CSV redaction and schema inference
+
+The [CSV workflow](https://apiacre.com/workflows/csv-pii-contract) uses one
+synthetic CSV across four checkout examples. Open any step to check its price
+and review the request before authorizing it.
+
+1. [Extract CSV text](https://apiacre.com/workflows/csv-pii-contract/start/1) · 0.010 USDC
+2. [Redact sensitive patterns](https://apiacre.com/workflows/csv-pii-contract/start/2) · 0.010 USDC
+3. [Profile the redacted rows](https://apiacre.com/workflows/csv-pii-contract/start/3) · 0.025 USDC
+4. [Infer a schema from the redacted rows](https://apiacre.com/workflows/csv-pii-contract/start/4) · 0.025 USDC
+
+All four steps cost **0.070 USDC** in total and require separate authorization.
+For your own file, review the extracted text and the redaction findings, then
+pass the reviewed redacted CSV into both the profiling and schema steps.
+[Read the machine-readable recipe](https://apiacre.com/workflows/csv-pii-contract.json).
+
 ## Preview schema prices in CI
 
 In a fork, open **Actions**, select **Preview schema API prices**, and choose
@@ -265,8 +282,9 @@ neither the request payload nor a payment signature and does not execute or pay.
 
 ### Preview a quote with AgentCash
 
-This command shows the live price and recipient for a schema inference request
-without a wallet. `npx --yes` approves installing the AgentCash CLI.
+This command checks the live price and recipient for a schema inference request
+without paying. AgentCash may initialize a local wallet on first use.
+`npx --yes` approves installing the AgentCash CLI.
 
 ```bash
 npx --yes agentcash@0.17.1 check https://apiacre.com/v1/data/schema \
@@ -277,6 +295,10 @@ npx --yes agentcash@0.17.1 check https://apiacre.com/v1/data/schema \
 
 The [schema inference contract](https://apiacre.com/catalog/data.schema) links
 to a free sample and provides exact-cap payment commands if you choose to buy.
+The [browser checkout](https://apiacre.com/try/data.schema) lets you copy the
+unpaid quote command and the capped payment command separately. The
+[downloadable shell example](https://apiacre.com/examples/agentcash-buyer.sh)
+checks the quote by default and requires an explicit `pay` argument to purchase.
 
 To buy a result, use the service's browser checkout or a compatible x402 client
 and enforce the amount published in the catalog. Every follow-up call is optional
