@@ -175,6 +175,21 @@ The 402 response also links to the selected service's free full contract,
 static sample, and no-custody checkout review. Following those links carries
 neither the request payload nor a payment signature and does not execute or pay.
 
+### Preview a quote with AgentCash
+
+This command shows the live price and recipient for a schema inference request
+without a wallet. `npx --yes` approves installing the AgentCash CLI.
+
+```bash
+npx --yes agentcash@0.17.1 check https://apiacre.com/v1/data/schema \
+  --method POST \
+  --header 'content-type: application/json' \
+  --body '{"content":"[{\"name\":\"Ada\",\"score\":98}]","format":"json","root_mode":"records"}'
+```
+
+The [schema inference contract](https://apiacre.com/catalog/data.schema) links
+to a free sample and provides exact-cap payment commands if you choose to buy.
+
 To buy a result, use the service's browser checkout or a compatible x402 client
 and enforce the amount published in the catalog. Every follow-up call is optional
 and requires separate authorization; API Acre does not silently chain spending.
