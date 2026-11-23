@@ -408,9 +408,10 @@ python3 -m pip install "x402[httpx,svm]>=2.29,<2.30"
 python3 python-solana-buyer.py
 ```
 
-For any fixed-price API, open its checkout from the [service catalog](https://apiacre.com/catalog)
-and choose **Use Python on Solana**. The full [x402 discovery document](https://apiacre.com/.well-known/x402)
-lists the same links under `purchase.solanaPythonExampleUrl`.
+Open a fixed-price API from the [service catalog](https://apiacre.com/catalog)
+and choose **Use Python on Solana** on the service page or in browser checkout.
+The full [x402 discovery document](https://apiacre.com/.well-known/x402) lists the
+same links under `purchase.solanaPythonExampleUrl`.
 
 | API | Exact price per call | Python example |
 | --- | ---: | --- |
