@@ -15,6 +15,8 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Service catalog](https://apiacre.com/catalog) — prices, schemas, examples,
   checkout links, and exact-cap agent commands
 - [OpenAPI document](https://apiacre.com/openapi.json) — all HTTP operations
+- [First-party APIs.json index](https://apiacre.com/.well-known/apis.json) for
+  the live OpenAPI contract, pricing catalog, buyer guide, and agent endpoints.
 - [RFC 9727 API catalog](https://apiacre.com/.well-known/api-catalog) lists paid
   endpoints with a free contract and documentation for each.
 - [x402 discovery](https://apiacre.com/.well-known/x402) — machine-readable
