@@ -164,6 +164,12 @@ returns the address service and its checkout link at a **0.005 USDC** cap. A
 [0.003 USDC cap](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.003&limit=1)
 returns an empty list for the same request.
 
+The [city-to-local-time workflow](https://apiacre.com/workflows/place-local-time)
+looks up a city and its IANA time zone, then converts an offset-aware timestamp
+for the place you choose. Each call costs **0.002 USDC** on Base or Solana. Use
+the [time zone converter](https://apiacre.com/services/data.timezone-convert)
+directly when you already know the IANA zone.
+
 ## Preview a technical SEO audit
 
 The technical SEO audit takes one public URL and returns a score and prioritized
