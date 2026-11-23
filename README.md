@@ -52,6 +52,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
+- [Install in Claude Code](#install-in-claude-code) for the API Acre skill and remote MCP connection
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
 
@@ -329,6 +330,21 @@ to the same directory. Run `sha256sum -c SHA256SUMS` before unpacking the ZIP.
 The skill includes a wallet-free Python quote path for fixed-price APIs on Base
 and Solana. Coinbase Agentic Wallet MCP is an optional, separately installed
 buyer companion. Each paid call requires its own approval.
+
+### Install in Claude Code
+
+Install the API Acre skill and remote MCP connection from this repository.
+
+```bash
+claude plugin marketplace add APIAcre/apiacre
+claude plugin install api-acre@api-acre-tools
+```
+
+In a session, try `/api-acre:api-acre Find an API to convert a timestamp to London
+local time and show me the example and price.` The plugin connects to
+`https://apiacre.com/mcp` for free discovery. When you are ready to buy a result,
+use the service's checkout or a compatible x402 client and approve the specific
+request, network, and maximum USDC amount.
 
 ## Read a Quote Without Paying
 

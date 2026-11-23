@@ -1,0 +1,15 @@
+{
+  "name": "api-acre-tools",
+  "description": "API Acre data API integrations for Claude Code.",
+  "owner": {
+    "name": "API Acre",
+    "email": "hello@apiacre.com"
+  },
+  "plugins": [
+    {
+      "name": "api-acre",
+      "source": "./",
+      "description": "Find API Acre tools, inspect free examples, and check exact Base and Solana prices."
+    }
+  ]
+}

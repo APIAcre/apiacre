@@ -1,0 +1,14 @@
+{
+  "name": "api-acre",
+  "displayName": "API Acre",
+  "version": "1.5.2",
+  "description": "Discover API Acre data APIs, preview results, and check exact USDC prices on Base and Solana.",
+  "author": {
+    "name": "API Acre",
+    "email": "hello@apiacre.com",
+    "url": "https://apiacre.com"
+  },
+  "homepage": "https://apiacre.com/integrations",
+  "repository": "https://github.com/APIAcre/apiacre",
+  "keywords": ["x402", "mcp", "data", "base", "solana"]
+}
