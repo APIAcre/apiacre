@@ -40,6 +40,7 @@ API Acre's hosted service implementation or any wallet credentials.
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
 - [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
+- [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
 
@@ -86,6 +87,27 @@ The [research-funding-landscape workflow](https://apiacre.com/workflows/research
 totals 0.008 USDC across two separately authorized calls. Read the
 [service guide](docs/SCHOLARLY_RESEARCH_SERVICES.md), free schemas and samples
 before approving a purchase.
+
+## Preview Base stock evidence
+
+Run the [Python 3.11+ example](examples/base-stock-evidence.py) to retrieve the
+TSLAc contract address and preview two optional API Acre calls on Base. The
+example needs only the Python standard library. It sends unsigned requests and
+prints each request body, live quote, and free sample link.
+
+```bash
+python3 examples/base-stock-evidence.py
+```
+
+- [Base contract read](https://apiacre.com/catalog/crypto.base-contract-read)
+  reads the token's `decimals()` value. The example caps its quote at 0.005 USDC.
+- [SEC company evidence](https://apiacre.com/catalog/research.sec-company-evidence)
+  looks up TSLA issuer disclosures and financial evidence. Its quote cap is 0.02 USDC.
+
+The preview is free. Each optional paid call requires separate authorization,
+with a combined cap of 0.025 USDC if you choose both. The source links identify
+the [Base token metadata](https://docs.base.org/sdks/tokenized-stocks/api-reference/get-token-metadata)
+and the [issuer's SEC filing](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm).
 
 ## Pricing update — 25 October 2026
 
