@@ -41,6 +41,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Buyer guide](https://apiacre.com/buyers)
 - [Solana Python quickstart](#get-a-solana-quote) for an unpaid timezone conversion quote
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
+- [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
 
@@ -119,6 +120,26 @@ The preview is free. Each optional paid call requires separate authorization,
 with a combined cap of 0.025 USDC if you choose both. The source links identify
 the [Base token metadata](https://docs.base.org/sdks/tokenized-stocks/api-reference/get-token-metadata)
 and the [issuer's SEC filing](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm).
+
+## Preview schema prices in CI
+
+In a fork, open **Actions**, select **Preview schema API prices**, and choose
+**Run workflow**. You can also run the same check locally with Python 3.11+.
+
+```bash
+python3 examples/schema-quote-preview.py
+```
+
+The check uses the published synthetic inputs for schema inference and JSON
+Schema validation. The validation fixture pairs an integer field with a string
+value so buyers can review how the free result sample reports a type mismatch.
+The workflow compares the catalog with live unsigned Base quotes and puts both
+prices, free samples, and exact-request checkout links in the job summary.
+[View the workflow](.github/workflows/schema-quote-preview.yml).
+
+The two optional purchases cost up to 0.035 USDC combined. Each requires
+separate authorization through its checkout. The example uses the Python
+standard library and needs no API key or wallet.
 
 ## Pricing update — 25 October 2026
 
