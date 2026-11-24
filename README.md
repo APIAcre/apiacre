@@ -151,6 +151,13 @@ totals 0.008 USDC across two separately authorized calls. Read the
 [service guide](docs/SCHOLARLY_RESEARCH_SERVICES.md), free schemas and samples
 before approving a purchase.
 
+## Preview country and company evidence
+
+Paste either request into the service catalog to review its inputs and live quote. [Open the catalog](https://apiacre.com/#catalog)
+
+- `Get a World Bank country snapshot for GBR over the last 8 years` quotes **0.005 USDC** for six fixed indicators. Choose a country code and a lookback of 3 to 20 calendar years.
+- `Get SEC company evidence for Apple Inc.` quotes **0.020 USDC** for filing activity, financial facts, and Form 4 insider disclosures. You can also supply an exact ticker or SEC CIK.
+
 ## Preview Crossref publication metadata
 
 Search Crossref by title, author, citation, or DOI fragment. Once you have a
