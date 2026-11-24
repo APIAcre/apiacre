@@ -43,6 +43,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Free code-metrics trial](https://apiacre.com/free-trial/developer.code-metrics)
   — one bounded live deterministic run per client per hour
 - [Buyer guide](https://apiacre.com/buyers)
+- [Browser quote example](#check-a-quote-from-your-web-app) for apps on a different origin
 - [Base Python quickstart](#get-a-base-quote) for unpaid quotes on 75 fixed-price APIs
 - [Solana Python quickstart](#get-a-solana-quote) for unpaid quotes on 75 fixed-price APIs
 - [Use reviewed checkout JSON in Python](#use-reviewed-checkout-json-in-python) to quote the same request from your terminal
@@ -506,6 +507,57 @@ checks the quote by default and requires an explicit `pay` argument to purchase.
 To buy a result, use the service's browser checkout or a compatible x402 client
 and enforce the amount published in the catalog. Every follow-up call is optional
 and requires separate authorization; API Acre does not silently chain spending.
+
+## Check a quote from your web app
+
+Run this JavaScript in the console of a page you control, such as your app on
+localhost. The time-zone converter returns an unpaid quote on Base and Solana.
+The browser can read the `PAYMENT-REQUIRED` header without credentials or a
+wallet. The example stops after displaying the price and recipient.
+
+```javascript
+const endpoint = "https://apiacre.com/v1/data/timezone-convert";
+const request = {
+  timestamp: "2026-11-01T06:30:00Z",
+  target_timezone: "Europe/London",
+};
+const response = await fetch(endpoint, {
+  method: "POST",
+  mode: "cors",
+  credentials: "omit",
+  redirect: "error",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(request),
+});
+const encodedQuote = response.headers.get("PAYMENT-REQUIRED");
+if (response.status !== 402 || !encodedQuote) {
+  throw new Error("Expected an unpaid x402 quote");
+}
+const bytes = Uint8Array.from(atob(encodedQuote), (char) => char.charCodeAt(0));
+const quote = JSON.parse(new TextDecoder().decode(bytes));
+if (quote.x402Version !== 2 || quote.resource?.url !== endpoint) {
+  throw new Error("The quote does not match this API");
+}
+
+const base = "eip155:8453";
+const solana = "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp";
+const offers = quote.accepts.filter((offer) => {
+  const nativeUsdc = offer.network === base
+    ? offer.asset?.toLowerCase() === "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+    : offer.network === solana
+      && offer.asset === "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+  return nativeUsdc && offer.scheme === "exact" && offer.amount === "2000" && offer.payTo;
+});
+if (offers.length !== 2 || new Set(offers.map((offer) => offer.network)).size !== 2) {
+  throw new Error("Expected 0.002 USDC quotes on Base and Solana");
+}
+console.table(offers.map(({ network, amount, payTo }) => ({ network, amount, payTo })));
+```
+
+The amount is in atomic USDC units. For more routes and their input examples,
+fetch the [x402 discovery document](https://apiacre.com/.well-known/x402)
+from the same app. For a paid call, review the input, network, amount and
+recipient before authorizing payment. See the [buyer guide](https://apiacre.com/buyers).
 
 ## Connect over MCP
 
