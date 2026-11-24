@@ -319,6 +319,12 @@ for integrations that need the underlying values.
 
 Both endpoints accept `POST` and quote the listed price on Base and Solana.
 
+Paste either request into **Find a service** to review the URL before paying.
+[Open the service catalog](https://apiacre.com/#catalog).
+
+- `Run an SEO audit for https://apiacre.com/use-cases`
+- `Get website metadata for https://apiacre.com/use-cases`
+
 ## Preview Base stock evidence
 
 [Open the Base stock evidence workflow](https://apiacre.com/workflows/base-stock-evidence)
