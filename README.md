@@ -26,6 +26,8 @@ API Acre's hosted service implementation or any wallet credentials.
   [remote MCP connection guide](#connect-over-mcp)
 - [Node.js MCP quote example](#read-an-mcp-quote-from-nodejs) for an unsigned
   price check with the x402 SDK
+- [Node.js MCP buyer](examples/mcp-buyer/) to quote any API Acre MCP tool and
+  approve a single call on Base or Solana
 - [A2A agent card](https://apiacre.com/.well-known/agent-card.json) and
   [free A2A discovery example](#discover-over-a2a)
 - [Free result samples](https://apiacre.com/samples) and
@@ -676,6 +678,9 @@ millionths of USDC, so `2000` means 0.002 USDC. This client has no signing schem
 automatic payment is disabled. For the HTTP contract and the checkout link, see the
 [current-weather catalog entry](https://apiacre.com/catalog/data.current-weather).
 [x402 MCP SDK](https://github.com/x402-foundation/x402/tree/main/typescript/packages/mcp)
+
+Use the [runnable Node.js buyer](examples/mcp-buyer/) to choose a tool and approve
+one purchase with your own wallet, USDC limit, and reviewed recipient.
 
 ### Find MCP tools within a budget
 
