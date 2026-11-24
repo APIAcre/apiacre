@@ -635,6 +635,36 @@ and `workflowRecommendations` for recipes. If nothing matches a cap, its list
 is empty. Each paid step still requires separate authorization. The server
 marks these selector responses as private and non-cacheable.
 
+### Find a service with Python
+
+Save this as `discover.py`. Send a descriptive `User-Agent` with your application's
+name and version. The default Python `urllib` user agent can receive HTTP 403 with
+Cloudflare error 1010. [Cloudflare error 1010 reference](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1010/)
+
+```python
+import json
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
+params = {"task": "Inspect Base block 25000000", "max_price": "0.001", "limit": 1}
+request = Request(
+    f"https://apiacre.com/recommend?{urlencode(params)}",
+    headers={"Accept": "application/json", "User-Agent": "ResearchExample/1.0"},
+)
+with urlopen(request, timeout=15) as response:
+    rows = json.load(response)["recommendations"]
+if not rows or rows[0]["service"]["slug"] != "crypto.base-block-inspect":
+    raise SystemExit("No Base block inspection recommendation within the budget.")
+print(json.dumps(rows[0]["suggestedInput"]))
+```
+
+Save the linked script as `python-buyer.py` and pass it the suggested request. This
+prints an unsigned quote for the selected block. [Base block Python buyer](https://apiacre.com/examples/python-buyer.py?service=crypto.base-block-inspect)
+
+```sh
+python3 discover.py | python3 python-buyer.py --input -
+```
+
 ## Get a Base quote
 
 Search for `Inspect Base block #25,000,000` and choose **Review your Base
