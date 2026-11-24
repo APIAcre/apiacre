@@ -611,6 +611,25 @@ does not execute a paid tool. Use an MCP client for subsequent tool discovery
 and calls. Current protocol support is also published in the
 [discovery document](https://apiacre.com/.well-known/mcp.json).
 
+### Find MCP tools within a budget
+
+Read the free recommendation resource with `max_price` for a per-service cap
+and `max_total_price` for a whole-workflow cap, both in USDC. The optional
+`limit` returns up to that many matches in each list, from 1 to 10. The example
+below requests one service and one workflow within their respective limits.
+
+```bash
+curl -fsS https://apiacre.com/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","id":2,"method":"resources/read","params":{"uri":"https://apiacre.com/recommend?task=search%20NIH%20funding%20grants%20for%20an%20institution&max_price=0.005&max_total_price=0.008&limit=1"}}'
+```
+
+Parse `result.contents[0].text` as JSON. Read `recommendations` for services
+and `workflowRecommendations` for recipes. If nothing matches a cap, its list
+is empty. Each paid step still requires separate authorization. The server
+marks these selector responses as private and non-cacheable.
+
 ## Get a Base quote
 
 Save the [SEC Filing Signals example](https://apiacre.com/examples/python-buyer.py)
