@@ -152,6 +152,18 @@ links reported by Crossref. Both endpoints return bibliographic metadata.
 | Find candidate publications and their DOIs | 0.008 | [Search sample](https://apiacre.com/samples/research.crossref-work-search) | [Work Search](https://apiacre.com/try/research.crossref-work-search) |
 | Look up one known DOI | 0.003 | [DOI sample](https://apiacre.com/samples/research.crossref-doi-metadata) | [DOI Metadata](https://apiacre.com/try/research.crossref-doi-metadata) |
 
+On the [API Acre homepage](https://apiacre.com/), enter
+`Search Crossref for "Attention Is All You Need"` or
+`Resolve DOI 10.1126/science.169.3946.635`. Select **Find APIs for this task**, then
+**Review your Crossref request** to check the exact input and quote before
+connecting a wallet. Put search text in quotes so it stays together.
+
+The free [title recommendation](https://apiacre.com/recommend?task=Search+Crossref+for+%22Attention+Is+All+You+Need%22&max_price=0.008&limit=1)
+and [DOI recommendation](https://apiacre.com/recommend?task=Resolve+DOI+10.1126%2Fscience.169.3946.635&max_price=0.003&limit=1) return the validated
+request in `suggestedInput`. Use that JSON as the request body to check the
+price from a terminal or agent. The lookup accepts plain DOIs and full
+`https://doi.org/` links.
+
 The [Crossref publication workflow](https://apiacre.com/workflows/crossref-publication-record)
 opens each checkout with a real example and links to the underlying Crossref
 records. The two calls total **0.011 USDC** on Base or Solana. Review the search
