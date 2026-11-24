@@ -1,4 +1,4 @@
-"""Check live Base prices for two synthetic schema requests using Python 3.11+."""
+"""Check live Base and Solana quotes for two synthetic schema requests."""
 
 import base64
 import json
@@ -9,8 +9,15 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ORIGIN = "https://apiacre.com"
 BASE = "eip155:8453"
-BASE_USDC = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
-ADDRESS = re.compile(r"0x[0-9a-fA-F]{40}")
+SOLANA = "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+# Mainnet USDC addresses published by Circle.
+NETWORKS = {
+    BASE: ("Base", "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"),
+    SOLANA: ("Solana", "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"),
+}
+BASE_ADDRESS = re.compile(r"0x[0-9a-fA-F]{40}")
+BASE58_ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+SOLANA_ADDRESS = re.compile(f"[{BASE58_ALPHABET}]{{32,44}}")
 PRICE = re.compile(r"[0-9]+(?:\.[0-9]{1,6})?")
 MAX_CATALOG_BYTES = 1_048_576
 CASES = (
@@ -63,6 +70,39 @@ def request(url, body=None):
         return response
 
 
+def valid_recipient(network, value):
+    if not isinstance(value, str):
+        return False
+    if network == BASE:
+        return BASE_ADDRESS.fullmatch(value) is not None
+    if not SOLANA_ADDRESS.fullmatch(value):
+        return False
+    number = 0
+    for character in value:
+        number = number * 58 + BASE58_ALPHABET.index(character)
+    leading_zero_bytes = len(value) - len(value.lstrip("1"))
+    return leading_zero_bytes + (number.bit_length() + 7) // 8 == 32
+
+
+def verify_offers(slug, offers, amount):
+    expected_atomic = str(int(amount * 1_000_000))
+    for network, (label, native_usdc) in NETWORKS.items():
+        matches = [offer for offer in offers if offer.get("network") == network]
+        if len(matches) != 1:
+            raise RuntimeError(f"{slug} expected one {label} payment option")
+        (offer,) = matches
+        asset = offer.get("asset")
+        if network == BASE and isinstance(asset, str):
+            asset = asset.lower()
+        if (
+            offer.get("scheme") != "exact"
+            or asset != native_usdc
+            or offer.get("amount") != expected_atomic
+            or not valid_recipient(network, offer.get("payTo"))
+        ):
+            raise RuntimeError(f"{slug} {label} quote does not match the expected USDC terms")
+
+
 def preview(slug, path, maximum, body):
     contract_url = f"{ORIGIN}/catalog/{slug}"
     endpoint = f"{ORIGIN}{path}"
@@ -89,6 +129,8 @@ def preview(slug, path, maximum, body):
         purchase.get(key) != value for key, value in expected.items()
     ):
         raise RuntimeError(f"{slug} no longer matches the checkout and fixture in this example")
+    if not all(network in purchase.get("networks", []) for network in NETWORKS):
+        raise RuntimeError(f"{slug} catalog must advertise Base and Solana")
     price = purchase["exactAmount"]
     if not isinstance(price, str) or not PRICE.fullmatch(price):
         raise RuntimeError(f"{slug} catalog price is not decimal USDC")
@@ -105,17 +147,7 @@ def preview(slug, path, maximum, body):
     quote = json.loads(base64.b64decode(encoded, validate=True))
     if quote["x402Version"] != 2 or quote["resource"]["url"] != endpoint:
         raise RuntimeError(f"{slug} received a quote for a different resource or protocol version")
-    offers = [offer for offer in quote["accepts"] if offer["network"] == BASE]
-    if len(offers) != 1:
-        raise RuntimeError(f"{slug} expected one Base payment option")
-    (base_offer,) = offers
-    if (
-        base_offer["scheme"] != "exact"
-        or base_offer["asset"].lower() != BASE_USDC
-        or base_offer["amount"] != str(int(amount * 1_000_000))
-        or not ADDRESS.fullmatch(base_offer["payTo"])
-    ):
-        raise RuntimeError(f"{slug} Base quote does not match the expected USDC terms")
+    verify_offers(slug, quote["accepts"], amount)
     return amount, contract_url, sample, checkout
 
 
@@ -123,7 +155,7 @@ def main():
     rows = [preview(*case) for case in CASES]
     totals = sum(row[0] for row in rows)
     print(
-        "## Live API Acre schema prices on Base\n\n"
+        "## Live API Acre schema prices on Base and Solana\n\n"
         "| Service | USDC per call | Free result sample | Browser checkout |\n"
         "| --- | ---: | --- | --- |"
     )

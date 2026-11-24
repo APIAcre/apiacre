@@ -248,8 +248,9 @@ python3 examples/schema-quote-preview.py
 The check uses the published synthetic inputs for schema inference and JSON
 Schema validation. The validation fixture pairs an integer field with a string
 value so buyers can review how the free result sample reports a type mismatch.
-The workflow compares the catalog with live unsigned Base quotes and puts both
-prices, free samples, and exact-request checkout links in the job summary.
+For each call, the workflow checks the catalog price against unsigned quotes in
+native USDC on Base and Solana. The job summary includes the price, free result
+sample, and checkout for each input.
 [View the workflow](.github/workflows/schema-quote-preview.yml).
 
 The two optional purchases cost up to 0.035 USDC combined. Each requires
