@@ -48,6 +48,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Use reviewed checkout JSON in Python](#use-reviewed-checkout-json-in-python) to quote the same request from your terminal
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
+- [Weather quote previews](#preview-weather) for current conditions and forecasts by place or coordinates
 - [ECB FX quote preview](#preview-an-ecb-fx-conversion) for currency pairs, amounts, and historical dates
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
@@ -179,6 +180,24 @@ The [free workflow recommendation](https://apiacre.com/recommend?task=convert%20
 shows the recipe at a **0.004 USDC** total cap. Use the
 [time zone converter](https://apiacre.com/services/data.timezone-convert)
 directly when you already know the IANA zone.
+
+## Preview weather
+
+Enter `current weather in Seattle, US` or `7-day weather forecast for London, GB`
+in the service search. Choose **Find APIs for this task**, then **Review your
+weather request** to see the location and price before authorizing a call.
+[Open API Acre](https://apiacre.com/)
+
+| Request | Exact price per call | Free previews |
+| --- | ---: | --- |
+| Current conditions by city or coordinates | 0.002 USDC | [Free recommendation](https://apiacre.com/recommend?task=current%20weather%20in%20Seattle%2C%20US&max_price=0.002&limit=1) · [Result sample](https://apiacre.com/samples/data.current-weather) |
+| Global forecast by place or coordinates | 0.003 USDC | [Free recommendation](https://apiacre.com/recommend?task=7-day%20weather%20forecast%20for%20London%2C%20GB&max_price=0.003&limit=1) · [Result sample](https://apiacre.com/samples/data.us-weather-forecast) |
+
+The seven-day example requests up to 14 day/night periods. For up to 24 hourly
+periods at a coordinate pair, try `24-hour forecast for 38.9,-77.0`. REST, MCP,
+and A2A recommendations expose the validated JSON as `suggestedInput`, so a
+client can review that same request before getting an unsigned quote on Base
+or Solana. [Read the forecast schema](https://apiacre.com/services/data.us-weather-forecast)
 
 ## Preview an ECB FX conversion
 
