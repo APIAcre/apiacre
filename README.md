@@ -196,6 +196,11 @@ Tromsø, Norway?` and choose **Review your place request** to see the place and
 price in checkout. The [free recommendation](https://apiacre.com/recommend?task=What%20are%20the%20GPS%20coordinates%20of%20Troms%C3%B8%2C%20Norway%3F&max_price=0.002&limit=1)
 returns the same `suggestedInput` and 0.002 USDC cap for agents.
 
+Search for `Reverse geocode 47.6062, -122.3321` and choose **Review your
+reverse-geocoding request** to carry the coordinates into checkout.
+Agents can retrieve the validated coordinates in `suggestedInput`.
+[API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=Reverse%20geocode%2047.6062%2C%20-122.3321&max_price=0.002)
+
 The [free street-address recommendation](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.005&limit=1)
 returns the address service and its checkout link at a **0.005 USDC** cap. A
 [0.003 USDC cap](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.003&limit=1)
@@ -631,6 +636,11 @@ is empty. Each paid step still requires separate authorization. The server
 marks these selector responses as private and non-cacheable.
 
 ## Get a Base quote
+
+Search for `Inspect Base block #25,000,000` and choose **Review your Base
+block request** to preview the requested block at **0.001 USDC**. Agents can
+retrieve the same validated block number in `suggestedInput`.
+[API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=Inspect%20Base%20block%20%2325%2C000%2C000&max_price=0.001)
 
 Save the [SEC Filing Signals example](https://apiacre.com/examples/python-buyer.py)
 as `python-buyer.py`. Its default run shows the live recipient and the 0.05 USDC
