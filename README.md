@@ -678,6 +678,11 @@ block request** to preview the requested block at **0.001 USDC**. Agents can
 retrieve the same validated block number in `suggestedInput`.
 [API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=Inspect%20Base%20block%20%2325%2C000%2C000&max_price=0.001)
 
+Search for `Inspect Base transaction` followed by your transaction hash to
+review the receipt request at **0.005 USDC**. Search for
+`Get the Base mainnet network status` to preview the current block and gas fees
+at **0.001 USDC**. Both services quote these prices on Base and Solana.
+
 Save the [SEC Filing Signals example](https://apiacre.com/examples/python-buyer.py)
 as `python-buyer.py`. Its default run shows the live recipient and the 0.05 USDC
 quote on Base mainnet. The quote needs only Python 3.10 or later.
