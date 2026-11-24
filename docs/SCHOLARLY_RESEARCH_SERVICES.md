@@ -128,6 +128,17 @@ source retries.
 - MCP: list tools and inspect each published input/output schema before
   approving a paid call.
 
+To preview a request in the browser, paste either example into the catalog
+search and select **Find APIs for this task**. [API Acre catalog](https://apiacre.com/#catalog)
+
+- What organization is https://ror.org/01an7q238?
+- Find NIH grants for University of California, Berkeley in fiscal year 2025
+
+Select **Review your ROR request** or **Review your NIH request** to open the
+checkout with the requested ID or organization and fiscal year. You can edit
+the request and preview the price before authorizing a payment. HTTP, MCP, and
+A2A recommendations carry the same validated inputs in their handoffs.
+
 Sending a valid request without a payment signature returns an HTTP 402 quote
 and does not fetch the source. A paid retry requires the buyer's approval for
 the exact endpoint, input, network and maximum USDC amount.
