@@ -24,6 +24,8 @@ API Acre's hosted service implementation or any wallet credentials.
 - [MCP discovery](https://apiacre.com/.well-known/mcp.json),
   [browse MCP tools](https://apiacre.com/mcp/tools), and
   [remote MCP connection guide](#connect-over-mcp)
+- [Node.js MCP quote example](#read-an-mcp-quote-from-nodejs) for an unsigned
+  price check with the x402 SDK
 - [A2A agent card](https://apiacre.com/.well-known/agent-card.json) and
   [free A2A discovery example](#discover-over-a2a)
 - [Free result samples](https://apiacre.com/samples) and
@@ -628,6 +630,52 @@ negotiated protocol version. This request only reads server capabilities; it
 does not execute a paid tool. Use an MCP client for subsequent tool discovery
 and calls. Current protocol support is also published in the
 [discovery document](https://apiacre.com/.well-known/mcp.json).
+
+### Read an MCP quote from Node.js
+
+The x402 SDK reads payment terms from an MCP tool result. In a new project, install
+the verified versions and save the example as `mcp-quote.mjs`.
+
+```sh
+npm init -y
+npm install @x402/mcp@2.32.0 @x402/core@2.32.0 @modelcontextprotocol/sdk@1.32.2
+node mcp-quote.mjs
+```
+
+```js
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { createx402MCPClient } from "@x402/mcp";
+
+const name = "data.current-weather";
+const client = createx402MCPClient({
+  name: "apiacre-quote-example",
+  version: "1.0.0",
+  schemes: [],
+  autoPayment: false,
+});
+
+const transport = new StreamableHTTPClientTransport(new URL("https://apiacre.com/mcp"), {
+  requestInit: { headers: { "User-Agent": "APIAcre-x402-MCP-Quote/1.0" } },
+});
+
+try {
+  await client.connect(transport);
+  const { tools } = await client.listTools();
+  const input = tools.find((tool) => tool.name === name)?.inputSchema.examples?.[0];
+  if (!input) throw new Error(`No request example found for ${name}`);
+  const quote = await client.getToolPaymentRequirements(name, input);
+  if (!quote) throw new Error(`Expected a payment quote for ${name}`);
+  console.log(JSON.stringify({ tool: name, input, quote }, null, 2));
+} finally {
+  await client.close();
+}
+```
+
+Current weather quotes 0.002 USDC on Base and Solana. Each `amount` is in
+millionths of USDC, so `2000` means 0.002 USDC. This client has no signing schemes and
+automatic payment is disabled. For the HTTP contract and the checkout link, see the
+[current-weather catalog entry](https://apiacre.com/catalog/data.current-weather).
+[x402 MCP SDK](https://github.com/x402-foundation/x402/tree/main/typescript/packages/mcp)
 
 ### Find MCP tools within a budget
 
