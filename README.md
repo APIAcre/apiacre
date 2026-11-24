@@ -124,6 +124,15 @@ Read `result.message.parts[1].data.recommendations` for the matching APIs.
 The agent card advertises A2A 1.0 HTTP+JSON and JSON-RPC, plus JSON-RPC 0.3
 for clients that use `message/send`.
 
+Use `maxPrice` in a JSON data part to set an inclusive per-call USDC cap.
+This works for both task recommendations and exact service lookups.
+
+```json
+{"data": {"service": "data.timezone-convert", "maxPrice": "0.002"}}
+```
+
+For a text request, end with a phrase like `for 0.002 USDC or less`.
+
 ## Institution and funding research — 30 October 2026
 
 | Service | USDC per call | Free sample | Checkout |
