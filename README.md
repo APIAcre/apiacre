@@ -60,6 +60,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
+- [Install the Agent Skill](#install-the-agent-skill) in a Codex project
 - [Install in Claude Code](#install-in-claude-code) for the API Acre skill and remote MCP connection
 - [Agent integration guide](https://apiacre.com/integrations) — portable skill,
   plugin package, and connection instructions
@@ -469,11 +470,24 @@ is possible during the reservation step.
 
 ## Install the Agent Skill
 
-The repository contains an instruction-only Agent Skill at
-[`skills/api-acre/SKILL.md`](skills/api-acre/SKILL.md). Review it before
-installing, then copy the complete `skills/api-acre` directory into your
-agent host's skill directory. The same version is published with a checksum at
-[`https://apiacre.com/integrations.json`](https://apiacre.com/integrations.json).
+Review [`skills/api-acre/SKILL.md`](skills/api-acre/SKILL.md) before using the skill.
+From a Codex project's root, run the [Skills CLI](https://www.skills.sh/docs/cli)
+command and confirm the project installation when prompted.
+
+```bash
+npx skills@1.9.0 add APIAcre/apiacre --skill api-acre --agent codex --copy
+```
+
+The command copies the skill into `.agents/skills/api-acre`. Use the CLI’s `use`
+command to print the current instructions in a terminal.
+
+```bash
+npx skills@1.9.0 use APIAcre/apiacre@api-acre
+```
+
+Hosts that manage skill files directly can copy the complete `skills/api-acre`
+directory into their skill directory. The live version and its checksum are
+published in [API Acre's integration manifest](https://apiacre.com/integrations.json).
 
 For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
