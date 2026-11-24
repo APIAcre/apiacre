@@ -48,6 +48,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Use reviewed checkout JSON in Python](#use-reviewed-checkout-json-in-python) to quote the same request from your terminal
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
+- [Time-zone quote preview](#preview-a-time-zone-conversion) for ISO 8601 timestamps and repeated local times
 - [Weather quote previews](#preview-weather) for current conditions and forecasts by place or coordinates
 - [ECB FX quote preview](#preview-an-ecb-fx-conversion) for currency pairs, amounts, and historical dates
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
@@ -185,6 +186,34 @@ The [free workflow recommendation](https://apiacre.com/recommend?task=convert%20
 shows the recipe at a **0.004 USDC** total cap. Use the
 [time zone converter](https://apiacre.com/services/data.timezone-convert)
 directly when you already know the IANA zone.
+
+## Preview a time-zone conversion
+
+The [time-zone converter](https://apiacre.com/services/data.timezone-convert)
+costs **0.002 USDC** per call on Base or Solana. On the
+[API Acre homepage](https://apiacre.com/), search for
+`Convert 2026-11-01T06:30:00Z to Europe/London`. Select **Find APIs for this
+task**, then **Review your time-zone request** to see the timestamp, zone and
+live price before connecting a wallet.
+
+A local timestamp without an offset requires a source IANA zone. For a time
+that occurs twice when clocks go back, name the earlier or later occurrence
+in the search. The [free repeated-hour recommendation](https://apiacre.com/recommend?task=Convert+2026-11-01T01%3A30%3A00+from+America%2FNew_York+to+Europe%2FLondon+using+the+later+occurrence&max_price=0.002&limit=1)
+returns the following request in `suggestedInput`.
+
+```json
+{
+  "timestamp": "2026-11-01T01:30:00",
+  "source_timezone": "America/New_York",
+  "target_timezone": "Europe/London",
+  "ambiguous_time": "later"
+}
+```
+
+The [static result sample](https://apiacre.com/samples/data.timezone-convert)
+shows that the later New York occurrence corresponds to 06:30 UTC. If no
+occurrence was chosen or the local time falls in a spring-forward gap,
+`suggestedInput` is null. An offset-aware timestamp identifies an exact instant.
 
 ## Preview weather
 
