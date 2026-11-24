@@ -59,7 +59,8 @@ API Acre's hosted service implementation or any wallet credentials.
 ## Discover from Python
 
 Send a task and a USDC price cap to the free selector. The response includes a
-checkout link for each recommendation. Discovery requires no wallet or payment.
+checkout link for each service and a recipe link for each workflow. Discovery
+requires no wallet or payment.
 
 ```python
 import json
@@ -75,13 +76,18 @@ request = Request(
     },
 )
 with urlopen(request, timeout=10) as response:
-    recommendations = json.load(response)["recommendations"]
+    result = json.load(response)
 
-for recommendation in recommendations:
+for recommendation in result["recommendations"]:
     service = recommendation["service"]
     purchase = service["purchase"]
     print(f'{service["slug"]} ({purchase["exactAmount"]} USDC)')
     print(purchase["browserCheckoutUrl"])
+
+for recommendation in result["workflowRecommendations"]:
+    workflow = recommendation["workflow"]
+    print(f'{workflow["id"]} ({workflow["totalPrice"]} total)')
+    print(workflow["documentationUrl"])
 ```
 
 Set a descriptive `User-Agent` for your application. Cloudflare can return
@@ -167,8 +173,10 @@ returns an empty list for the same request.
 
 The [city-to-local-time workflow](https://apiacre.com/workflows/place-local-time)
 looks up a city and its IANA time zone, then converts an offset-aware timestamp
-for the place you choose. Each call costs **0.002 USDC** on Base or Solana. Use
-the [time zone converter](https://apiacre.com/services/data.timezone-convert)
+for the place you choose. Each call costs **0.002 USDC** on Base or Solana.
+The [free workflow recommendation](https://apiacre.com/recommend?task=convert%20a%20UTC%20timestamp%20to%20local%20time%20in%20London&max_total_price=0.004&limit=2)
+shows the recipe at a **0.004 USDC** total cap. Use the
+[time zone converter](https://apiacre.com/services/data.timezone-convert)
 directly when you already know the IANA zone.
 
 ## Preview a technical SEO audit
