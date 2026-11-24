@@ -634,10 +634,9 @@ marks these selector responses as private and non-cacheable.
 
 Save the [SEC Filing Signals example](https://apiacre.com/examples/python-buyer.py)
 as `python-buyer.py`. Its default run shows the live recipient and the 0.05 USDC
-quote on Base mainnet.
+quote on Base mainnet. The quote needs only Python 3.10 or later.
 
 ```sh
-python3 -m pip install "x402[httpx,evm]>=2.29,<2.30"
 python3 python-buyer.py
 ```
 
@@ -647,17 +646,16 @@ quotes 0.025 USDC per call. Agents can find each download under
 `purchase.basePythonExampleUrl` in the [x402 discovery document](https://apiacre.com/.well-known/x402).
 
 Pass `--input request.json` to quote your own JSON, or use `--input -` to read
-a JSON object from standard input. Quoting requires no wallet. See the
-[buyer guide](https://apiacre.com/buyers) to authorize a paid call separately.
+a JSON object from standard input. The [buyer guide](https://apiacre.com/buyers)
+covers SDK setup and explicit authorization for one paid call.
 
 ## Get a Solana quote
 
 [Download the Python example](https://apiacre.com/examples/python-solana-buyer.py)
 to check the live quote for timezone conversion on Solana mainnet. The default
-run displays the recipient and the 0.002 USDC price.
+run displays the recipient and the 0.002 USDC price using Python 3.10 or later.
 
 ```sh
-python3 -m pip install "x402[httpx,svm]>=2.29,<2.30"
 python3 python-solana-buyer.py
 ```
 
@@ -686,8 +684,7 @@ call after checking the quote.
 2. Select **Download reviewed request JSON** once the quote is shown. The file
    contains the exact JSON from the quote request.
 3. Select **Use Python on Base** or **Use Python on Solana** and save the script
-   beside the JSON file. With the matching dependency installed from the
-   quickstart above, run the command for your network.
+   beside the JSON file. Run the command for your network.
 
 ```sh
 # Base
