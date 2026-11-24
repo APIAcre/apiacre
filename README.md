@@ -48,6 +48,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Use reviewed checkout JSON in Python](#use-reviewed-checkout-json-in-python) to quote the same request from your terminal
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
+- [ECB FX quote preview](#preview-an-ecb-fx-conversion) for currency pairs, amounts, and historical dates
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
@@ -178,6 +179,51 @@ The [free workflow recommendation](https://apiacre.com/recommend?task=convert%20
 shows the recipe at a **0.004 USDC** total cap. Use the
 [time zone converter](https://apiacre.com/services/data.timezone-convert)
 directly when you already know the IANA zone.
+
+## Preview an ECB FX conversion
+
+The [ECB reference FX API](https://apiacre.com/services/data.ecb-fx-reference)
+converts a decimal amount using the latest available ECB observation on or
+before the requested date. One successful call costs **0.002 USDC** on Base or
+Solana. The [free result sample](https://apiacre.com/samples/data.ecb-fx-reference)
+shows the observation date, rate, and converted amount.
+
+Search for `Convert 25.5 CHF to EUR as of 2025-11-21` on the
+[API Acre homepage](https://apiacre.com/), select **Find APIs for this task**,
+then choose **Review your FX request**. Checkout opens with those inputs and
+checks the price before you connect a wallet.
+
+For a terminal preview, save the validated `suggestedInput` from the free
+selector. This example checks the service and price before writing the JSON.
+The same field is available in MCP and A2A recommendations. A `null` value
+means the amount or date needs correction before quoting.
+
+```sh
+recommendation=$(curl --fail --silent --show-error --max-time 12 \
+  https://apiacre.com/recommend \
+  --header 'Content-Type: application/json' \
+  --data '{"task":"Convert 25.5 CHF to EUR as of 2025-11-21","maxPrice":"0.002","limit":1}') &&
+printf '%s\n' "$recommendation" | jq -e '
+  (select(.paymentRequired == false and .executesService == false)
+   | .recommendations[0]
+   | select(.service.slug == "data.ecb-fx-reference" and .service.purchase.exactAmount == "0.002")
+   | .suggestedInput | objects) // error("No validated FX request at 0.002 USDC")
+' > fx-request.json
+```
+
+With the dependencies from the [Base Python quickstart](#get-a-base-quote),
+run the downloaded example against that JSON to check the live price and
+recipient. The command requests a quote without a wallet or payment.
+
+```sh
+curl --fail --silent --show-error --max-time 12 \
+  'https://apiacre.com/examples/python-buyer.py?service=data.ecb-fx-reference' \
+  --output fx-buyer.py &&
+python3 fx-buyer.py --input fx-request.json
+```
+
+For Solana, pass the same JSON to the [Solana FX example](https://apiacre.com/examples/python-solana-buyer.py?service=data.ecb-fx-reference)
+using the [Solana Python quickstart](#get-a-solana-quote).
 
 ## Preview a technical SEO audit
 
