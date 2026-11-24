@@ -185,6 +185,11 @@ request in `suggestedInput`. Use that JSON as the request body to check the
 price from a terminal or agent. The lookup accepts plain DOIs and full
 `https://doi.org/` links.
 
+To limit a search to a publication window, use
+`Search Crossref for "agentic commerce" published from 2026-01-01 through 2026-11-24`.
+The free [date-range recommendation](https://apiacre.com/recommend?task=Search%20Crossref%20for%20%22agentic%20commerce%22%20published%20from%202026-01-01%20through%202026-11-24&max_price=0.008&limit=1) includes both dates in `suggestedInput`, and the checkout shows them before payment approval.
+A start date also works on its own.
+
 The [Crossref publication workflow](https://apiacre.com/workflows/crossref-publication-record)
 opens each checkout with a real example and links to the underlying Crossref
 records. The two calls total **0.011 USDC** on Base or Solana. Review the search
