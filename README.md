@@ -698,6 +698,11 @@ Each command checks the current price and recipient for the exported request
 without signing in to a wallet or paying. The same handoff works on the other
 fixed-price checkouts with their own scripts and filenames.
 
+If browser verification fails, select **Download draft request JSON** to save
+the editor's contents locally. Pass the draft filename with `--input` to get an
+unpaid quote in Python. The terminal quote checks the live price and recipient
+for that draft.
+
 ## Rookfall: Lastlight Bastion
 
 [Play Lastlight Bastion](https://apiacre.com/arcade/rookfall?mode=defense),
