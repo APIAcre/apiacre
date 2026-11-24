@@ -168,6 +168,11 @@ response, and the checkout links let you edit the input before authorizing a cal
 | Latitude `51.5074` and longitude `-0.1278` | Populated places ranked by distance from the point | 0.002 | [Reverse sample](https://apiacre.com/samples/data.reverse-geocode) | [Reverse geocoding](https://apiacre.com/try/data.reverse-geocode) |
 | U.S. street address such as `4600 Silver Hill Rd, Washington, DC 20233` | Census coordinates with optional geography and source details | 0.005 | [Address sample](https://apiacre.com/samples/data.us-address-geocode) | [Street-address geocoding](https://apiacre.com/try/data.us-address-geocode) |
 
+Search [API Acre](https://apiacre.com/) for `What are the GPS coordinates of
+Tromsø, Norway?` and choose **Review your place request** to see the place and
+price in checkout. The [free recommendation](https://apiacre.com/recommend?task=What%20are%20the%20GPS%20coordinates%20of%20Troms%C3%B8%2C%20Norway%3F&max_price=0.002&limit=1)
+returns the same `suggestedInput` and 0.002 USDC cap for agents.
+
 The [free street-address recommendation](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.005&limit=1)
 returns the address service and its checkout link at a **0.005 USDC** cap. A
 [0.003 USDC cap](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.003&limit=1)
@@ -346,9 +351,9 @@ The [live catalogue](https://apiacre.com/catalog) lists every current price.
 
 ## Verified Production Use
 
-Through 22 November 2026 at 21:00 UTC, API Acre's production ledger recorded
-at least **383 independently attributed settled calls from 63 payers**,
-totaling **1.747 USDC on Base** across 47 services. These totals exclude
+Through 24 November 2026 at 06:02 UTC, API Acre's production ledger recorded
+at least **392 independently attributed settled calls from 63 payers**,
+totaling **1.767 USDC on Base** across 47 services. These totals exclude
 operator validation.
 
 These are privacy-bounded historical minimums, not buyer endorsements, evidence
