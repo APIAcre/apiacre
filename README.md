@@ -192,12 +192,18 @@ publication dates, work type, result count, and sorting. Select **Verify request
 quote** after editing. Use **Edit the exact JSON request** if you want to review
 or paste the raw input.
 
-To start with a natural-language request, open the [API Acre homepage](https://apiacre.com/)
-and enter
-`Search Crossref for "Attention Is All You Need"` or
-`Resolve DOI 10.1126/science.169.3946.635`. Select **Find APIs for this task**, then
-**Review your Crossref request** to check the exact input and quote before
-connecting a wallet. Put search text in quotes so it stays together.
+To start from the [API Acre homepage](https://apiacre.com/), enter
+`Find academic papers on renewable energy storage` or
+`Get DOI metadata for 10.1126/science.169.3946.635`. Select **Find APIs for this
+task**, then **Review your Crossref request**. The quote shows the exact input
+and per-call price before payment authorization.
+
+Try `Find 5 recent journal articles on lithium-ion battery recycling from 2022 to 2025`
+to prefill the topic, article type, result limit, newest-first sorting, and
+inclusive publication dates. The
+[free recommendation](https://apiacre.com/recommend?task=Find%205%20recent%20journal%20articles%20on%20lithium-ion%20battery%20recycling%20from%202022%20to%202025&max_price=0.008&limit=1)
+returns the same fields in `suggestedInput`. Crossref results contain publication
+metadata. Confirm peer-review status with the publisher.
 
 The free [title recommendation](https://apiacre.com/recommend?task=Search+Crossref+for+%22Attention+Is+All+You+Need%22&max_price=0.008&limit=1)
 and [DOI recommendation](https://apiacre.com/recommend?task=Resolve+DOI+10.1126%2Fscience.169.3946.635&max_price=0.003&limit=1) return the validated
