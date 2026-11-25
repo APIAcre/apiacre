@@ -1067,7 +1067,8 @@ python3 apiacre-developer.code-metrics-solana.py --input apiacre-developer.code-
 
 Each command checks the current price and recipient for the exported request
 without signing in to a wallet or paying. The same handoff works on the other
-fixed-price checkouts with their own scripts and filenames.
+fixed-price checkouts with their own scripts and filenames. Both scripts use the original JSON bytes from `--input` for the quote
+and any authorized request, preserving decimal values and formatting.
 
 If browser verification fails, select **Download draft request JSON** to save
 the editor's contents locally. Pass the draft filename with `--input` to get an
