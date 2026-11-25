@@ -16,8 +16,16 @@ object in a local file. The script validates it against the tool's input schema.
 
 ```sh
 node buy.mjs --tool research.crossref-work-search
-node buy.mjs --tool data.current-weather --input weather.json
+printf '%s\n' '{"country_code":"GBR","lookback_years":8}' > country.json
+node buy.mjs --tool data.worldbank-snapshot --input country.json
 ```
+
+These examples request unsigned quotes. Crossref Work Search costs 0.008 USDC
+per call, and World Bank Country Snapshot costs 0.005 USDC per call. Both offer
+exact USDC quotes on Base and Solana. The browser forms accept the same inputs
+if you prefer to review them without installing SDKs.
+[Crossref checkout](https://apiacre.com/try/research.crossref-work-search) ·
+[World Bank checkout](https://apiacre.com/try/data.worldbank-snapshot).
 
 ## Approve one tool call
 

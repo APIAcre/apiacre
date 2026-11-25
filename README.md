@@ -32,8 +32,10 @@ API Acre's hosted service implementation or any wallet credentials.
   [free A2A discovery example](#discover-over-a2a)
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
-- [Request custom work](https://apiacre.com/request-api) for a custom API,
-  evidence audit, or volume integration.
+- [Prepare a custom-work brief](https://apiacre.com/request-api#request-builder)
+  for a custom API, evidence audit, or volume integration. Describe the
+  deliverable, timeline, and optional budget, then review the draft before
+  sending it. [View a completed commission](https://apiacre.com/request-api#proof-case).
 - [Live Pixel Acre inventory](https://apiacre.com/pixel-acre/state) — claimed,
   reserved, checkout, and currently available pixels; reading it cannot reserve
   inventory or make a payment
@@ -51,6 +53,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Base Python quickstart](#get-a-base-quote) for unpaid quotes on 75 fixed-price APIs
 - [Solana Python quickstart](#get-a-solana-quote) for unpaid quotes on 75 fixed-price APIs
 - [Use reviewed checkout JSON in Python](#use-reviewed-checkout-json-in-python) to quote the same request from your terminal
+- [Country and company evidence](#preview-country-and-company-evidence) for World Bank indicators and SEC filings
 - [Crossref publication previews](#preview-crossref-publication-metadata) for searches and single-DOI records
 - [Geocoding previews](#preview-geocoding) for global place names, coordinates, and U.S. street addresses
 - [Time-zone quote preview](#preview-a-time-zone-conversion) for ISO 8601 timestamps and repeated local times
@@ -158,10 +161,18 @@ before approving a purchase.
 
 ## Preview country and company evidence
 
-Paste either request into the service catalog to review its inputs and live quote. [Open the catalog](https://apiacre.com/#catalog)
+The [World Bank checkout](https://apiacre.com/try/data.worldbank-snapshot)
+accepts a two- or three-letter country code such as `GBR` and a window of 3 to 20
+calendar years. Select **Verify request quote** to review the exact request and
+**0.005 USDC** price before authorizing a payment. The result includes GDP,
+GDP growth, population, inflation, unemployment, and life expectancy, with
+observation years and missing-data notes.
+[View a free World Bank result](https://apiacre.com/samples/data.worldbank-snapshot).
 
-- `Get a World Bank country snapshot for GBR over the last 8 years` quotes **0.005 USDC** for six fixed indicators. Choose a country code and a lookback of 3 to 20 calendar years.
-- `Get SEC company evidence for Apple Inc.` quotes **0.020 USDC** for filing activity, financial facts, and Form 4 insider disclosures. You can also supply an exact ticker or SEC CIK.
+For company filings, paste `Get SEC company evidence for Apple Inc.` into the
+[catalog search](https://apiacre.com/#catalog) or supply an exact ticker or SEC
+CIK. The **0.020 USDC** call covers filing activity, financial facts, and Form 4
+insider disclosures. [View a free SEC result](https://apiacre.com/samples/research.sec-company-evidence).
 
 ## Preview Crossref publication metadata
 
@@ -174,7 +185,13 @@ links reported by Crossref. Both endpoints return bibliographic metadata.
 | Find candidate publications and their DOIs | 0.008 | [Search sample](https://apiacre.com/samples/research.crossref-work-search) | [Work Search](https://apiacre.com/try/research.crossref-work-search) |
 | Look up one known DOI | 0.003 | [DOI sample](https://apiacre.com/samples/research.crossref-doi-metadata) | [DOI Metadata](https://apiacre.com/try/research.crossref-doi-metadata) |
 
-On the [API Acre homepage](https://apiacre.com/), enter
+In Work Search, enter a title, author, DOI fragment, or citation. You can set
+publication dates, work type, result count, and sorting. Select **Verify request
+quote** after editing. Use **Edit the exact JSON request** if you want to review
+or paste the raw input.
+
+To start with a natural-language request, open the [API Acre homepage](https://apiacre.com/)
+and enter
 `Search Crossref for "Attention Is All You Need"` or
 `Resolve DOI 10.1126/science.169.3946.635`. Select **Find APIs for this task**, then
 **Review your Crossref request** to check the exact input and quote before
