@@ -549,6 +549,10 @@ Use the Base browser wallet or download the reviewed JSON from the quote
 and use the linked Base or Solana Python client. The API still accepts
 `filename` and `content_base64` in the [text API](https://apiacre.com/services/document.extract)
 and the [table API](https://apiacre.com/services/document.tables).
+The [free table output sample](https://apiacre.com/samples/document.tables)
+shows the returned rows and row count. The
+[table extraction recommendation](https://apiacre.com/recommend?task=Extract+structured+table+rows+from+HTML+or+CSV&max_price=0.025&limit=1)
+links to checkout where you choose the document.
 
 ## Convert CSV and JSON
 
@@ -572,6 +576,31 @@ Convert this JSON to CSV: [{"city":"London","score":98}]
 [CSV-to-JSON request](https://apiacre.com/recommend?task=Convert+this+CSV+to+JSON%3A%0Acity%2Cscore%0ALondon%2C98&max_price=0.005&limit=1) and [JSON-to-CSV request](https://apiacre.com/recommend?task=Convert+this+JSON+to+CSV%3A+%5B%7B%22city%22%3A%22London%22%2C%22score%22%3A98%7D%5D&max_price=0.005&limit=1)
 return the prepared JSON in `suggestedInput`. The [free result sample](https://apiacre.com/samples/data.convert)
 shows how CSV cells are kept as strings when converted to JSON. Quote review is free.
+
+## Remove duplicate rows
+
+[Deduplication](https://apiacre.com/try/data.deduplicate) costs **0.010 USDC**
+per call on Base or Solana. It supports CSV, TSV, JSON, NDJSON (`jsonl`) and YAML.
+Choose the identity fields in `keys` and set `keep` to `first` or `last`.
+Omit `keys` to match all fields. The result includes the remaining records
+and the number removed.
+
+Paste this example into **Find a service** on the
+[API Acre homepage](https://apiacre.com/#catalog), then choose **Review your
+deduplication request**.
+
+```text
+Remove duplicates from CSV by id, keep last:
+id,name
+1,Old
+1,New
+2,Ada
+```
+
+The free [CSV keep-last request](https://apiacre.com/recommend?task=Remove+duplicates+from+CSV+by+id%2C+keep+last%3A%0Aid%2Cname%0A1%2COld%0A1%2CNew%0A2%2CAda&max_price=0.01&limit=1)
+and [JSON keep-first request](https://apiacre.com/recommend?task=Deduplicate+JSON+rows+by+id%2C+keep+first%3A+%5B%7B%22id%22%3A1%2C%22name%22%3A%22Ada%22%7D%2C%7B%22id%22%3A1%2C%22name%22%3A%22Lin%22%7D%5D&max_price=0.01&limit=1)
+include the prepared JSON in `suggestedInput`. See the
+[static result sample](https://apiacre.com/samples/data.deduplicate).
 
 ## Preview CSV redaction and schema inference
 
