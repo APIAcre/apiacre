@@ -554,6 +554,21 @@ shows the returned rows and row count. The
 [table extraction recommendation](https://apiacre.com/recommend?task=Extract+structured+table+rows+from+HTML+or+CSV&max_price=0.025&limit=1)
 links to checkout where you choose the document.
 
+## Compare text, JSON or YAML
+
+| Compare | Checkout | Free result sample |
+| --- | --- | --- |
+| Two text versions, with optional surrounding context lines | [Text comparison](https://apiacre.com/try/document.diff) | [Unified diff](https://apiacre.com/samples/document.diff) |
+| Two JSON or YAML versions, with changes reported by path | [Structured comparison](https://apiacre.com/try/developer.structured-diff) | [Structured changes](https://apiacre.com/samples/developer.structured-diff) |
+
+Paste the two versions into **Before** and **After**. For structured comparison,
+select the same format for both. For text comparison, leave the context field
+blank to use three lines or enter zero to show only changed lines.
+
+Select **Verify comparison quote** to review the request and the **0.010 USDC**
+price per call. Use the Base browser wallet or download the reviewed JSON and
+use the linked Base or Solana Python client.
+
 ## Convert CSV and JSON
 
 [Data conversion](https://apiacre.com/catalog/data.convert) costs **0.005 USDC** per call on
