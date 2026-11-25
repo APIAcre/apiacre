@@ -233,10 +233,10 @@ response, and the checkout links let you edit the input before authorizing a cal
 | Latitude `51.5074` and longitude `-0.1278` | Populated places ranked by distance from the point | 0.002 | [Reverse sample](https://apiacre.com/samples/data.reverse-geocode) | [Reverse geocoding](https://apiacre.com/try/data.reverse-geocode) |
 | U.S. street address such as `4600 Silver Hill Rd, Washington, DC 20233` | Census coordinates with optional geography and source details | 0.005 | [Address sample](https://apiacre.com/samples/data.us-address-geocode) | [Street-address geocoding](https://apiacre.com/try/data.us-address-geocode) |
 
-Search [API Acre](https://apiacre.com/) for `What are the GPS coordinates of
-Tromsø, Norway?` and choose **Review your place request** to see the place and
-price in checkout. The [free recommendation](https://apiacre.com/recommend?task=What%20are%20the%20GPS%20coordinates%20of%20Troms%C3%B8%2C%20Norway%3F&max_price=0.002&limit=1)
-returns the same `suggestedInput` and 0.002 USDC cap for agents.
+Search API Acre for `Find the lat/long of Paris, Texas, US` and choose
+**Review your place request** to see the locality and **0.002 USDC** price.
+The free recommendation returns the same place in `suggestedInput`.
+[API Acre](https://apiacre.com/) · [Free recommendation](https://apiacre.com/recommend?task=Find%20the%20lat%2Flong%20of%20Paris%2C%20Texas%2C%20US&max_price=0.002&limit=1)
 
 Search for `Reverse geocode 47.6062, -122.3321` and choose **Review your
 reverse-geocoding request** to carry the coordinates into checkout.
@@ -782,10 +782,11 @@ python3 discover.py | python3 python-buyer.py --input -
 
 ## Get a Base quote
 
-Search for `Inspect Base block #25,000,000` and choose **Review your Base
-block request** to preview the requested block at **0.001 USDC**. Agents can
-retrieve the same validated block number in `suggestedInput`.
-[API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=Inspect%20Base%20block%20%2325%2C000%2C000&max_price=0.001)
+Search for `What is the timestamp of Base block 34600000?` and choose
+**Review your Base block request** to preview the exact block at **0.001 USDC**.
+The free recommendation puts the block number in `suggestedInput`. Search for
+`Get the finalized Base block header` to prepare a request with the finalized tag.
+[API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=What%20is%20the%20timestamp%20of%20Base%20block%2034600000%3F&max_price=0.001&limit=1)
 
 Search for `Inspect Base transaction` followed by your transaction hash to
 review the receipt request at **0.005 USDC**. Search for
