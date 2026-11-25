@@ -249,10 +249,12 @@ Search API Acre for `Find the lat/long of Paris, Texas, US` and choose
 The free recommendation returns the same place in `suggestedInput`.
 [API Acre](https://apiacre.com/) · [Free recommendation](https://apiacre.com/recommend?task=Find%20the%20lat%2Flong%20of%20Paris%2C%20Texas%2C%20US&max_price=0.002&limit=1)
 
-Search for `Reverse geocode 47.6062, -122.3321` and choose **Review your
-reverse-geocoding request** to carry the coordinates into checkout.
-Agents can retrieve the validated coordinates in `suggestedInput`.
-[API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=Reverse%20geocode%2047.6062%2C%20-122.3321&max_price=0.002)
+Search for `What city is near 51.5074, -0.1278?` or
+`Which city and timezone are near -33.8688, 151.2093?` and choose **Review your
+reverse-geocoding request** to carry the coordinates into checkout. The paid
+response includes time zones for returned places where available. Agents can
+retrieve the validated coordinates in `suggestedInput`.
+[London recommendation](https://apiacre.com/recommend?task=What%20city%20is%20near%2051.5074%2C%20-0.1278%3F&max_price=0.002&limit=1) · [Sydney recommendation](https://apiacre.com/recommend?task=Which%20city%20and%20timezone%20are%20near%20-33.8688%2C%20151.2093%3F&max_price=0.002&limit=1)
 
 The [free street-address recommendation](https://apiacre.com/recommend?task=lookup%20a%20postal%20address&max_price=0.005&limit=1)
 returns the address service and its checkout link at a **0.005 USDC** cap. A
