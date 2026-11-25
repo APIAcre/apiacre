@@ -59,6 +59,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Time-zone quote preview](#preview-a-time-zone-conversion) for ISO 8601 timestamps and repeated local times
 - [Weather quote previews](#preview-weather) for current conditions and forecasts by place or coordinates
 - [ECB FX quote preview](#preview-an-ecb-fx-conversion) for currency pairs, amounts, and historical dates
+- [Web extraction previews](#preview-web-extraction) for plain text or Markdown from one URL
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
 - [Base account balance previews](#preview-base-account-balances) for native balances and selected ERC-20 contracts
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
@@ -369,6 +370,27 @@ python3 fx-buyer.py --input fx-request.json
 
 For Solana, pass the same JSON to the [Solana FX example](https://apiacre.com/examples/python-solana-buyer.py?service=data.ecb-fx-reference)
 using the [Solana Python quickstart](#get-a-solana-quote).
+
+## Preview web extraction
+
+[Web extraction](https://apiacre.com/catalog/web.extract) returns readable text
+or Markdown from one public HTTP or HTTPS page for **0.01 USDC** per call. The
+result also includes the source URL and a bounded list of links. See the
+[free output sample](https://apiacre.com/samples/web.extract).
+
+Paste one of these requests into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog).
+Select **Review your web extraction request** to check the URL, output format,
+and exact quote.
+
+```text
+Extract the main article text from https://apiacre.com/use-cases
+Convert https://apiacre.com/use-cases to Markdown
+```
+
+[Plain-text recommendation](https://apiacre.com/recommend?task=Extract+the+main+article+text+from+https%3A%2F%2Fapiacre.com%2Fuse-cases&max_price=0.01&limit=1) and
+[Markdown recommendation](https://apiacre.com/recommend?task=Convert+https%3A%2F%2Fapiacre.com%2Fuse-cases+to+Markdown&max_price=0.01&limit=1) return the prepared JSON
+in `suggestedInput` for scripts and agents. Quote review is free. Each purchase
+requires its own authorization.
 
 ## Preview a technical SEO audit
 
