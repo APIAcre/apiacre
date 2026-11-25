@@ -401,6 +401,16 @@ public HTTPS product page. A fresh call costs **0.01 USDC** on Base or Solana.
 [Open browser checkout](https://apiacre.com/try/commerce.product-price) or
 [inspect the free sample](https://apiacre.com/samples/commerce.product-price).
 
+Paste this question into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog).
+Select **Review your product-price request** to see the URL, currency, limit,
+and exact API quote.
+
+```text
+Check whether the product at https://apiacre.com/examples/product-price-fixture costs at most GBP 49.99
+```
+
+[Read the prepared request as JSON](https://apiacre.com/recommend?task=Check+whether+the+product+at+https%3A%2F%2Fapiacre.com%2Fexamples%2Fproduct-price-fixture+costs+at+most+GBP+49.99&max_price=0.01&limit=1). The product limit is passed in `maximum_price`.
+
 Set `expected_currency` and `maximum_price` to check the retailer’s offer
 against a budget. The example below uses an API Acre test product.
 
