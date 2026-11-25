@@ -61,6 +61,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [ECB FX quote preview](#preview-an-ecb-fx-conversion) for currency pairs, amounts, and historical dates
 - [Web extraction previews](#preview-web-extraction) for plain text or Markdown from one URL
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
+- [Base gas fee and history previews](#preview-base-gas-fees-and-fee-history) with a selected block window
 - [Base account balance previews](#preview-base-account-balances) for native balances and selected ERC-20 contracts
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
@@ -411,6 +412,27 @@ Paste either request into **Find a service** to review the URL before paying.
 
 - `Run an SEO audit for https://apiacre.com/use-cases`
 - `Get website metadata for https://apiacre.com/use-cases`
+
+## Preview Base gas fees and fee history
+
+[Base network status](https://apiacre.com/catalog/crypto.base-network-status)
+returns the current Base mainnet gas price and block, plus fee history for **1 to
+20 recent blocks**, for **0.001 USDC** per call. The default window is five
+blocks. See the [free output sample](https://apiacre.com/samples/crypto.base-network-status).
+
+Paste either question into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog).
+Select **Review your Base network status request** to see the quote and any
+requested block count.
+
+```text
+What were the gas fees on Base over the last 12 blocks?
+What is the current gas price on Base?
+```
+
+[12-block fee history recommendation](https://apiacre.com/recommend?task=What+were+the+gas+fees+on+Base+over+the+last+12+blocks%3F&max_price=0.001&limit=1) and
+[current gas price recommendation](https://apiacre.com/recommend?task=What+is+the+current+gas+price+on+Base%3F&max_price=0.001&limit=1) return the exact
+prepared JSON in `suggestedInput`. Quote review is free. Each purchase requires
+its own authorization.
 
 ## Preview Base account balances
 
