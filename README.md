@@ -532,6 +532,29 @@ with a combined cap of 0.025 USDC if you choose both. The source links identify
 the [Base token metadata](https://docs.base.org/sdks/tokenized-stocks/api-reference/get-token-metadata)
 and the [issuer's SEC filing](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm).
 
+## Convert CSV and JSON
+
+[Data conversion](https://apiacre.com/catalog/data.convert) costs **0.005 USDC** per call on
+Base or Solana. It also supports TSV, NDJSON (`jsonl`), and YAML. The response
+includes the converted text and input and output hashes.
+
+Paste either example into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog),
+then select **Review your conversion request** to check the source text and output format.
+
+```text
+Convert this CSV to JSON:
+city,score
+London,98
+```
+
+```text
+Convert this JSON to CSV: [{"city":"London","score":98}]
+```
+
+[CSV-to-JSON request](https://apiacre.com/recommend?task=Convert+this+CSV+to+JSON%3A%0Acity%2Cscore%0ALondon%2C98&max_price=0.005&limit=1) and [JSON-to-CSV request](https://apiacre.com/recommend?task=Convert+this+JSON+to+CSV%3A+%5B%7B%22city%22%3A%22London%22%2C%22score%22%3A98%7D%5D&max_price=0.005&limit=1)
+return the prepared JSON in `suggestedInput`. The [free result sample](https://apiacre.com/samples/data.convert)
+shows how CSV cells are kept as strings when converted to JSON. Quote review is free.
+
 ## Preview CSV redaction and schema inference
 
 The [CSV workflow](https://apiacre.com/workflows/csv-pii-contract) uses one
