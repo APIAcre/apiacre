@@ -164,12 +164,15 @@ before approving a purchase.
 The [World Bank checkout](https://apiacre.com/try/data.worldbank-snapshot)
 accepts one country name or code, such as `Canada` or `GBR`, and a window of
 3 to 20 calendar years. Select **Verify request quote** to review the country
-code and **0.005 USDC** price before authorizing a payment. The
-[Canada recommendation](https://apiacre.com/recommend?task=Get%20a%20World%20Bank%20country%20snapshot%20for%20Canada%20over%20the%20last%207%20years&max_price=0.005&limit=1)
-prepares `{"country_code":"CAN","lookback_years":7}` for HTTP and MCP buyers. The result includes GDP,
-GDP growth, population, inflation, unemployment, and life expectancy, with
-observation years and missing-data notes.
-[View a free World Bank result](https://apiacre.com/samples/data.worldbank-snapshot).
+code and **0.005 USDC** price before authorizing a payment.
+
+Search for `Show World Bank GDP and population for Japan over the last 5 years` to
+prepare `{"country_code":"JPN","lookback_years":5}` in HTTP, MCP, and A2A
+discovery. **Review your World Bank snapshot** opens the same request in browser
+checkout. The snapshot covers six fixed indicators including GDP, GDP growth,
+population, inflation, unemployment, and life expectancy. Each result includes
+source links, observation years, and missing-data notes.
+[Free recommendation](https://apiacre.com/recommend?task=Show%20World%20Bank%20GDP%20and%20population%20for%20Japan%20over%20the%20last%205%20years&max_price=0.005&limit=1) · [World Bank result sample](https://apiacre.com/samples/data.worldbank-snapshot)
 
 For company filings, paste `Get SEC company evidence for Apple Inc.` into the
 [catalog search](https://apiacre.com/#catalog) or supply an exact ticker or SEC
