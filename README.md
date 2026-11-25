@@ -328,6 +328,11 @@ Search for `Convert 25.5 CHF to EUR as of 2025-11-21` on the
 then choose **Review your FX request**. Checkout opens with those inputs and
 checks the price before you connect a wallet.
 
+Ask `Convert 100 EUR to USD using ECB reference rates` to prepare the latest
+available common business-day observation. Add `as of YYYY-MM-DD` to use a
+historical cutoff. The quote review shows the amount, currency pair, and cutoff
+before payment. [Free conversion recommendation](https://apiacre.com/recommend?task=Convert%20100%20EUR%20to%20USD%20using%20ECB%20reference%20rates&max_price=0.002&limit=1)
+
 For a terminal preview, save the validated `suggestedInput` from the free
 selector. This example checks the service and price before writing the JSON.
 The same field is available in MCP and A2A recommendations. A `null` value
