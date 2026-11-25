@@ -278,6 +278,10 @@ IANA representative city names also work in
 [checkout](https://apiacre.com/try/data.timezone-convert), with an optional
 two-letter country code such as `London, GB`.
 
+For a 12-hour clock, supply an explicit date as `YYYY-MM-DD`. Try
+`Convert 9:30 AM from New York to London on 2026-11-25` and verify the
+local timestamp and both zones in checkout. [Free AM/PM recommendation](https://apiacre.com/recommend?task=Convert%209%3A30%20AM%20from%20New%20York%20to%20London%20on%202026-11-25&max_price=0.002&limit=1)
+
 A local timestamp without an offset requires a source IANA zone. For a time
 that occurs twice when clocks go back, name the earlier or later occurrence
 in the search. The [free repeated-hour recommendation](https://apiacre.com/recommend?task=Convert+2026-11-01T01%3A30%3A00+from+America%2FNew_York+to+Europe%2FLondon+using+the+later+occurrence&max_price=0.002&limit=1)
