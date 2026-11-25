@@ -420,6 +420,9 @@ returns the current Base mainnet gas price and block, plus fee history for **1 t
 20 recent blocks**, for **0.001 USDC** per call. The default window is five
 blocks. See the [free output sample](https://apiacre.com/samples/crypto.base-network-status).
 
+[Preview a 12-block quote in the browser](https://apiacre.com/try/crypto.base-network-status?from=quote&fee_history_blocks=12).
+Use `fee_history_blocks` from `1` to `20` to share a different window.
+
 Paste either question into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog).
 Select **Review your Base network status request** to see the quote and any
 requested block count.
