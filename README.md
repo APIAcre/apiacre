@@ -393,6 +393,29 @@ Convert https://apiacre.com/use-cases to Markdown
 in `suggestedInput` for scripts and agents. Quote review is free. Each purchase
 requires its own authorization.
 
+## Preview a retailer product price
+
+[Product Price Snapshot](https://apiacre.com/catalog/commerce.product-price)
+reads the publisher’s structured price, currency, and availability from one
+public HTTPS product page. A fresh call costs **0.01 USDC** on Base or Solana.
+[Open browser checkout](https://apiacre.com/try/commerce.product-price) or
+[inspect the free sample](https://apiacre.com/samples/commerce.product-price).
+
+Set `expected_currency` and `maximum_price` to check the retailer’s offer
+against a budget. The example below uses an API Acre test product.
+
+```bash
+curl -i https://apiacre.com/v1/commerce/product-price \
+  -H 'Content-Type: application/json' \
+  -H 'X-APIAcre-Checkout-Preview: 1' \
+  --data '{"url":"https://apiacre.com/examples/product-price-fixture","expected_currency":"GBP","maximum_price":"49.99"}'
+```
+
+This request returns a free x402 quote. After an authorized call, use
+`headlineOffer` for the observed offer and `decision.atOrBelowMaximum` for the
+budget check. The price comparison is unavailable when the reported currency
+and the expected currency differ.
+
 ## Preview a technical SEO audit
 
 The technical SEO audit takes one public URL and returns a score and prioritized
