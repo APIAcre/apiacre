@@ -162,9 +162,11 @@ before approving a purchase.
 ## Preview country and company evidence
 
 The [World Bank checkout](https://apiacre.com/try/data.worldbank-snapshot)
-accepts a two- or three-letter country code such as `GBR` and a window of 3 to 20
-calendar years. Select **Verify request quote** to review the exact request and
-**0.005 USDC** price before authorizing a payment. The result includes GDP,
+accepts one country name or code, such as `Canada` or `GBR`, and a window of
+3 to 20 calendar years. Select **Verify request quote** to review the country
+code and **0.005 USDC** price before authorizing a payment. The
+[Canada recommendation](https://apiacre.com/recommend?task=Get%20a%20World%20Bank%20country%20snapshot%20for%20Canada%20over%20the%20last%207%20years&max_price=0.005&limit=1)
+prepares `{"country_code":"CAN","lookback_years":7}` for HTTP and MCP buyers. The result includes GDP,
 GDP growth, population, inflation, unemployment, and life expectancy, with
 observation years and missing-data notes.
 [View a free World Bank result](https://apiacre.com/samples/data.worldbank-snapshot).
