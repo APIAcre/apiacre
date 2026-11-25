@@ -174,10 +174,15 @@ population, inflation, unemployment, and life expectancy. Each result includes
 source links, observation years, and missing-data notes.
 [Free recommendation](https://apiacre.com/recommend?task=Show%20World%20Bank%20GDP%20and%20population%20for%20Japan%20over%20the%20last%205%20years&max_price=0.005&limit=1) · [World Bank result sample](https://apiacre.com/samples/data.worldbank-snapshot)
 
-For company filings, paste `Get SEC company evidence for Apple Inc.` into the
-[catalog search](https://apiacre.com/#catalog) or supply an exact ticker or SEC
-CIK. The **0.020 USDC** call covers filing activity, financial facts, and Form 4
-insider disclosures. [View a free SEC result](https://apiacre.com/samples/research.sec-company-evidence).
+For company filings, search for `Show SEC 10-K filings for ticker AAPL` and select
+**Review your SEC company request**. Checkout shows the ticker, 10-K filing
+filter, and **0.02 USDC** price. You can also ask
+`What has Apple Inc. filed with the SEC?` or supply one exact SEC CIK.
+
+A form filter applies to the filing-activity section. The evidence report
+also includes financial facts and Form 4 insider disclosures. HTTP, MCP, and
+A2A discovery expose the same ticker and form filter through `suggestedInput`.
+[Free recommendation](https://apiacre.com/recommend?task=Show%20SEC%2010-K%20filings%20for%20ticker%20AAPL&max_price=0.02&limit=1) · [SEC result sample](https://apiacre.com/samples/research.sec-company-evidence)
 
 ## Preview Crossref publication metadata
 
