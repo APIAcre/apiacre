@@ -254,16 +254,21 @@ for the place you choose. Each call costs **0.002 USDC** on Base or Solana.
 The [free workflow recommendation](https://apiacre.com/recommend?task=convert%20a%20UTC%20timestamp%20to%20local%20time%20in%20London&max_total_price=0.004&limit=2)
 shows the recipe at a **0.004 USDC** total cap. Use the
 [time zone converter](https://apiacre.com/services/data.timezone-convert)
-directly when you already know the IANA zone.
+directly when you know the IANA zone or its representative city.
 
 ## Preview a time-zone conversion
 
 The [time-zone converter](https://apiacre.com/services/data.timezone-convert)
 costs **0.002 USDC** per call on Base or Solana. On the
 [API Acre homepage](https://apiacre.com/), search for
-`Convert 2026-11-01T06:30:00Z to Europe/London`. Select **Find APIs for this
-task**, then **Review your time-zone request** to see the timestamp, zone and
-live price before connecting a wallet.
+`Convert 2026-12-08 09:30 from London to New York`. Select **Find APIs for this
+task**, then **Review your time-zone request** to see the timestamp, zones and
+live price before connecting a wallet. The
+[free city-name recommendation](https://apiacre.com/recommend?task=Convert%202026-12-08%2009%3A30%20from%20London%20to%20New%20York&max_price=0.002&limit=1)
+fills `Europe/London` and `America/New_York` into the request. Recognized
+IANA representative city names also work in
+[checkout](https://apiacre.com/try/data.timezone-convert), with an optional
+two-letter country code such as `London, GB`.
 
 A local timestamp without an offset requires a source IANA zone. For a time
 that occurs twice when clocks go back, name the earlier or later occurrence
