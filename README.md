@@ -316,6 +316,11 @@ exact location and price before authorizing a call. [Open API Acre](https://apia
 | Current conditions by city or coordinates | 0.002 USDC | [Free recommendation](https://apiacre.com/recommend?task=What%27s%20the%20weather%20like%20in%20London%2C%20GB%20right%20now%3F&max_price=0.002&limit=1) · [Result sample](https://apiacre.com/samples/data.current-weather) |
 | Global forecast by place or coordinates | 0.003 USDC | [Free recommendation](https://apiacre.com/recommend?task=Show%20me%20the%206-hour%20weather%20forecast%20for%20London%2C%20GB&max_price=0.003&limit=1) · [Result sample](https://apiacre.com/samples/data.us-weather-forecast) |
 
+Open a prepared browser quote for the [six-hour London forecast](https://apiacre.com/try/data.us-weather-forecast?from=quote&example=london-6-hour),
+[24-hour forecast by Washington coordinates](https://apiacre.com/try/data.us-weather-forecast?from=quote&example=washington-24-hour),
+or [seven-day Tokyo forecast](https://apiacre.com/try/data.us-weather-forecast?from=quote&example=tokyo-7-day).
+Review or edit the request before authorizing a call.
+
 The forecast example requests six hourly periods. A `7-day weather forecast
 for London, GB` requests up to 14 day/night periods. For up to 24 hourly periods
 at coordinates, try `24-hour forecast for 38.9,-77.0`. REST, MCP, and A2A
