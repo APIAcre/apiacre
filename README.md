@@ -733,10 +733,9 @@ For Codex-compatible hosts, this repository also includes a plugin manifest and
 remote MCP configuration. No wallet or API credential is bundled. Installing the
 skill permits free discovery and quote checks; it does not authorize payment.
 
-The current public package is [v1.5.2 on GitHub](https://github.com/APIAcre/apiacre/releases/tag/v1.5.2).
-Save [api-acre.zip](https://github.com/APIAcre/apiacre/releases/download/v1.5.2/api-acre.zip)
-and [SHA256SUMS](https://github.com/APIAcre/apiacre/releases/download/v1.5.2/SHA256SUMS)
-to the same directory. Run `sha256sum -c SHA256SUMS` before unpacking the ZIP.
+Download the [current portable package](https://apiacre.com/plugins/api-acre.zip).
+Verify the ZIP's SHA-256 against `plugin.sha256` in the [integration manifest](https://apiacre.com/integrations.json)
+before unpacking it.
 
 The skill includes a wallet-free Python quote path for fixed-price APIs on Base
 and Solana. Coinbase Agentic Wallet MCP is an optional, separately installed
@@ -1052,10 +1051,11 @@ call after checking the quote.
 1. Open [Code Metrics checkout](https://apiacre.com/try/developer.code-metrics).
    The default request gets an unsigned quote automatically. If you edit the
    JSON, select **Verify changed input**.
-2. Select **Download reviewed request JSON** once the quote is shown. The file
-   contains the exact JSON from the quote request.
-3. Select **Use Python on Base** or **Use Python on Solana** and save the script
-   beside the JSON file. Run the command for your network.
+2. Open **Use Python on Base or Solana with this request** in the verified quote.
+   This section opens automatically for large requests.
+3. Select **Download reviewed request JSON**, then **Download Base client** or
+   **Download Solana client**. Save both files in the same directory and run the
+   command for your network with Python 3.10 or later.
 
 ```sh
 # Base
@@ -1066,14 +1066,14 @@ python3 apiacre-developer.code-metrics-solana.py --input apiacre-developer.code-
 ```
 
 Each command checks the current price and recipient for the exported request
-without signing in to a wallet or paying. The same handoff works on the other
-fixed-price checkouts with their own scripts and filenames. Both scripts use the original JSON bytes from `--input` for the quote
-and any authorized request, preserving decimal values and formatting.
+without installing an SDK or opening a wallet. Other fixed-price checkouts
+provide their own scripts and filenames. Both scripts use the original JSON bytes
+from `--input` for the quote and any authorized request, preserving decimal values
+and formatting.
 
-If browser verification fails, select **Download draft request JSON** to save
-the editor's contents locally. Pass the draft filename with `--input` to get an
-unpaid quote in Python. The terminal quote checks the live price and recipient
-for that draft.
+If the browser can't reach the quote endpoint, select **Download draft request JSON**
+and get the script from **Use Python on Base** or **Use Python on Solana**. Pass the
+draft filename with `--input` to check the live price and recipient in Python.
 
 ## Rookfall: Lastlight Bastion
 

@@ -1,7 +1,7 @@
 {
   "name": "api-acre",
   "displayName": "API Acre",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Discover API Acre data APIs, preview results, and check exact USDC prices on Base and Solana.",
   "author": {
     "name": "API Acre",

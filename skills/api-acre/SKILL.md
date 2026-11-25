@@ -80,12 +80,14 @@ not execute, sign, or pay. Recreate material input only for a separately approve
 For a fixed-price service, read the full contract at `service.purchase.fullHandoffUrl`.
 From its `purchase` object, use `basePythonExampleUrl` or `solanaPythonExampleUrl` for
 the buyer's chosen network. Download and review the script from `https://apiacre.com`.
-After installing the SDK dependency listed in the script, run it with no arguments
-for the published example or pass `--input request.json` to quote the intended JSON.
-Both commands print the network, USDC amount, and recipient without loading a wallet.
-Save `--pay-to` for an explicitly approved purchase.
+Quoting requires only Python 3.10 or later. Run the script with no arguments for
+the published example, `--input request.json` for a reviewed file, or `--input -`
+to read a JSON object from standard input. Both clients send the supplied JSON bytes
+and print the network, USDC amount, and recipient without loading a wallet.
 
-See the [buyer guide](https://apiacre.com/buyers) for the dependency and terminal steps.
+For an explicitly approved purchase, reuse the reviewed request and follow the
+wallet and SDK setup in the script before passing `--pay-to` with the verified
+recipient. [Buyer guide](https://apiacre.com/buyers)
 
 ## Require exact payment approval
 
