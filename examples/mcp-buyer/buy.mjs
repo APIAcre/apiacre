@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { stdin, stderr } from "node:process";
 import { createInterface } from "node:readline/promises";
-import { parseArgs } from "node:util";
+import { isDeepStrictEqual, parseArgs } from "node:util";
 
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { AjvJsonSchemaValidator } from "@modelcontextprotocol/sdk/validation/ajv";
@@ -23,6 +23,25 @@ function formatUsdc(amount) {
   const digits = amount.padStart(7, "0");
   const fractional = digits.slice(-6).replace(/0+$/, "");
   return fractional ? `${digits.slice(0, -6)}.${fractional}` : digits.slice(0, -6);
+}
+
+export function parseExactJson(text) {
+  return JSON.parse(text, (_key, value, { source }) =>
+    typeof value === "number" && JSON.stringify(value) !== source ? JSON.rawJSON(source) : value);
+}
+
+function toolResult(result) {
+  const { content, structuredContent } = result;
+  const [item] = content;
+  if (structuredContent !== undefined && content.length === 1 && item.type === "text") {
+    try {
+      // API Acre includes the same result as JSON text, which retains exact numeric literals.
+      if (isDeepStrictEqual(JSON.parse(item.text), structuredContent)) return parseExactJson(item.text);
+    } catch (error) {
+      if (!(error instanceof SyntaxError)) throw error;
+    }
+  }
+  return structuredContent ?? content;
 }
 
 export function exactOffers(tool, quote) {
@@ -94,10 +113,12 @@ export async function purchaseOnce(mcp, tool, input, quote, selected, scheme) {
     throw new Error("The payment outcome is unknown. Check your wallet history before retrying");
   }
   const receipt = extractPaymentResponseFromMeta(result);
-  if (receipt?.success !== true || receipt.network !== selected.network || !receipt.transaction) {
+  if (receipt?.success !== true || receipt.network !== selected.network ||
+      typeof receipt.transaction !== "string" || !receipt.transaction ||
+      (receipt.amount !== undefined && receipt.amount !== selected.amount)) {
     throw new Error("No matching settlement receipt was returned. Check your wallet history before retrying");
   }
-  return { receipt, result: result.structuredContent ?? result.content, toolError: result.isError === true };
+  return { receipt, result: toolResult(result), toolError: result.isError === true };
 }
 
 async function main() {
@@ -122,19 +143,19 @@ async function main() {
     const { tools } = await client.listTools();
     const tool = tools.find(({ name }) => name === values.tool);
     if (!tool) throw new Error(`Unknown API Acre MCP tool ${values.tool}`);
-    const input = values.input
-      ? JSON.parse(await readFile(values.input, "utf8"))
-      : tool.inputSchema.examples?.[0];
+    const inputText = values.input ? await readFile(values.input, "utf8") : undefined;
+    const input = inputText === undefined ? tool.inputSchema.examples?.[0] : JSON.parse(inputText);
     if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Supply a JSON object with --input FILE");
     const validate = new AjvJsonSchemaValidator().getValidator(tool.inputSchema);
     const validation = validate(input);
     if (!validation.valid) throw new Error(`The input for ${tool.name} is invalid. ${validation.errorMessage}`);
+    const request = inputText === undefined ? input : parseExactJson(inputText);
 
-    const quote = await client.getToolPaymentRequirements(tool.name, input);
+    const quote = await client.getToolPaymentRequirements(tool.name, request);
     const offers = exactOffers(tool.name, quote);
     if (offers.length === 0) throw new Error("No supported USDC network was offered");
     if (!values.pay) {
-      console.log(JSON.stringify({ tool: tool.name, input, offers: offers.map(({ rail, offer }) => ({
+      console.log(JSON.stringify({ tool: tool.name, input: request, offers: offers.map(({ rail, offer }) => ({
         rail, network: offer.network, amountUsdc: formatUsdc(offer.amount), recipient: offer.payTo,
       })) }, null, 2));
       return;
@@ -144,7 +165,7 @@ async function main() {
     const prompt = createInterface({ input: stdin, output: stderr });
     let answer;
     try {
-      stderr.write(`${JSON.stringify(input, null, 2)}\n`);
+      stderr.write(`${JSON.stringify(request, null, 2)}\n`);
       answer = await prompt.question(`Pay ${formatUsdc(selected.amount)} USDC on ${values.network} to ${selected.payTo} for ${tool.name}? Type PAY to sign once: `);
     } finally {
       prompt.close();
@@ -152,7 +173,7 @@ async function main() {
     if (answer !== "PAY") return;
 
     const scheme = await localScheme(values.network);
-    const result = await purchaseOnce(client.client, tool.name, input, quote, selected, scheme);
+    const result = await purchaseOnce(client.client, tool.name, request, quote, selected, scheme);
     console.log(JSON.stringify(result, null, 2));
     if (result.toolError) process.exitCode = 1;
   } finally {

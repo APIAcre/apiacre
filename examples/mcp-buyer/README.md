@@ -13,6 +13,8 @@ exact USDC amount and recipient on each offered network. It needs no wallet.
 
 Choose a different MCP tool with `--tool`. To use your own request, pass a JSON
 object in a local file. The script validates it against the tool's input schema.
+The quote and any authorized call use the numeric literals from your file,
+including integer IDs larger than JavaScript's safe integer range.
 
 ```sh
 node buy.mjs --tool research.crossref-work-search
@@ -46,9 +48,10 @@ node buy.mjs --pay --network base --max-usdc 0.002 --pay-to "$REVIEWED_USDC_RECI
 
 The command reads a fresh quote and shows the exact tool, input, network, amount
 and recipient. Type `PAY` at the prompt to authorize that call. A successful
-response prints the settlement receipt and the tool result. If the response is
-lost or the receipt is missing, check your wallet history before trying again.
-The example sends one signed request per confirmation.
+response prints the settlement receipt and the tool result with exact numeric
+values when API Acre includes matching JSON result text. If the response is
+lost or the receipt differs from the reviewed call, check your wallet history
+before trying again. The example sends one signed request per confirmation.
 
 The local tests use throwaway signers, a fixture Solana RPC and mocked tool
 responses. They check the spend limit, recipient, both signing paths and the

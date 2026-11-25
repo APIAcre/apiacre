@@ -8,7 +8,7 @@ import { ExactEvmScheme } from "@x402/evm/exact/client";
 import { ExactSvmScheme } from "@x402/svm/exact/client";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 
-import { exactOffers, purchaseOnce, selectOffer } from "./buy.mjs";
+import { exactOffers, parseExactJson, purchaseOnce, selectOffer } from "./buy.mjs";
 
 const tool = "data.current-weather";
 const input = { city: "Washington, DC, US" };
@@ -46,6 +46,43 @@ test("uses integer USDC limits and requires the reviewed recipient", () => {
   assert.throws(() => selectOffer(offers, { ...approval, "max-usdc": "0.0020001" }), /six fractional digits/);
   assert.throws(() => selectOffer(offers, { ...approval, "pay-to": baseOffer.asset }), /quote and --pay-to differ/);
   assert.throws(() => selectOffer(offers, { ...approval, network: "solana" }), /Choose an offered network/);
+});
+
+test("preserves exact numeric values in tool arguments and matching result text", async () => {
+  const requestText = '{"instance":{"id":9007199254740993,"values":[1.234567890123456789e-9,-0]},"schema":{"type":"object"}}';
+  const exactInput = parseExactJson(requestText);
+  const output = '{"data":{"id":9007199254740993},"service":"data.current-weather"}';
+  const scheme = new ExactEvmScheme(privateKeyToAccount(generatePrivateKey()));
+  let attempts = 0;
+  const result = await purchaseOnce({
+    async callTool(params) {
+      attempts++;
+      assert.equal(JSON.stringify(params.arguments), requestText);
+      return {
+        content: [{ type: "text", text: output }],
+        structuredContent: JSON.parse(output),
+        _meta: { "x402/payment-response": { success: true, network: baseOffer.network, transaction: "fixture" } },
+      };
+    },
+  }, tool, exactInput, quote, baseOffer, scheme);
+  assert.equal(JSON.stringify(result.result), output);
+  assert.equal(attempts, 1);
+});
+
+test("keeps the structured result if the text describes a different result", async () => {
+  const scheme = new ExactEvmScheme(privateKeyToAccount(generatePrivateKey()));
+  const result = await purchaseOnce({
+    async callTool() {
+      return {
+        content: [{ type: "text", text: '{"status":"different"}' }],
+        structuredContent: { status: "approved" },
+        _meta: { "x402/payment-response": {
+          success: true, network: baseOffer.network, transaction: "fixture", amount: baseOffer.amount,
+        } },
+      };
+    },
+  }, tool, input, quote, baseOffer, scheme);
+  assert.deepEqual(result.result, { status: "approved" });
 });
 
 async function exercisePurchase(offer, scheme, verifySignature) {
@@ -128,6 +165,9 @@ test("does not submit again after an ambiguous response", async () => {
   for (const simulate of [
     () => { throw new Error("connection lost"); },
     () => ({ content: [], isError: true }),
+    () => ({ content: [], _meta: { "x402/payment-response": {
+      success: true, network: baseOffer.network, transaction: "fixture", amount: "2001",
+    } } }),
   ]) {
     let attempts = 0;
     await assert.rejects(purchaseOnce({
