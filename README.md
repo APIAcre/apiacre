@@ -48,7 +48,8 @@ API Acre's hosted service implementation or any wallet credentials.
   and live checkout links
 - [Free code-metrics trial](https://apiacre.com/free-trial/developer.code-metrics)
   — one bounded live deterministic run per client per hour
-- [Buyer guide](https://apiacre.com/buyers)
+- [Buyer guide](https://apiacre.com/buyers) and
+  [downloadable Python discovery and quote example](#find-a-service-with-python)
 - [Browser quote example](#check-a-quote-from-your-web-app) for apps on a different origin
 - [Base Python quickstart](#get-a-base-quote) for unpaid quotes on 75 fixed-price APIs
 - [Solana Python quickstart](#get-a-solana-quote) for unpaid quotes on 75 fixed-price APIs
@@ -961,33 +962,30 @@ marks these selector responses as private and non-cacheable.
 
 ### Find a service with Python
 
-Save this as `discover.py`. Send a descriptive `User-Agent` with your application's
-name and version. The default Python `urllib` user agent can receive HTTP 403 with
-Cloudflare error 1010. [Cloudflare error 1010 reference](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1010/)
-
-```python
-import json
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
-
-params = {"task": "Inspect Base block 25000000", "max_price": "0.001", "limit": 1}
-request = Request(
-    f"https://apiacre.com/recommend?{urlencode(params)}",
-    headers={"Accept": "application/json", "User-Agent": "ResearchExample/1.0"},
-)
-with urlopen(request, timeout=15) as response:
-    rows = json.load(response)["recommendations"]
-if not rows or rows[0]["service"]["slug"] != "crypto.base-block-inspect":
-    raise SystemExit("No Base block inspection recommendation within the budget.")
-print(json.dumps(rows[0]["suggestedInput"]))
-```
-
-Save the linked script as `python-buyer.py` and pass it the suggested request. This
-prints an unsigned quote for the selected block. [Base block Python buyer](https://apiacre.com/examples/python-buyer.py?service=crypto.base-block-inspect)
+In a fresh directory, download the discovery example to find the API for
+inspecting Base block 25,000,000 within a 0.001 USDC budget. It writes the
+suggested request JSON. Python 3.10 or later runs discovery and quotes without
+an SDK or wallet.
 
 ```sh
-python3 discover.py | python3 python-buyer.py --input -
+curl -fsS https://apiacre.com/examples/apiacre-discover.py -o apiacre-discover.py
+python3 apiacre-discover.py > request.json
 ```
+
+Use the quote script for your network to see the live amount and recipient for
+the same input.
+
+```sh
+# Base quote
+curl -fsS 'https://apiacre.com/examples/python-buyer.py?service=crypto.base-block-inspect' -o base-block-quote-base.py
+python3 base-block-quote-base.py --input request.json
+
+# Solana quote
+curl -fsS 'https://apiacre.com/examples/python-solana-buyer.py?service=crypto.base-block-inspect' -o base-block-quote-solana.py
+python3 base-block-quote-solana.py --input request.json
+```
+
+The same three downloads are linked in the [buyer guide](https://apiacre.com/buyers#python-discovery).
 
 ## Get a Base quote
 
