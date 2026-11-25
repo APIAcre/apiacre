@@ -60,6 +60,7 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Weather quote previews](#preview-weather) for current conditions and forecasts by place or coordinates
 - [ECB FX quote preview](#preview-an-ecb-fx-conversion) for currency pairs, amounts, and historical dates
 - [Technical SEO preview](#preview-a-technical-seo-audit) for single-page checks and page metadata
+- [Base account balance previews](#preview-base-account-balances) for native balances and selected ERC-20 contracts
 - [Base stock evidence preview](#preview-base-stock-evidence) for unpaid contract and SEC evidence quotes
 - [CSV redaction and schema workflow](#preview-csv-redaction-and-schema-inference) for four editable checkout previews
 - [Schema API price check](#preview-schema-prices-in-ci) for an unsigned GitHub Actions example
@@ -388,6 +389,28 @@ Paste either request into **Find a service** to review the URL before paying.
 
 - `Run an SEO audit for https://apiacre.com/use-cases`
 - `Get website metadata for https://apiacre.com/use-cases`
+
+## Preview Base account balances
+
+Use [Base account status](https://apiacre.com/catalog/crypto.base-account-status)
+for ETH and native USDC at one Base block for **0.003 USDC**. Use a
+[Base account snapshot](https://apiacre.com/catalog/crypto.base-account-snapshot)
+to include up to four specified ERC-20 contracts for **0.01 USDC**. Both calls
+include the account nonce and contract-code status. Available block tags are
+`latest`, `safe`, and `finalized`. The default is `safe`.
+
+Paste one of these requests into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog),
+then select **Review your Base account request** to check the exact input and quote.
+
+```text
+Check the ETH and USDC balance of 0x000000000000000000000000000000000000dEaD on Base at the safe block
+Read ERC-20 balances for 0x000000000000000000000000000000000000dEaD on Base at the finalized block, including token contract 0x4200000000000000000000000000000000000006
+```
+
+[Free account-status recommendation](https://apiacre.com/recommend?task=Check+the+ETH+and+USDC+balance+of+0x000000000000000000000000000000000000dEaD+on+Base+at+the+safe+block&max_price=0.003&limit=1) and
+[free account-snapshot recommendation](https://apiacre.com/recommend?task=Read+ERC-20+balances+for+0x000000000000000000000000000000000000dEaD+on+Base+at+the+finalized+block%2C+including+token+contract+0x4200000000000000000000000000000000000006&max_price=0.01&limit=1) return the
+same JSON in `suggestedInput` for scripts and agents. Search and quote review
+are free. Each purchase requires its own authorization.
 
 ## Preview Base stock evidence
 
