@@ -534,6 +534,22 @@ with a combined cap of 0.025 USDC if you choose both. The source links identify
 the [Base token metadata](https://docs.base.org/sdks/tokenized-stocks/api-reference/get-token-metadata)
 and the [issuer's SEC filing](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm).
 
+## Preview document extraction
+
+| Need | Browser checkout | USDC per call on Base or Solana |
+| --- | --- | ---: |
+| Text and metadata from PDF, DOCX, HTML, or text files | [Extract document text](https://apiacre.com/try/document.extract) | 0.010 |
+| Table rows from HTML, DOCX, or CSV | [Extract table rows](https://apiacre.com/try/document.tables) | 0.025 |
+
+Choose a file up to about **3.75 MiB** and select **Verify document quote**.
+The file is prepared in your browser. Verifying sends it to API Acre for
+a free quote. Extraction runs after you authorize and pay for a call.
+
+Use the Base browser wallet or download the reviewed JSON from the quote
+and use the linked Base or Solana Python client. The API still accepts
+`filename` and `content_base64` in the [text API](https://apiacre.com/services/document.extract)
+and the [table API](https://apiacre.com/services/document.tables).
+
 ## Convert CSV and JSON
 
 [Data conversion](https://apiacre.com/catalog/data.convert) costs **0.005 USDC** per call on
