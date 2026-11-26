@@ -995,6 +995,10 @@ The free recommendation puts the block number in `suggestedInput`. Search for
 `Get the finalized Base block header` to prepare a request with the finalized tag.
 [API Acre catalog](https://apiacre.com/#catalog) · [Free recommendation](https://apiacre.com/recommend?task=What%20is%20the%20timestamp%20of%20Base%20block%2034600000%3F&max_price=0.001&limit=1)
 
+Paste a Base mainnet block or transaction link from BaseScan or Blockscout into
+**Find a service** to prepare the exact request for review.
+[Try a BaseScan block link](https://apiacre.com/recommend?task=https%3A%2F%2Fbasescan.org%2Fblock%2F25000000&max_price=0.001&limit=1)
+
 Search for `Inspect Base transaction` followed by your transaction hash to
 review the receipt request at **0.005 USDC**. Search for
 `Get the Base mainnet network status` to preview the current block and gas fees
