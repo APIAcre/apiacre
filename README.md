@@ -406,8 +406,11 @@ requires its own authorization.
 [Product Price Snapshot](https://apiacre.com/catalog/commerce.product-price)
 reads the publisher’s structured price, currency, and availability from one
 public HTTPS product page. A fresh call costs **0.01 USDC** on Base or Solana.
-[Open browser checkout](https://apiacre.com/try/commerce.product-price) or
-[inspect the free sample](https://apiacre.com/samples/commerce.product-price).
+In browser checkout, paste the retailer’s **Product URL**. To check a budget,
+enter **Currency** and **Maximum product price** in that currency. Select
+**Verify product quote** to review the exact request and the separate API fee.
+[Open browser checkout](https://apiacre.com/try/commerce.product-price) ·
+[Inspect the free sample](https://apiacre.com/samples/commerce.product-price)
 
 Paste this question into **Find a service** on the [API Acre homepage](https://apiacre.com/#catalog).
 Select **Review your product-price request** to see the URL, currency, limit,
