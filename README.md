@@ -35,7 +35,8 @@ API Acre's hosted service implementation or any wallet credentials.
 - [Prepare a custom-work brief](https://apiacre.com/request-api#request-builder)
   for a custom API, evidence audit, or volume integration. Describe the
   deliverable, timeline, and optional budget, then review the draft before
-  sending it. [View a completed commission](https://apiacre.com/request-api#proof-case).
+  sending it. You can also [email your project brief](mailto:hello@apiacre.com)
+  with the same details. [View a completed commission](https://apiacre.com/request-api#proof-case).
 - [Live Pixel Acre inventory](https://apiacre.com/pixel-acre/state) — claimed,
   reserved, checkout, and currently available pixels; reading it cannot reserve
   inventory or make a payment
