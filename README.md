@@ -307,6 +307,20 @@ shows that the later New York occurrence corresponds to 06:30 UTC. If no
 occurrence was chosen or the local time falls in a spring-forward gap,
 `suggestedInput` is null. An offset-aware timestamp identifies an exact instant.
 
+To check the price from a terminal, save the JSON above as
+`time-zone-request.json`. Use either command with Python 3.10 or later. Each
+preview displays the live price and recipient without a wallet or payment.
+
+```sh
+# Base
+curl -fsS --max-time 12 'https://apiacre.com/examples/python-buyer.py?service=data.timezone-convert' -o time-zone-base.py &&
+python3 time-zone-base.py --input time-zone-request.json
+
+# Solana
+curl -fsS --max-time 12 'https://apiacre.com/examples/python-solana-buyer.py?service=data.timezone-convert' -o time-zone-solana.py &&
+python3 time-zone-solana.py --input time-zone-request.json
+```
+
 ## Preview weather
 
 Enter `What's the weather like in London, GB right now?` or
