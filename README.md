@@ -1,6 +1,6 @@
 # API Acre
 
-API Acre is a live catalog of 76 focused, pay-per-call HTTP products for web
+API Acre offers 76 focused, pay-per-call HTTP products for web
 research, documents, scholarly metadata, organization discovery, structured
 data, developer workflows, public-company research, Base network evidence, and
 agent advertising. The 75 fixed-price APIs are also available as MCP tools.
@@ -9,6 +9,20 @@ discovery, schemas, examples, and workflow recipes are free.
 
 This repository is the public integration and discovery hub. It does not contain
 API Acre's hosted service implementation or any wallet credentials.
+
+## Commission custom work
+
+API Acre quotes custom APIs, structured data workflows, evidence-backed audits,
+and volume integrations. [Email your project brief](mailto:hello@apiacre.com) or
+[prepare a brief with the request builder](https://apiacre.com/request-api#request-builder).
+Include the deliverable, a representative input or source, the desired output,
+your deadline, and an optional budget.
+
+In August 2026, API Acre delivered a homepage audit with findings tied to source
+evidence, prioritized recommendations, and an implementation plan. The requester
+ranked the submission first and rated it 99/100.
+[Taskmarket result](https://taskmarket.dev/tasks/0xe9fb8fe4e6f83b54d4850efd1c5b6aef6d1bbd7f9f91921d4329f404e64c5682) ·
+[Base settlement](https://basescan.org/tx/0xe580591abe9df357abf20f1d45b3ad26381583719a3bcac7d9297fb9c2e81e7d).
 
 ## Discover the APIs
 
@@ -32,11 +46,6 @@ API Acre's hosted service implementation or any wallet credentials.
   [free A2A discovery example](#discover-over-a2a)
 - [Free result samples](https://apiacre.com/samples) and
   [multi-call workflows](https://apiacre.com/workflows)
-- [Prepare a custom-work brief](https://apiacre.com/request-api#request-builder)
-  for a custom API, evidence audit, or volume integration. Describe the
-  deliverable, timeline, and optional budget, then review the draft before
-  sending it. You can also [email your project brief](mailto:hello@apiacre.com)
-  with the same details. [View a completed commission](https://apiacre.com/request-api#proof-case).
 - [Live Pixel Acre inventory](https://apiacre.com/pixel-acre/state) — claimed,
   reserved, checkout, and currently available pixels; reading it cannot reserve
   inventory or make a payment
